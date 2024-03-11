@@ -1,1 +1,5 @@
-site_name: My Docs
+site_name: BRIGHT_CZY's site
+site_url: https://czy1101kksk.github.io/
+site_author: BRIGHT_CZY
+theme:
+  name: material #主题site_name: My Docs

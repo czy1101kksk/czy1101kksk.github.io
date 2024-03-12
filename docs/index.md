@@ -48,7 +48,7 @@ statistics: true
     <font size=3>
     <img src="img/github.png" width="16"/> Github : **[BRIGHT_CZY](https://github.com/czy1101kksk?tab=repositories)**
     
-    <img src="img/google.png" width="16"/> Gmail : **[brightyoungchuan@gmail.com](brightyoungchuan@gmail.com)**
+    <img src="img/google.png" width="16"/> Gmail : **[brightyoungchuan@gmail.com](mailto:brightyoungchuan@gmail.com)**
     
     </font>
 

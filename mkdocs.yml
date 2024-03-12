@@ -114,7 +114,7 @@ extra:
   #   HTML5: html
   #   JavaScript: js
   #   CSS: css
-  generator: false  #删除页脚显示“使用 MkDocs 材料制造”
+  generator: true  #删除页脚显示“使用 MkDocs 材料制造”
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/czy1101kksk

@@ -222,3 +222,14 @@ extra_javascript:
   - javascripts/mathjax.js
 extra_css:
   - stylesheets/extra.css
+
+
+nav:
+  - "🎆 主页": 
+    - "🎆 主页": index.md
+  - "📜 论文阅读":
+    - sci-paper/index.md
+  - "👨‍🎓 课程学习":
+    - study-cs/index.md
+  - "✍ 施工中":
+    - wait-for-me.md

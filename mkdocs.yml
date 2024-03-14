@@ -91,6 +91,7 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.arithmatex:
       generic: true
+      smart_dollar: true
   - pymdownx.betterem:
       smart_enable: none
   - pymdownx.emoji:
@@ -233,5 +234,6 @@ nav:
       - sci-paper/Load-Forecasting/[Applied Energy]A novel short-term multi-energy load forecasting method for integrated energy system based on feature separation-fusion technology and improved CNN.md
   - "👨‍🎓 课程学习":
     - study-cs/index.md
+    - python/Python-is-important.md
   - "✍ 施工中":
     - wait-for-me.md

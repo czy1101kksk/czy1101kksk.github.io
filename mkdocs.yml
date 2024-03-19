@@ -232,9 +232,10 @@ nav:
     - sci-paper/index.md
     - "📰综合能源系统":
       - sci-paper/Load-Forecasting/[Applied Energy]A novel short-term multi-energy load forecasting method for integrated energy system based on feature separation-fusion technology and improved CNN.md
-  - "👨‍🎓 课程学习":
+  - "👨‍🎓 学习笔记":
     - study-cs/index.md
     - python/Python-is-important.md
     - energy/Engineering_Thermodynamics.md
+    - python/algorithms-notebook-in-python.md
   - "✍ 施工中":
     - wait-for-me.md

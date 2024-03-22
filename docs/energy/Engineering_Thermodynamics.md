@@ -8,7 +8,7 @@
     
     - 学分:4.0             课程代码: 59120030
     
-    - 教师:俞自涛老师       教材: 
+    - 教师:俞自涛老师       教材:<工程热力学(第三版)> 
     
 </font>
 <font size = 3.5>
@@ -28,12 +28,73 @@
 
     </font>
 
-## 第二章 
+
+
+## 第二章 能量与热力学第一定律
 ---
 
 
 
-## 第三章 
+## 第三章 熵与热力学第二定律
 ---
+
+
+## 第四章 热力学一般关系
+---
+
+!!! note "知识梳理"
+    <font size = 3.4>
+
+    🌟概念:简单可压缩系统的五个基本状态参数(p,v,T,u,s), 三个可测参数的状态方程$F(p, v, T)=0$, <B>热力学一般关系</B>,组合状态参数(h, f, g)
+
+    🔧计算:
+
+    </font>
+
+>简单可压缩系统的特点:存在两个独立的状态参数,其状态函数为二元函数
+
+
+根据热力学第一定律与第二定律, <B>简单可压缩工质在可逆变化中的能量平衡($F(u, v, s)=0$的全微分形式)</B>有:
+     
+\[
+        \begin{aligned}
+        &du = Tds - pdv                   \\
+        \small 即:& \small热力学能 = 吸热量 - 做功量         \\                             
+        &dh = -Tds - vdp (引入自由能f = u - Ts)                                    \\
+        &dg = -sdT +vdp  (引入自由焓g = h - Ts)                                    \\
+        \end{aligned}
+\]
+
+即通过Legendre变换,可得$F(h,s,p)=0$, $F(f,T,v)=0$, $F(g,T,p)=0$的全微分表达式.
+再对上述的等式做一阶偏微商,有:
+
+\[
+        \begin{aligned}
+        &( \frac{\partial u}{\partial s} )_v = (\frac{\partial h}{\partial s})_p = T                 \\
+        -&(\frac{\partial u}{\partial v} )_s = -(\frac{\partial f}{\partial v})_T = p                                   \\
+        &( \frac{\partial h}{\partial p} )_s = (\frac{\partial g}{\partial p})_T = v                 \\
+        -&(\frac{\partial f}{\partial T} )_v = -(\frac{\partial g}{\partial T})_p = s                                   \\
+        \end{aligned}
+\]
+
+由此可知, 对于$F(h,s,p)=0$, $F(f,T,v)=0$, $F(g,T,p)=0$,只需要知道任意一个关系式就能得到所有的状态函数
+
+>将不可测的熵s与可测的p,v,T相联系
+
+如上述的某些偏微商,具有明确的物理意义,将这些特殊的偏微商定义为<B>热系数</B>:
+
+- 工质在定压条件下(因为p同样会影响体积,通过定压条件排除)的<B>热膨胀/体膨胀系数系数$[K^{-1}]$</B>: 
+
+\[
+        \alpha_{v} = \frac{1}{v} (\frac{\partial v}{\partial T})_{p}
+\]
+
+- 工质在等温条件下的<B>等温压缩率</B>$[Pa^{-1}]$:
+
+\[
+        \kappa_T  = - \frac{1}{v} (\frac{\partial v}{\partial p})_T
+\]
+
+
 
 待续未完.......😞

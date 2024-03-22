@@ -67,6 +67,18 @@ str
 5
 ```
 
+### eval('str')函数
+将字符串当成有效的表达式来求值，并返回计算结果
+
+> eval()函数会把输入的字符串的<B>引号去掉</B>，把中间的内容当成Python的代码，并执行这段代码返回执行结果
+```python
+>>>eval("254+1")
+255
+>>eval("'+' * 5")
++++++
+>>>eval('[1,2,3,4,5]')
+[1, 2, 3, 4, 5]
+```
 
 #### 空值None
 ---
@@ -120,6 +132,14 @@ TypeError: ord() expected a character, but string of length 2 found
 >>>chr(20014)
 '丰'
 ```
+
+#### int--float
+```python
+>>>32.2//6-24//6
+1.0                 # 32.2为float 输出浮点型1.0
+```
+
+
 
 ### ✍print(*objects, sep=' ', end='\n', file=None, flush=False):
 ---
@@ -717,4 +737,6 @@ print(values_tuple)
 ---
 
 del语句是用于删除对象的关键字。可以用于删除变量、列表、字典等不同类型的对象。
+
+---
 

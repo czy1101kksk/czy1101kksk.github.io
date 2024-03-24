@@ -273,6 +273,13 @@
 	\end{aligned}
 \]
 
+### 第二章作业
+
+<object data="../home-work/Engineering-Thermodynamics-homework-2.pdf" type="application/pdf" width="100%" height="800">
+	<embed src="../home-work/Engineering-Thermodynamics-homework-2.pdf" type="application/pdf" />
+</object>
+
+
 ## 第三章 熵与热力学第二定律
 ---
 !!! note "知识梳理"  
@@ -302,7 +309,172 @@
 
 ### 卡诺定理
 ---
+卡诺发现热机循环中的不可逆因素(耗散)都会引起功损失,因此假设一个理想的<B>可逆热机</B>,工质在热源相同温度下定温吸热,冷源相同温度下定温放热.
 
+!!! note "卡诺循环(Carnot Cycle)"
+
+	<font size = 4>
+	卡诺循环在$T_1与T_2$两个热源之间的正向循环,由两个可逆定温过程与两个可逆绝热过程组成.
+
+	![卡诺循环](img/kanuo.jpg)
+
+	根据循环特性,卡诺循环效率为:
+
+	\[
+		\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_2 \left| \Delta s_{c-d} \right| }{T_1 \left| \Delta s_{a-b} \right|} = 1 - \frac{T_2}{T_1}
+	\]
+	
+	!!! info "卡诺循环的特点"
+		<font size = 3.5>
+		
+		- 卡诺循环的热效率仅仅取决于两个热源的温度,若提高高温热源$T_1$,降低低温热源$T_2$(提高工作热源温差),则能够提高循环热效率
+
+		- 不能制造出在两个温度不同的热源间工作的热机，而使其效率超过同样热源见工作的可逆热机.(可逆热机效率最高)
+		
+		- 在两个固定热源之间工作的一切可逆热机具有相同的效率$\eta_t =1 - \frac{T_2}{T_1}$。
+
+		- 若$T_1 = T_2$,则$\eta_t = 0$,说明热能产生动力一定要温差作为热力学条件,所以单一热源连续做功的机器(第二类永动机)不存在
+		</font>
+
+	
+	
+	</font>
+
+### 熵
+---
+!!! note "克劳修斯不等式"
+	<font size = 3.5>
+	假设一个情景,某闭口系在某过程中由热$\delta Q$与功$\delta W$穿过边界,可逆机从温度为$T_0$的热源得到$\delta Q_R$,同时完成功量$\delta W_R$,最终将热$\delta Q$传递给温度为$T$的恒温热源(外界).完成的总功量为$\delta W_T = \delta W_R + \delta W$可知:
+
+	\[
+		\begin{aligned}	
+		\delta W_R &= \delta Q_R - \delta Q   \\
+		\delta W &= \delta Q - \delta U       \\
+		\text{由于可逆机,}&\frac{T_0}{T} =\frac{\delta Q_R}{\delta Q}  \\
+		\Rightarrow & \delta W_T = \frac{T_0}{T} \delta Q - dU  \\
+		\text{对封闭循环,} & \oint \delta W_T = T_0 \oint \frac{\delta Q}{T} - \oint dU  \\
+		\text{由于热二率,单一热源的装置:}& \oint \delta W_T = T_0 \oint \frac{\delta Q}{T} \le 0  \\
+		\text{可得}\oint \frac{\delta Q}{T} &\le 0
+		\end{aligned}	
+	\]
+		
+	![热力学框图](img/theo.jpg){width=300px height=200px}
+
+	>此不等式表明：所有可逆循环的克劳修斯积分值$\oint \frac{\delta Q}{T} = 0$，所有不可逆循环的克劳修斯积分值$\oint \frac{\delta Q}{T} < 0$。故本不等式可作为判断一切任意循环是否可逆的依据。应用克劳修斯不等式还可推出如下的重要结论:任何系统或工质经历一个不可逆的绝热过程之后，其熵值必将有所增大。
+
+	
+	</font>
+
+
+根据克劳修斯不等式,设$dS = \frac{\delta Q}{T}$,称S为熵(Entropy)[$kJ/K$],是一种尺度量,具有可加性
+
+对于熵的计算,只能按照可逆路径来进行,有:
+
+\[
+	\begin{aligned}
+	\oint dS = \oint \frac{\delta Q}{T} &= 0,        \\
+	\Delta S = S_2 - S_1 &s= \int_{1}^{2} \frac{\delta Q}{T} \\
+	\end{aligned}	
+\]
+
+对于不可逆过程中的熵,则
+
+\[
+	\begin{aligned}
+	dS &> \frac{\delta Q}{T},                           \\
+	\int_{1}^{2}dS &= S_2 - S_1 > \int_{1}^{2} \frac{\delta Q}{T}        \\
+	\end{aligned}	
+\]
+
+>不可逆过程熵的变化可以选择相同的初终态间的任意的可逆过程来计算
+
+### 孤立体系(isolated system)熵增原理
+---
+
+由于在不可逆过程中$dS > \frac{\delta Q}{T}$,引入$\delta S_g = dS - \frac{\delta Q}{T}$来表示两者的差值,则:
+
+\[
+	\begin{aligned}
+	dS = \delta S_g + \frac{\delta Q}{T},                           
+	\begin{equation}
+			\delta S_g =
+			\begin{cases}
+			= 0 (可逆过程)  \\
+			> 0 (不可逆过程)   \\
+			\end{cases}
+	\end{equation}
+	\end{aligned}	
+\]
+
+定义$\delta S_g$为熵产来度量<B>不可逆因素的存在而引起的熵的增加</B>,$d S_f = \frac{\delta Q}{T}$为由于与外界发生热交换，由热流引起的熵流
+
+对于孤立系,$\delta Q = 0, \delta m = 0, \Rightarrow dS_f = 0$,因此:
+
+\[
+	\begin{aligned}
+	\begin{equation}
+			dS_{iso} = \delta S_g =
+			\begin{cases}
+			= 0 (可逆过程)  \\
+			> 0 (不可逆过程)   \\
+			\end{cases}
+	\end{equation}
+	\end{aligned}
+\]
+
+>上述推导说明,在孤立系内，一切实际过程(不可逆过程)都朝着使系统熵增加的方向进行，或在极限情况下(可逆过程)维持系统的熵不变，而任何使系统熵减少的过程是不可能发生的.
+
+!!! note "孤立体系熵增原理"
+	<font size =3>
+
+	- 如果某过程进行的全部结果是使孤立系的总熵增加，它就可以单独进行而不需要补充条件，也就是说可以<B>自发地进行</B>.
+	- 如果某过程进行的结果将使孤立系总熵减少，它必不可能单独进行。要使这种过程成为可能，必须<B>伴随进行一种熵增加的过程，使得两过程相伴进行的结果，孤立系的总熵增大</B>，或至少维持不变.
+	- 不可逆过程进行的结果使系统的熵增加，同时使其作功能力下降，而使能量转变为较为无用的形式。
+	- 能量在数量上并未变化，而作功能力减少的现象称为能量贬值。孤立体系的熵增意味着能量的  贬值，所以孤立体系熵增原理又称为<B>能量贬值原理</B>
+	</font>
+
+### 熵方程
+---
+
+#### 闭口系统熵方程
+---
+在闭口系中,$dS_f$为熵流, 是换热量与热源温度的比值,表明外界换热引起的系统熵变(吸热为"+",放热为"-",绝热为0).
+
+$\delta S_g$为熵产,是不可逆因素造成的系统熵增加,仅可能大于等于0
+
+\[
+	\begin{aligned}
+	dS = \delta S_g + \frac{\delta Q}{T} = \delta S_g + dS_f ,                           
+	\end{aligned}	
+\]
+
+在闭口绝热系中,则有$dS_f = 0$:
+
+\[
+	\begin{aligned}
+	dS = \delta S_g \geq 0                     
+	\end{aligned}	
+\]
+
+可知,在闭口不可逆绝热系中,由于过程中仍然存在不可逆因素而产生不可避免的耗散,使机械功转化为热能被工质吸收,对熵变做出贡献.
+
+#### 开口系统熵方程
+---
+
+在开口系中,系统与外界交换质量将引起系统熵的改变,因为物质迁移而引起熵变的熵流为<B>质熵流</B>,定义为$\delta S_m = d(ms)$
+
+\[
+	\begin{aligned}
+	\begin{equation}
+	dS_{C.V.} = \delta S_{g.C.V} + \delta S_f + \delta S_m = \delta S_{g} + \frac{\delta Q}{T} + d(ms) = 
+		\begin{cases}
+			= \delta S_{g} + \frac{\delta Q}{T} + mds =0 (稳定流动过程)\\
+			= \frac{\delta Q}{T} + mds =0 (可逆稳定流动过程)\\
+			\Rightarrow S_1 = S_2 (可逆绝热稳定流动过程) \\
+		\end{cases}  
+	\end{equation}
+	\end{aligned}	
+\]
 
 
 ## 第四章 热力学一般关系

@@ -239,7 +239,12 @@ S = 'sha bby'
 >>>(S*4).find('bby',1,2)        # 无法找到则输出-1
 -1
 ```
-
+#### 字符串不可修改
+```python
+>>>s = 'hello'
+>>>s[0] = 'f'
+# 对字符串元素的赋值时非法的
+```
 
 
 ### 🌦浮点数相关
@@ -267,17 +272,18 @@ TypeError:unorderable types:str()>int()
 - 'and'运算符：
   如果所有表达式都为真（True），则返回最后一个表达式的值；如果有任何一个表达式为假（False），则返回第一个为假的表达式的值。#当$A_1$ and $B_2$时,若$A_1$为真,则返回$B_2$,否则返回$A_1$.
   
-  ```python
-    # and 运算符示例
-    a = 1
-    b = 5
-    print(a and b)  # 输出5
-    print(a and False)  # 输出False
-    print(a and None)  # 输出None
-    print(False and a)  # 输出False
-    print(None and a)  # 输出None
-    print(True and 'a' and 2 and 5>2)  # 输出True
-```
+    ```python
+        # and 运算符示例
+        a = 1
+        b = 5
+        print(a and b)  # 输出5
+        print(a and False)  # 输出False
+        print(a and None)  # 输出None
+        print(False and a)  # 输出False
+        print(None and a)  # 输出None
+        print(True and 'a' and 2 and 5>2)  # 输出True
+    ```
+
 - 'or'运算符：
   如果有任何一个表达式为真（True），则返回第一个为真的表达式的值；如果所有表达式都为假（False），则返回最后一个表达式的值。#当$A_1$ and $B_2$时,若$A_1$为真,则返回$A_1$,否则返回$B_2$.
     ```python
@@ -383,6 +389,13 @@ b += [99]
 
 - b = a[1]是对a列表中索引为1的元素的引用,然而修改了b的值,a表中的元素并不会受到影响
 
+#### del 删除元素
+```python
+>>>name = ['Alice', 'Kim', 'Karl', 'John']
+>>>del name[2]
+>>>name
+['Alice','Kim','John']
+```
 #### 列表常用方法
 
 |方法|功能|
@@ -391,12 +404,13 @@ b += [99]
 |str.clear|清除所有元素|
 |str.count(x)|统计列表中x出现的次数|
 |str.copy()|创建列表备份|
-|str.remove(x)|删除值为x的第一个元素|
+|str.remove(x)|删除<B>值为x</B>的第一个元素|
 |str.sort()|列表元素排列|
 |str.reverse()|倒序列表|
 |str.insert(index,x)|在index处插入x|
-|str.index(value)|寻找value第一次出现的下标|
+|str.index(value[,start[,stop]])|在指定范围内寻找value第一次出现的下标|
 |str.extend()|将列表x扩充到str中(类似.append(),能够一次添加多个元素)|
+|str.sort(reverse=False)|列表元素排序,默认升序(False)|
 
 ```python
 >>>a = [2,3,5,7,11,13]
@@ -409,11 +423,18 @@ ValueError: list.remove(x): x not in list
 
 >>>a.index(6)                # 无法找出列表中没有的元素
 ValueError: 6 is not in list
+
+>>>a = [1,2,3,5,4,8,0]
+>>>type(a.sort(reverse = True)),type(a.remove(4)),type(a.clear())
+(NoneType, NoneType, NoneType)
+
+#a.sort()方法会直接修改列表a，并返回None。对于会改变数据的函数和方法（如list.sort()），通常会返回None类型，以提示它们是在原地修改数据
 ```
 
-#### 聚合.joim()函数
+
+#### 聚合.join()函数
 ---
-.join()函数可将一个列表的字符串类型元素组合为单独一个字符串:
+.join()函数可将一个列表的字符串类型元素组合为<B>单独一个字符串<／B>:
 
 ```格式:<分隔符>.join(x)```
 
@@ -514,13 +535,31 @@ for name, phone in table.items():
 #Jack       ==>       4098
 #Dcab       ==>       7678
 ```
-对于字符串str
-```python
-name = "Alice"
-formatted_name = f"{name:0>8s}"     #字符串使用s
->>>formatted_name
-'000Alice'
-```
+
+!!! note "一种特殊使用"
+    对于字符串str
+    ```python
+    name = "Alice"
+    formatted_name = f"{name:0>8s}"     #字符串使用s
+    >>>formatted_name
+    '000Alice'
+    >>>'{:>08s}'.format(bin(31)[2:])
+    '00011111'
+    >>>'{:08s}'.format(bin(31)[2:])
+    '11111000'                      # 字符串s默认左对齐
+    >>>'{:8s}'.format(bin(31)[2:])
+    '11111   '
+    >>>'{:8d}'.format(123)
+    '     123'                     # 整数d默认右对齐 
+    >>>'{:08d}'.format(123)
+    '00000123'
+    ```
+    其中的{:0ns}、{:0nd}是相较于{:ns}、{:nd}的一种特殊用法,<B>表示用0填充</B>,而默认为用空格填充.
+
+![](py/fsd.png)
+
+
+
 
 #### 分隔符/小数点/科学计数法
 ---

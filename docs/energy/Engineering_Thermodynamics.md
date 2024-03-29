@@ -285,9 +285,9 @@
 !!! note "知识梳理"  
     <font size = 3.4>
     
-    🌟概念:热力学第二定律的两种表述,
+    🌟概念:热力学第二定律的两种表述,卡诺循环,状态参数熵
     
-    🔧计算:卡诺定理
+    🔧计算:卡诺定理,熵方程
 
     </font>
 
@@ -299,7 +299,7 @@
 	
 	>强调"自发地,不付代价地"
 	
-	- 开尔文表述(热功转换角度):不可能从单一热源取热，并使之完全转变为有用功而不产生其它影响。
+	- 开尔文表述(热功转换角度):不可能从<B>单一热源</B>取热，并使之完全转变为有用功(全部对外做功)而不产生其它影响。(不可能制造一台机器,在循环动作中把一重物升高的同时使热源冷却),$Q_{热源放热} > \Delta W$
 
 	>不可能将从热源取得的热全部转换为功,不可避免地将一部分传递给温度更低的低温热源
 
@@ -321,7 +321,7 @@
 	根据循环特性,卡诺循环效率为:
 
 	\[
-		\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_2 \left| \Delta s_{c-d} \right| }{T_1 \left| \Delta s_{a-b} \right|} = 1 - \frac{T_2}{T_1}
+		\eta_t = \frac{w_{net}}{q_1} = \frac{q_1 - q_2}{q_1} = 1 - \frac{q_2}{q_1} = 1 - \frac{T_2 \left| \Delta s_{c-d} \right| }{T_1 \left| \Delta s_{a-b} \right|} = 1 - \frac{T_2}{T_1}
 	\]
 	
 	!!! info "卡诺循环的特点"
@@ -336,29 +336,45 @@
 		- 若$T_1 = T_2$,则$\eta_t = 0$,说明热能产生动力一定要温差作为热力学条件,所以单一热源连续做功的机器(第二类永动机)不存在
 		</font>
 
-	
-	
 	</font>
+
+### 制冷热泵循环
+---
+
+!!! note "逆卡诺循环"
+	<font size = 4>
+	对于制冷机/热泵:从冷源吸热$Q_2$,向热源放热$Q_1$,性能系数$[COP]$(制冷系数/供暖系数)
+	
+	\[
+		\begin{aligned}
+		\text{耗功量:} W = Q_1 - Q_2 \\
+		\end{aligned}
+	\]
+
+
+	</font>
+
+
 
 ### 熵
 ---
 !!! note "克劳修斯不等式"
 	<font size = 3.5>
-	假设一个情景,某闭口系在某过程中由热$\delta Q$与功$\delta W$穿过边界,可逆机从温度为$T_0$的热源得到$\delta Q_R$,同时完成功量$\delta W_R$,最终将热$\delta Q$传递给温度为$T$的恒温热源(外界).完成的总功量为$\delta W_T = \delta W_R + \delta W$可知:
+	假设一个情景,某闭口系统在某过程中有热$\delta Q$与功$\delta W$穿过边界,可逆机从温度为$T_0$的恒温热源得到$\delta Q_R$,同时完成功量$\delta W_R$,最终将热$\delta Q$传递给任意温度为$T$的某一系统.完成的总功量为$\delta W_T = \delta W_R + \delta W$可知:
 
 	\[
 		\begin{aligned}	
 		\delta W_R &= \delta Q_R - \delta Q   \\
-		\delta W &= \delta Q - \delta U       \\
-		\text{由于可逆机,}&\frac{T_0}{T} =\frac{\delta Q_R}{\delta Q}  \\
-		\Rightarrow & \delta W_T = \frac{T_0}{T} \delta Q - dU  \\
-		\text{对封闭循环,} & \oint \delta W_T = T_0 \oint \frac{\delta Q}{T} - \oint dU  \\
-		\text{由于热二率,单一热源的装置:}& \oint \delta W_T = T_0 \oint \frac{\delta Q}{T} \le 0  \\
+		\delta W &= \delta Q - dU       \\
+		\text{由于可逆机,}\frac{T_0}{T} &=\frac{\delta Q_R}{\delta Q}  \\
+		\Rightarrow  \delta W_T &= \frac{T_0}{T} \delta Q - dU  \\
+		\text{对封闭循环,}  \oint \delta W_T &= T_0 \oint \frac{\delta Q}{T} - \oint dU  \\
+		\text{在循环中,单一热源不可能输出有用功:} \oint \delta W_T &= T_0 \oint \frac{\delta Q}{T} \le 0  \\
 		\text{可得}\oint \frac{\delta Q}{T} &\le 0
 		\end{aligned}	
 	\]
 		
-	![热力学框图](img/theo.jpg){width=300px height=200px}
+	![热力学框图](img/theo.jpg){width=400px height=200px}
 
 	>此不等式表明：所有可逆循环的克劳修斯积分值$\oint \frac{\delta Q}{T} = 0$，所有不可逆循环的克劳修斯积分值$\oint \frac{\delta Q}{T} < 0$。故本不等式可作为判断一切任意循环是否可逆的依据。应用克劳修斯不等式还可推出如下的重要结论:任何系统或工质经历一个不可逆的绝热过程之后，其熵值必将有所增大。
 
@@ -373,7 +389,7 @@
 \[
 	\begin{aligned}
 	\oint dS = \oint \frac{\delta Q}{T} &= 0,        \\
-	\Delta S = S_2 - S_1 &s= \int_{1}^{2} \frac{\delta Q}{T} \\
+	\Delta S = S_2 - S_1 &= \int_{1}^{2} \frac{\delta Q}{T} \\
 	\end{aligned}	
 \]
 
@@ -476,6 +492,13 @@ $\delta S_g$为熵产,是不可逆因素造成的系统熵增加,仅可能大于
 	\end{aligned}	
 \]
 
+### 第三章作业
+
+<object data="../home-work/Engineering-Thermodynamics-homework-3.pdf" type="application/pdf" width="100%" height="800">
+	<embed src="../home-work/Engineering-Thermodynamics-homework-3.pdf" type="application/pdf" />
+</object>
+
+
 
 ## 第四章 热力学一般关系
 ---
@@ -532,6 +555,53 @@ $\delta S_g$为熵产,是不可逆因素造成的系统熵增加,仅可能大于
 \[
         \kappa_T  = - \frac{1}{v} (\frac{\partial v}{\partial p})_T
 \]
+
+## 第五章 气体的热力性质
+---
+
+!!! note "知识梳理"
+    <font size = 3.4>
+
+    🌟概念:理想气体,理想气体状态方程,
+
+    🔧计算:理想气体状态方程
+
+    </font>
+
+!!! info "理想气体"
+	<font size = 3.5>
+	理想气体性质指的是<B>忽略分子自身占有的体积和分子间相互作用力</B>对其他宏观热力性质的影响,在工程上(通常的工作参数范围中),将实际气体工质当作理想气体处理有足够的计算精度.
+	
+	理想气体状态方程(3个可测状态参数$p,v,T$的函数关系$F(p,v,T)=0$):<B>Clapeyron方程</B>
+
+
+	\[
+		pV = nRT = m R_g T
+	\]
+	
+	> $R_g = \frac{R}{M}$:气体常数[$J/(kg·K)$],$R$为摩尔气体常数$8.314 J/(mol·K)$
+	
+	变式:
+	
+	\[
+		\begin{aligned}
+		pv = R_g T,&(\text{单位质量(1kg)形式})                   \\
+		pV_m = RT,&(\text{单位mol形式,} V_m=V/n)                    \\
+		p M = \rho R T,&(\text{密度式})
+		\end{aligned}
+	\]
+
+	</font>
+
+
+
+
+
+
+
+
+
+
 
 
 

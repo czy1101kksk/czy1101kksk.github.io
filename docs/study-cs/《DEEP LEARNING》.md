@@ -262,10 +262,24 @@ print("Reconstructed A:\n", reconstructed_A)
 - $V$ 是一个$n \times n$的正交矩阵，其列向量称为<B>右奇异向量</B>。
 
 ```python
-tensor = torch.rand(5, 5)
+import torch
 
-U, D, V = torch.linalg.svd(tensor)
+# 创建一个5x3的随机矩阵
+A = torch.randn(5, 3)
 
+# 计算奇异值分解
+U, S, Vh = torch.linalg.svd(A, full_matrices=False)
+
+# 打印结果的形状
+print(U.shape, S.shape, Vh.shape)
+
+# 计算重构矩阵并计算与原矩阵的距离
+reconstructed_A = torch.matmul(torch.matmul(U, torch.diag(S)), Vh)
+distance = torch.dist(A, reconstructed_A)
+print(distance)
+
+#: torch.Size([5, 3]) torch.Size([3]) torch.Size([3, 3])
+#  tensor(3.2090e-07)
 ```
 
 <B>Moore-Penrose 伪逆</B>
@@ -284,15 +298,112 @@ Moore-Penrose伪逆是矩阵的一种广义逆矩阵，对于任意一个给定�
 
 对角矩阵$D$的伪逆$D^+$是通过对\( D \)的非零元素取倒数（即\( 1/\sigma_i \)），然后将结果转置得到的。如果\( D \)是对角矩阵，那么\( D^+ \)也是一个对角矩阵，其对角线上的元素是原奇异值的倒数。
 
+```python
+A = torch.randn(3, 5)
 
+# 计算矩阵的伪逆
+A_pinv = torch.linalg.pinv(A,rcond=1e-15)
 
+#: rcond：浮点数，用于确定哪些奇异值被认为是零。较小的 rcond 值会导致更多的奇异值被保留，从而得到更接近的伪逆；较大的 rcond 值会丢弃更多的小奇异值，得到的伪逆可能更加简洁。
+```
 
+<B>主成分分析（Principal Component Analysis, PCA) </B>
+---
+PCA是一种线性降维算法，可以通过将数据投影到低维子空间来提取高维空间中的信息。PCA试图保留数据的主要部分，即具有更多变化的部分，并消除具有较少变化的非主要部分。
 
+假设在$\mathbb{R}^{n}$空间中的m个点$[x^{(1)},x^{(2)},···,x^{(m)}]$,我们可以对这些点进行<B>有损压缩</B>,对于$x^{(i)} \in \mathbb{R}^{n}$,创造一个对应编码向量$c^{(i)} \in \mathbb{R}^{n}$ $(l < n)$,即可用更少的内存来储存原有信息,即寻找一个编码函数$f(\mathit{x}) = \mathit{c}$,和解码函数$\mathit{x} \approx g(\mathit{c})$
 
+设$\mathit{D} \in \mathbb{R}^{n \times l}$为解码矩阵,并且假定$\mathit{D}$的列向量为单位范数并且彼此正交,则有$g(\mathit{c}) = \mathit{Dc}$,
 
+为了得到最优编码$c^*$,可以使用平方$L^2$范数来衡量$\mathit{x}$与$g(\mathit{c})$的接近程度:
 
+\[
+    \begin{aligned}
+    c^* =& \underset{c}{\arg\min} \lVert x - g(c) \Vert_2 ^2           \\  
+    =& \underset{c}{\arg\min} (x - g(c))^T(x - g(c))                   \\
+    =& \underset{c}{\arg\min} (x^T x - x^T g(c) - g(c)^T x + g(c)^T g(c)) \\
+    =& \underset{c}{\arg\min} (x^T x - 2 x^T g(c)  + g(c)^T g(c)) \\
+    =& \underset{c}{\arg\min} (- 2 x^T g(c)  + g(c)^T g(c)) \\
+    =& \underset{c}{\arg\min} (- 2 x^T Dc + c^T D^T D c) \\
+    =& \underset{c}{\arg\min} (- 2 x^T Dc + c^T I_{l \times l} c) \\
+    =& \underset{c}{\arg\min} (- 2 x^T Dc + c^T c) \\
+    \end{aligned}
+\]
 
+要求这个向量函数$- 2 x^T Dc + c^T c$要求最小值,对该式对$c$求偏导:
 
+\[
+    \begin{aligned}
+    \nabla_{c} (- 2 x^T& Dc + c^T c) = 0              \\
+    - 2 D^T& x + 2c = 0  \\
+    c =& D^T x
+    \end{aligned}
+\]
 
+因此,对于编码与解码函数: $f(x) = D^T x$ ,$r(x) = g(f(x)) = DD^T x \approx x$
+
+需要寻求最优的$D^*$,即最小化每个点的误差矩阵的$Frobenius$范数:
+
+\[
+    D^* = \underset{D}{\arg\min} \sqrt{\sum_{i,j} (x_{j}^{(i)} - r(x^{(i)})_{j} )^2},\text{subject to } D^T D = I_{l \times l}          
+\]
+
+考虑$D$中单个列向量$d_j$:
+
+\[
+    \begin{aligned}
+    d^* =& \underset{d}{\arg\min} \sum_{i} \lVert x^{(i)} - dd^T x^{(i)} \Vert ^2 _{2}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    =& \underset{d}{\arg\min} \sum_{i} \lVert x^{(i)} - (d^T x^{(i)})d \Vert ^2 _{2}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    =& \underset{d}{\arg\min} \sum_{i} \lVert x^{(i)} - (x^{(i)T} d)d \Vert ^2 _{2}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    =& \underset{d}{\arg\min} \lVert X - Xdd^T \Vert ^2 _{F}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    \text{记}X \in \mathbb{R}^{m \times n},其中X_{i,:} = x^{(i)T}                       \\
+    =& \underset{d}{\arg\min} \lVert X - Xdd^T \Vert ^2 _{F}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    =& \underset{d}{\arg\min} Tr((X - Xdd^T)^T (X - Xdd^T) ), \text{subject to } \lVert d \Vert_2 = 1       \\
+    =& \underset{d}{\arg\min} Tr(X^T X - X^T X d d^T - d d^T X^T X + d d^T X^T X d d^T ) \\
+    =& \underset{d}{\arg\min} (2Tr( - X^T X d d^T) + Tr( d d^T X^T X d d^T))       \\
+    =& \underset{d}{\arg\min} (- 2Tr(X^T X d d^T) + Tr( X^T X dd^T dd^T))         \\
+    =& \underset{d}{\arg\min} (-2Tr(X^T X d d^T) + Tr( X^T X dd^T))         \\
+    =& \underset{d}{\arg\min} (-Tr(X^T X d d^T))         \\
+    =& \underset{d}{\arg\min} (-Tr(X^T X d d^T))         \\
+    =& \underset{d}{\arg\max} (Tr(X^T X d d^T)), \text{subject to } d^T d = 1         \\
+    =& \underset{d}{\arg\max} (Tr(d^T X^T X d)), \text{subject to } d^T d = 1         \\
+    \end{aligned}       
+\]
+
+即最优的$d$是$X^T X$最大特征值对应的特征向量,矩阵$D$即是由前$l$个最大特征值对应的特征向量组成的
+
+```python
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA            # 导入PCA
+from sklearn.datasets import load_breast_cancer
+
+# 加载数据集
+data = load_breast_cancer()
+df = pd.DataFrame(data.data, columns=data.feature_names)
+
+# 标准化数据
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(df)
+
+# 创建PCA模型并拟合数据
+pca = PCA(n_components=2)  # 选择要保留的主成分数量
+principal_components = pca.fit_transform(scaled_data)
+
+# 创建新的DataFrame来存储主成分
+principal_df = pd.DataFrame(data=principal_components, columns=['PC1', 'PC2'])
+
+# 可视化主成分
+plt.figure()
+plt.figure(figsize=(10, 10))
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=14)
+plt.xlabel('Principal Component 1', fontsize=20)
+plt.ylabel('Principal Component 2', fontsize=20)
+plt.title('2 Component PCA', fontsize=20)
+plt.scatter(principal_df['PC1'], principal_df['PC2'], c=data.target, cmap='viridis', alpha=0.5)
+plt.show()
+```
+
+![](img/pca.png)
 
 !!! note "torch.linalg模块"

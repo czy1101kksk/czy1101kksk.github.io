@@ -232,6 +232,10 @@ print("Reconstructed A:\n", reconstructed_A)
 
 特征值$\Lambda_{i,i}$对应的特征向量是矩阵$Q$的第i列,记作$Q_{:,i}$.
 
+所有特征值都是正数的矩阵被称为<B>正定(positive definite)</B>;所有特征值都是非负数的矩阵被称为半正定(positive semidefinite)。同样地，所有特征值都是负数的矩阵被称为<B>负定(negative definite)</B>;所有特征值都是非整数的矩阵称为半负定(negative semidefinite).半正定保证$\forall x , x^T A x \ge 0$,正定矩阵保证$x^T A x = 0, \Rightarrow x = 0$
+
+![](img/UDU.png)
+>特征向量和特征值的作用效果:在这里，矩阵 $A$ 有两个标准正交的特征向量，对应特征值为 $λ_1$ 的 $v^{(1)}$ 以及对应特征值为 $λ_2$ 的 $v^{(2)}$。(左) 我 们画出了所有的单位向量 $u ∈ R_2$ 的集合，构成一个单位圆。(右) 我们画出了所有的 $Au$ 点的集合。通过观察 $A$ 拉伸单位圆的方式，我们可以看到它将 $v^{(i)}$ 方向的空间拉伸了 $λ_i$ 倍。
 
 
 
@@ -239,15 +243,46 @@ print("Reconstructed A:\n", reconstructed_A)
 
 
 
+<B>奇异值分解</B>
+---
+奇异值分解（Singular Value Decomposition，简称SVD）是一种重要的矩阵分解方法，将矩阵分为奇异向量(Singular vector)与奇异值(Singular value).<B>每个实数矩阵都有奇异值分解,而不一定(非方阵)</B>
 
+对于任意一个$m \times n$的矩阵$A$，SVD分解可以表示为：
 
+\[
+    A_{m \times n} = U D V^T
+\]
 
+其中：
 
+- $U$ 是一个$m \times m$的正交矩阵，其列向量称为<B>左奇异向量</B>。
 
+- $D$ 是一个$m \times n$的对角矩阵，对角线上的元素称为<B>奇异值</B>，它们是非负实数，并按从大到小的顺序排列。奇异值反映了矩阵在对应奇异向量方向上的长度或“强度”。
 
+- $V$ 是一个$n \times n$的正交矩阵，其列向量称为<B>右奇异向量</B>。
 
+```python
+tensor = torch.rand(5, 5)
 
+U, D, V = torch.linalg.svd(tensor)
 
+```
+
+<B>Moore-Penrose 伪逆</B>
+---
+Moore-Penrose伪逆是矩阵的一种广义逆矩阵，对于任意一个给定的矩阵\( A \)，其Moore-Penrose伪逆记为\( A^+ \)。伪逆有着广泛的应用，特别是在线性代数、数值分析和工程领域中。伪逆对于非方阵（即行数和列数不相等的矩阵）和不可逆（即行列式为零或非满秩的方阵）的矩阵都是有定义的。
+
+矩阵$A$的伪逆定义为:
+
+\[  A^+ = \lim_{a \rightarrow 0 } (A^T A + \alpha I )^{-1} A^T           \]
+
+在实际计算中采用公式:
+
+\[  A^+ = V D^+ U^T                                            \]
+
+其中,$U,D$和$V$是矩阵$A$奇异值分解后得到的矩阵.
+
+对角矩阵$D$的伪逆$D^+$是通过对\( D \)的非零元素取倒数（即\( 1/\sigma_i \)），然后将结果转置得到的。如果\( D \)是对角矩阵，那么\( D^+ \)也是一个对角矩阵，其对角线上的元素是原奇异值的倒数。
 
 
 

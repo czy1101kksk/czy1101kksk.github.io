@@ -514,6 +514,7 @@ $\delta S_g$为熵产,是不可逆因素造成的系统熵增加,仅可能大于
 
 >简单可压缩系统的特点:存在两个独立的状态参数,其状态函数为二元函数
 
+![](img/pvt.png)
 
 根据热力学第一定律与第二定律, <B>简单可压缩工质在可逆变化中的能量平衡($F(u, v, s)=0$的全微分形式)</B>有:
      
@@ -521,7 +522,8 @@ $\delta S_g$为熵产,是不可逆因素造成的系统熵增加,仅可能大于
         \begin{aligned}
         &du = Tds - pdv                   \\
         \small 即:& \small热力学能 = 吸热量 - 做功量         \\                             
-        &dh = -Tds - vdp (引入自由能f = u - Ts)                                    \\
+        &dh = Tds + vdp (焓h = u + pv) \\
+		&df = -Tds - vdp (引入自由能f = u - Ts)                                    \\
         &dg = -sdT +vdp  (引入自由焓g = h - Ts)                                    \\
         \end{aligned}
 \]
@@ -540,7 +542,20 @@ $\delta S_g$为熵产,是不可逆因素造成的系统熵增加,仅可能大于
 
 由此可知, 对于$F(h,s,p)=0$, $F(f,T,v)=0$, $F(g,T,p)=0$,只需要知道任意一个关系式就能得到所有的状态函数
 
->将不可测的熵s与可测的p,v,T相联系
+>例如:已知$F(g,T,p) = 0$,以(T,p)为独立变量,将$g(p,T)$对p求偏导得到$v(T,p)$,对T求偏导得到$s(T,p)$,而$h(p,T) = g(p,T) + Ts(p,T), u(T,p) = h(p,T) - pv(p,T)$即可得出工质热力平衡性质的所有信息,这些热力状态函数称为<B>特性函数</B>.
+
+因为二元函数的二阶混合偏微商与求导顺序无关,即\( \frac{\partial}{\partial y} (\frac{\partial z}{\partial x})_{y} = \frac{\partial}{\partial x} (\frac{\partial z}{\partial y})_{x}  \),则可得上述特性函数的二阶混合偏微商关系式(maxwell关系式),如:
+
+\[
+	\begin{aligned}
+	\frac{\partial}{\partial T} (\frac{\partial g}{\partial p})_T &= \frac{\partial}{\partial p} (\frac{\partial g}{\partial T})_p \\
+	(\frac{\partial v}{\partial T})_{p} &= - (\frac{\partial s}{\partial p})_{T}   \\
+	\frac{\partial}{\partial T} (\frac{\partial f}{\partial v})_T &= \frac{\partial}{\partial v} (\frac{\partial f}{\partial T})_v \\
+	(\frac{\partial p}{\partial T})_{v} &= (\frac{\partial s}{\partial v})_{T}   \\
+	\end{aligned}
+\]
+
+>特性函数的二阶混合偏微商关系将不可测的熵与可测参数联系在一起
 
 如上述的某些偏微商,具有明确的物理意义,将这些特殊的偏微商定义为<B>热系数</B>:
 
@@ -555,6 +570,145 @@ $\delta S_g$为熵产,是不可逆因素造成的系统熵增加,仅可能大于
 \[
         \kappa_T  = - \frac{1}{v} (\frac{\partial v}{\partial p})_T
 \]
+
+- 压力的温度系数$\beta$
+
+\[
+	\beta = \frac{1}{p} (\frac{\partial p}{\partial T})_{v}		
+\]
+
+可得:
+
+\[
+	(\frac{\partial p}{\partial T})_{v} (\frac{\partial T}{\partial v})_p (\frac{\partial v}{\partial p})_T = -1	
+\]
+
+即得三个热系数之间的关系式:
+
+\[
+	\frac{\alpha_{v}}{\kappa_T \beta} = p
+\]
+
+- 工质在可逆绝热过程中的压缩性质---绝热压缩系数$\kappa_s$[$Pa^{-1}$]:
+
+\[
+	\kappa_s = - \frac{1}{v} (\frac{\partial v}{\partial p})_{s}	
+\]
+
+
+<B>比热容</B>
+---
+
+以$(T,v)$为独立变量的热力学能函数对温度的偏微商$(\frac{\partial u}{\partial T})_{v}$具有重要意义,定义为工质的比定容热容$c_V$[$J/(kg·K)$],即在体积不变的情况下,热力学能对温度的偏微商:
+
+\[
+	c_V = (\frac{\partial u}{\partial T})_{v}
+\]
+
+对于准静态平衡定容过程中,有$\delta q = d u$,因此$c_V$表示<B>单位质量的工质温度升高1K所吸收的热量</B>则有:
+
+\[
+	c_V = (\frac{\delta q}{d T})_{v}
+\]
+
+定义在定压条件下,焓对温度的偏微商微比定压热容$c_p$:
+
+\[
+	c_p = (\frac{\partial h}{\partial T})_{p}
+\]
+
+同样,在准静态平衡定压过程中,$c_p$指<B>单位质量的工质温度升高1K所吸收的热量</B>,可表示为:
+
+\[
+	c_p = (\frac{\delta q}{d T})_{p}
+\]
+
+<B>绝热节流系数$\mu_{J}$</B>:在焓值不变的情况下工质温度随压力的变化率[$K/Pa$]
+
+\[
+	\mu_{J} = (\frac{\partial T}{\partial p})_{h}
+\]
+
+
+<B>热力学能、焓熵的微分式</B>
+---
+
+- 热力学能$u(T,v)$的全微分表达式:
+
+\[
+	\begin{aligned}
+	du &= (\frac{\partial u}{\partial T})_{v} dT + (\frac{\partial u}{\partial v})_{T} dv \\
+	&= c_V dT + (T(\frac{\partial s}{\partial v})_{T} - p(\frac{\partial v}{\partial v})_{T})dv \\
+	&= c_V dT + [T(\frac{\partial p}{\partial T})_{v} - p] dv \\
+	\end{aligned}
+\]
+
+- 焓$h(T,p)$的全微分表达式:
+
+\[
+	\begin{aligned}
+	dh &= (\frac{\partial h}{\partial T})_{p} dT + (\frac{\partial h}{\partial p})_{T} dp \\
+	&= c_p dT + (T(\frac{\partial s}{\partial p})_{T} + v(\frac{\partial p}{\partial p})_{T})dp \\
+	&= c_p dT - [T(\frac{\partial v}{\partial T})_{p} - v] dp \\
+	\end{aligned}
+\]
+
+- 对于熵$s(T,v)$和$s(T,p)$的全微分形式:
+
+\[
+	\begin{aligned}
+	ds &= (\frac{\partial s}{\partial T})_{v} dT + (\frac{\partial s}{\partial v})_{T} dv  \\
+	&= \frac{c_V}{T} dT + (\frac{\partial p}{\partial T})_{v} dv \\
+	ds &= (\frac{\partial s}{\partial T})_{p} dT + (\frac{\partial s}{\partial p})_{T} dp  \\
+	&= \frac{c_p}{T} dT - (\frac{\partial v}{\partial T})_{p} dp \\
+	\end{aligned}	
+\]
+
+<B>热系数之间的一般关系</B>
+---
+
+- (一) $(\frac{\partial c_V}{\partial v})_{T} 、(\frac{\partial c_p}{\partial p})_{T}$与状态方程间的关系
+
+由上述热力学能与焓的微分式可得:
+
+\[
+	\begin{aligned}
+	(\frac{\partial c_V}{\partial v})_{T} &= T (\frac{\partial^2 p}{\partial T^2})_{v} \\
+	(\frac{\partial c_p}{\partial p})_{T} &= - T (\frac{\partial^2 v}{\partial T^2})_{p} \\
+	\end{aligned}	
+\]
+
+当给出较准确的状态方程以及某一压力$p_0$下测得的比定压热容数据$c_{p0}(T)$,可以通过积分算得函数关系$c_p(T,p)$:
+
+\[
+	c_p(T,p) = c_{p0}(T) - T \int_{p_0}^{p} (\frac{\partial^2 v}{\partial T^2})_{p} dp  		
+\]
+
+- (二)比热容差($c_p - c_v$)与状态方程关系
+
+\[
+	c_v = T(\frac{\partial s}{\partial T})_{v}           
+\]
+
+\[
+	c_p - c_v = T (\frac{\partial v}{\partial T })_{p} (\frac{\partial p}{\partial T})_{v} 	= T v \frac{\alpha_V ^2}{\kappa_T}	> 0
+\]
+
+>由上式可知,$c_p > c_v$ 恒成立.
+
+- 绝热节流系数的一般关系式
+
+$\mu_j$是在焓值不变时($dh = 0$)温度对压力的偏微商:
+
+\[
+	\mu_j = (\frac{\partial T}{\partial p})_{h}= \frac{1}{c_p} [T (\frac{\partial v}{\partial T })_{p} - v] =\frac{v}{c_p} (T \alpha_V - 1)
+\]
+
+### 第四章作业
+
+<object data="../home-work/Engineering-Thermodynamics-homework-4.pdf" type="application/pdf" width="100%" height="800">
+	<embed src="../home-work/Engineering-Thermodynamics-homework-4.pdf" type="application/pdf" />
+</object>
 
 ## 第五章 气体的热力性质
 ---
@@ -587,11 +741,11 @@ $\delta S_g$为熵产,是不可逆因素造成的系统熵增加,仅可能大于
 		\begin{aligned}
 		pv = R_g T,&(\text{单位质量(1kg)形式})                   \\
 		pV_m = RT,&(\text{单位mol形式,} V_m=V/n)                    \\
-		p M = \rho R T,&(\text{密度式})
+		p M = \rho R T,&(\text{密度式 })
 		\end{aligned}
 	\]
-
 	</font>
+
 
 
 

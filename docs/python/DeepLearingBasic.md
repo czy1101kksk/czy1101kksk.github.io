@@ -15,6 +15,8 @@
 
     </font>
 
+![](img/cs224n.png)
+
 ## 🥗Lecture 1 
 ---
 <font size = 4>
@@ -24,15 +26,27 @@
     The tradional NLP use <B>one-hot vectors</B> to represent words as discrete symbol,
 
     ```python
-    import pandas 
     from sklearn.preprocessing import OneHotEncoder
-    
-    words = ['apple', 'banana', 'orange']
-    df = pd.DataFrame(words, columns = ['word'])
-    one_hot_encoded = pd.get_dummies(df['word'])
-    
+
     encoder = OneHotEncoder()
-    one_hot_encoded = encoder.fit_transform(df[['word']])
+
+    X = [['Male', 1], ['Female', 3], ['Female', 2]]
+
+    encoder.fit(X)
+    encoded_data = encoder.transform(X)
+
+    dense_array = encoded_data.toarray()
+
+    print(dense_array)
+
+    #: [[0. 1. 1. 0. 0.]
+    #   [1. 0. 0. 0. 1.]
+    #   [1. 0. 0. 1. 0.]]
     ``` 
     </font>
+
+- All the one-hot vectors are orthogonal, and there is no natural notion of similarity for them ,making the dimension of the one-hot vectors too large.
+
+
+
 </font>

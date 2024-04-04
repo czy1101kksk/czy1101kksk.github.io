@@ -744,12 +744,135 @@ $\mu_j$是在焓值不变时($dh = 0$)温度对压力的偏微商:
 		p M = \rho R T,&(\text{密度式 })
 		\end{aligned}
 	\]
+	
+	</font>
+
+!!! note "比热容换算"
+	<font size = 3.5>
+	1kg物质的热容量为比热容$c$,1mol的热容量为摩尔热容$C_m$,1$m^3$标准状态下气体的热容量为体积热容.
+	
+	\[ 
+		\begin{aligned}
+		C_m = Mc &= MvC`  \\
+		C_{p,m} - C_{v,m} &= R \\
+		\end{aligned}   
+	\]
+	
 	</font>
 
 
+根据理想气体方程,可得对于理想气体:
 
+\[
+	\begin{aligned}
+	\alpha_V = \beta = \frac{1}{T} \\
+	\kappa_T = \frac{1}{p}	\\	
+	(\frac{\partial c_v}{\partial v})_T = T (\frac{\partial^2 p}{\partial T^2})_v = 0 \\
+	(\frac{\partial c_p}{\partial v})_T = -T (\frac{\partial^2 v}{\partial T^2})_p = 0 \\
+	c_p - c_v = \frac{Tv \alpha_v^2}{\kappa_T} = \frac{pv}{T} = R_g \\
+	\mu_j = \frac{v}{c_p}(T \alpha_T - 1) = 0 \\
+	\end{aligned}
+\]
 
+>理想气体比热容为温度的单值函数,其差值为恒定值
 
+对于热力学能u与焓h的特性,均为温度T的单值函数:
+
+\[
+	\begin{aligned}
+	(\frac{\partial u}{\partial v})_T = T (\frac{\partial p}{\partial T})_v - p = \frac{R_g T}{v} - p = 0 \Rightarrow du = c_v dT\\
+	(\frac{\partial h}{\partial p})_T = -T (\frac{\partial v} {\partial T})_p + v = 0  \Rightarrow  dh = c_p dT\\
+	\end{aligned}
+\]
+
+对于理想气体熵方程,以分别以(T,v),(T,p)为独立变量:
+
+\[
+	ds =c_v \frac{dT}{T} + R_g \frac{dv}{v}=c_p \frac{dT}{T} - R_g \frac{dp}{p}
+\]
+
+放入过程中:
+
+\[
+	\begin{aligned}
+	\Delta u_{1-2} =& c_v \Delta T_{1-2}      \\
+	\Delta h_{1-2} =& c_p \Delta T_{1-2}       \\
+	\Delta s_{1-2} = s_2 - s_1 = c_v \ln{\frac{T_2}{T_1}} +& R_g \ln{\frac{v_2}{v_1}} = c_p \ln{\frac{T_2}{T_1}} - R_g \ln{\frac{p_2}{p_1}}
+	\end{aligned}
+\]
+
+<B>平均比热容</B>
+---
+
+根据定义:'
+
+\[
+	\begin{aligned}
+	c_v \lvert_{t_1}^{t_2} = \frac{\int_{t_2}^{t_1} c_v dt}{t_2 -t_1} = \frac{\Delta u_{1-2}}{t_2 -t_1} = \frac{c_v \lvert_0^{t_2} t_2 - c_v \lvert_0^{t_1} t_1 }{t_2 -t_1}	\\
+	c_p \lvert_{t_1}^{t_2} = \frac{\int_{t_2}^{t_1} c_p dt}{t_2 -t_1} = \frac{\Delta h_{1-2}}{t_2 -t_1} = \frac{c_p \lvert_0^{t_2} t_2 - c_p \lvert_0^{t_1} t_1 }{t_2 -t_1}	\\
+	\end{aligned}
+\]
+
+>根据定义式,平均比热容与初态温度$t_1$与终态温度$t_2$有关
+
+<B>Van der waals状态公式</B>
+---
+
+范德瓦尔状态方程考虑到了<B>分子自身占有的体积和分子间的相互作用力</B>,对理想状态方程进行修正
+
+\[
+	p = \frac{RT}{V_m - b} - \frac{a}{V_m^2}	
+\]
+
+展开为:
+
+\[
+	pV_m^2 - (pd + RT)V_m^2 + aV_m - ab = 
+\]
+
+按照该三次方程在p-v图上做出的等温线即为<B>范德瓦尔定温线</B>
+
+![](img/vanderwaals.jpg){width=300px height=200px}
+
+- 在温度较低时,定温线DPMONQE有一个极小值M与一个极大值N,$S_{PMO}=S_{ONQ}$,<B>DP段对应液体状态,QE对应气体状态,P、Q点对应饱和液和饱和气状态</B>,
+
+- 随着温度升高,极小值M与极大值N逐渐接近,当MN重合时的曲线为ACB,对应温度为<B>临界温度,AC段为液体状态,CB为气体状态,C为临界点</B>,在C点上:
+
+\[
+	\begin{aligned}
+	(\frac{\partial p}{\partial V_m})_T = 0  \\
+	\text{} \\
+	(\frac{\partial^2 p}{\partial V_m^2})_T = 0 \\
+	\end{aligned}
+\]
+
+代入范德瓦尔公式可得临界点参数$a,b$,
+
+\[a = \frac{27 R^2 T_C^2}{64p_c}, b = \frac{RT_C}{8p_C}\]
+
+- 温度高于临界温度时,曲线KL不存在极值点与拐点,且物质总成气态.
+
+<B>Virial状态方程</B>
+---
+
+![](img/virial.png)
+
+![](img/virial2.png)
+
+<B>热力学相似--对应态定律</B>
+---
+
+对比态状态方程:用无量纲对比参数表达的各个物质通用的状态方程
+
+\[
+	p_r = \frac{p}{p_c}, T_r = \frac{T}{T_c}, v_r = \frac{v}{v_c} = \frac{V_m}{V_{m,c}}	
+\]
+
+引入压缩因子$z$,表达实际工质性质与理想气体性质的偏差:
+
+\[
+	z = \frac{pV_m}{RT}	
+\]
 
 
 

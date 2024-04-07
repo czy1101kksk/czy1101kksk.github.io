@@ -430,7 +430,7 @@ plt.show()
     \end{equation}
 \]
 
-将正态分布推广到$R^n$空间,称为多维正态分布(multivariate normal distribution),设n维向量$X = [X_1,X_2,...X_N]^T$服从多变量正态分布,其参数为一个正定对称矩阵\Sigma:
+将正态分布推广到$R^n$空间,称为多维正态分布(multivariate normal distribution),设n维向量$X = [X_1,X_2,...X_N]^T$服从多变量正态分布,其参数为一个正定对称矩阵$\Sigma$:
 
 \[
     \begin{equation}
@@ -466,7 +466,7 @@ GMM是概率密度的万能近似器（universal approximator）,任何平滑的
     p(x_i | \Theta) = \sum_{k=1}^{K} \phi_k \mathcal{N}(x_i | \mu_k, \Sigma_k)
 \]
 
-上式为一个高斯混合(Gaussian Mixture),其中每一个高斯密度函数称为<B>混合的分模型(component)</B>,每个分模型有自己的$\mu_i$和$\sigma_i$(对于多维数据,则是协方差矩阵$\Sigma_i$),(用\(\Theta\) 表示模型的参数，即所有高斯分量的均值、协方差和权重)。每个高斯分量的概率密度函数 \(\mathcal{N}(x_i | \mu_k, \Sigma_k)\) 表示为：其中:
+上式为一个高斯混合(Gaussian Mixture),其中每一个高斯密度函数称为<B>混合的分模型(component)</B>,每个分模型有自己的$\mu_i$和$\sigma_i$(对于多维数据,则是协方差矩阵$\Sigma_i$),(下面用\(\Theta\) 表示模型的参数，即所有高斯分量的均值、协方差和权重)。每个高斯分量的概率密度函数 \(\mathcal{N}(x_i | \mu_k, \Sigma_k)\) 表示为：其中:
 
 \[
     \mathcal{N}(x_i | \mu_k, \Sigma_k) = \frac{1}{(2\pi)^{D/2}|\Sigma_k|^{1/2}} \exp\left(-\frac{1}{2}(x_i - \mu_k)^T \Sigma_k^{-1} (x_i - \mu_k)\right)
@@ -575,7 +575,7 @@ plt.show()
     \hat{\mathbb{\theta}} = \mathbb{\theta} - \alpha \nabla f(\mathbb{\theta})
 \]
 
-%\alpha%即为学习率（learning rate）,是一个确定步长大小的正标量.
+$\alpha$即为学习率（learning rate）,是一个确定步长大小的正标量.
 
 后面的两个小节是一些凸优化的内容,准备新开一个note单独写.......
 

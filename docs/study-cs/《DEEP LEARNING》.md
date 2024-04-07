@@ -407,3 +407,176 @@ plt.show()
 ![](img/pca.png)
 
 !!! note "torch.linalg模块"
+    <font size =3.5>
+    torch.linalg 是PyTorch中的一个线性代数功能模块，补充了现有的torch.matmul和torch.tensor运算，提供更全面的线性代数功能。torch.linalg 模块包含了一些线性代数的核心操作，例如矩阵分解、特征值和特征向量计算等。
+    
+    
+    </font>
+
+### Lecture 2: Probability and Information Theory
+---
+
+>这一章很大一部分的内容就是比较基础的概率统计知识,如果学过相关课程的话很简单,便不做过多的笔记
+
+
+<B>高斯分布(Gaussian distribution)</B>
+---
+
+也称为正态分布（normal distribution）,
+
+\[
+    \begin{equation}
+    N(x;\mu,σ^2) = \frac{1}{\sigma\sqrt{2\pi}} exp(- \frac{(x-\mu)^2}{2\sigma^2})
+    \end{equation}
+\]
+
+将正态分布推广到$R^n$空间,称为多维正态分布(multivariate normal distribution),设n维向量$X = [X_1,X_2,...X_N]^T$服从多变量正态分布,其参数为一个正定对称矩阵\Sigma:
+
+\[
+    \begin{equation}
+    N(x;\mu,\Sigma) = \sqrt{\frac{1}{(2 \pi)^n det(\Sigma)}} exp(-\frac{1}{2}(x - \mu)^T \Sigma^{-1} (x - \mu) ) 
+    \end{equation} 
+\]
+
+> 其中$x = (x_1,...,x_n)^T$,$\mu$为随机向量$X$的n维均值向量,$\Sigma$是$X$的n阶协方差矩阵(正定矩阵以保证$\Sigma_{-1}$存在)
+
+<B>Dirac $\delta$函数</B>
+---
+
+在一些情况下，我们希望概率分布中的所有质量都集中在一个点上,而Dirac $\delta$函数被定义成除了 0 以外的其他点的值都为0，但是积分为1,:
+
+\[
+    \begin{aligned}
+    p(x) = \delta (x - \mu) \\
+    \end{aligned}
+\]
+
+Dirac $\delta$分布经常作为<B>经验分布 (empirical distribution)</B>的一个组成部分出现,如果有m个样本点，则在每个点所在的位置定义为$\frac{1}{m}$乘以$\delta$函数，这样最后得到的经验分布概率密度的积分刚好是1:
+
+\[
+    \hat{p(x)} = \frac{1}{m} \sum_{i=1}^{m} \delta (x - x^{(i)})
+\]
+
+<B>高斯混合模型GMM（Gaussian Mixture Model）</B>
+---
+
+GMM是概率密度的万能近似器（universal approximator）,任何平滑的概率密度都可以用具有足够多组件的高斯混合模型以任意精度来逼近。GMM模型使用多个高斯分布的组合来刻画某个数据分布
+
+\[
+    p(x_i | \Theta) = \sum_{k=1}^{K} \phi_k \mathcal{N}(x_i | \mu_k, \Sigma_k)
+\]
+
+上式为一个高斯混合(Gaussian Mixture),其中每一个高斯密度函数称为<B>混合的分模型(component)</B>,每个分模型有自己的$\mu_i$和$\sigma_i$(对于多维数据,则是协方差矩阵$\Sigma_i$),(用\(\Theta\) 表示模型的参数，即所有高斯分量的均值、协方差和权重)。每个高斯分量的概率密度函数 \(\mathcal{N}(x_i | \mu_k, \Sigma_k)\) 表示为：其中:
+
+\[
+    \mathcal{N}(x_i | \mu_k, \Sigma_k) = \frac{1}{(2\pi)^{D/2}|\Sigma_k|^{1/2}} \exp\left(-\frac{1}{2}(x_i - \mu_k)^T \Sigma_k^{-1} (x_i - \mu_k)\right)
+\]
+
+\[
+    \sum_{k=1}^{K} \phi_i = 1
+\]
+
+参数$\phi_i$即为模型的混合系数(mixing coefficients).
+GMM 的似然函数可以写为：
+
+\[
+L(\Theta | X) = \prod_{i=1}^{N} p(x_i | \Theta)
+\]
+
+为了简化计算，通常我们对对数似然函数进行对数化：
+
+\[
+\log L(\Theta | X) = \sum_{i=1}^{N} \log \left( \sum_{k=1}^{K} \phi_k \mathcal{N}(x_i | \mu_k, \Sigma_k) \right)
+\]
+
+GMM 的参数估计通常通过<B>EM算法（Expectation-Maximization Algorithm）</B>来实现。EM 算法的基本思想是通过迭代的方式交替进行 E 步（Expectation Step）和 M 步（Maximization Step）来估计参数。在 E 步中，我们计算每个样本属于每个高斯分量的概率（即后验概率），在 M 步中，我们使用这些后验概率来更新参数。通过迭代执行 E 步和 M 步，我们可以逐步优化参数，并且最终收敛到局部最优解。
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Ellipse
+from sklearn.mixture import GaussianMixture
+
+# 生成一些示例数据
+np.random.seed(0)
+X = np.concatenate([np.random.randn(100, 2) * 0.5 + np.array([2, 2]),
+                    np.random.randn(100, 2) * 0.5 + np.array([-2, -2]),
+                    np.random.randn(100, 2) * 0.5 + np.array([-2, 2])])
+
+# 创建 GMM 模型实例并拟合数据
+n_components = 3
+gmm = GaussianMixture(n_components=n_components, random_state=42)
+gmm.fit(X)
+
+# 获取每个分量的参数
+means = gmm.means_
+covariances = gmm.covariances_
+
+# 创建绘图
+plt.figure(figsize=(8, 6))
+
+# 绘制数据点
+plt.scatter(X[:, 0], X[:, 1], alpha=0.5)
+
+# 绘制每个高斯分量的轮廓和椭圆
+colors = ['r', 'g', 'b']
+for i in range(n_components):
+    # 绘制椭圆
+    cov_matrix = covariances[i]
+    eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
+    angle = np.degrees(np.arctan2(*eigenvectors[:, 0][::-1]))
+    width, height = 2 * np.sqrt(5.991 * eigenvalues)  # 95%置信区间
+    ellipse = Ellipse(xy=means[i], width=width, height=height, angle=angle, edgecolor=colors[i], lw=2, facecolor='none')
+    plt.gca().add_patch(ellipse)
+    
+    # 标注均值
+    plt.scatter(means[i, 0], means[i, 1], color=colors[i], marker='o', s=100, label=f'Component {i+1}')
+
+plt.title('Gaussian Mixture Model')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+![](img/GMMmodel.png)
+
+
+### Lecture 3: Numerical Computation
+---
+
+<B>Overﬂow and Underﬂow</B>
+---
+
+下溢(underflow):当接近零的数被四舍五入为零时发生下溢
+
+上溢(overflow):当大量级的数被近似为∞或−∞时发生上溢,进一步的运算通常会导致这些无限值变为非数字。
+
+<B>病态方程组</B>
+---
+
+由实际问题得到的方程组的系数矩阵或者常数向量的元素，本身会存在一定的误差；这些初始数据的误差在计算过程中就会向前传播，从而影响到方程组的解。病态方程组是指因系数的很小改变却导致解改变很大的方程组，称相应的系数矩阵A为病态矩阵。病态方程组对任何算法都将产生数值不稳定性。
+
+假设函数$f(x)=A^{-1}x$,当$A \in \mathbb{R}^{n \times n}$具有特征值分解时,其条件数为
+
+\[
+    \max_{i,j} |\frac{\lambda_i}{\lambda_j}|    
+\]
+
+当该数较大时,矩阵求逆对输入的误差特别敏感.这种敏感性是矩阵本身的固有特性，而不是矩阵求逆期间舍入误差的结果。即使我们乘以完全正确的矩阵逆，病态条件的矩阵也会放大预先存在的误差。在实践中，该错误将与求逆过程本身的数值误差进一步复合。
+
+<B>基于梯度的优化方法</B>
+---
+
+在任务中我们需要最小化/最大化的函数称为目标函数（objective function）或准则（criterion）,当我们对其进行最小化时，也把它称为代价函数（cost function）、损失函数（loss function）或误差函数（error function）.一般使用最为基础的梯度下降法（gradient descent）更新参数来寻优.
+
+\[
+    \hat{\mathbb{\theta}} = \mathbb{\theta} - \alpha \nabla f(\mathbb{\theta})
+\]
+
+%\alpha%即为学习率（learning rate）,是一个确定步长大小的正标量.
+
+后面的两个小节是一些凸优化的内容,准备新开一个note单独写.......
+
+<待续>

@@ -8,12 +8,12 @@
     
     - 学分:4.0             课程代码: 59120030
     
-    - 教师:俞自涛老师       教材:<工程热力学(第三版)>(曾丹苓、敖越等) 
+    - 教师:俞自涛老师(主讲)       教材:<工程热力学(第三版)>(曾丹苓、敖越等) 
     
 </font>
 <font size = 3.5>
 
->虽然不是慧能班的,但在无意中选到了慧能班的课,自己和俞老师还算比较熟悉,班上一共只有20多人所以听课体验还不错(某些百人的大课听起来真的是挣扎..),作业要求用word文档,还有格式要求(但好像无所谓),我干脆用latex写出来了,贴在每章笔记末尾.
+>虽然不是慧能班的,但在无意中选到了慧能班的课（因为是小班所以就选了）,自己和俞老师还算比较熟悉,班上一共只有20多人所以听课体验还不错(某些百人的大课听起来真的是挣扎..),作业要求用word文档,还有格式要求(但好像无所谓)。期末考试难度一般，似乎历年都是8道简答题+3道大题。这次考试比较幸运，考了很熟悉的三个题型最后卷面分94分。
 
 </font>
 
@@ -164,11 +164,6 @@
 
 		</font>
 
-### 第一章作业
-
-<object data="../home-work/Engineering-Thermodynamics-homework-1.pdf" type="application/pdf" width="100%" height="800">
-	<embed src="../home-work/Engineering-Thermodynamics-homework-1.pdf" type="application/pdf" />
-</object>
 
 ## 第二章 能量与热力学第一定律
 ---
@@ -273,11 +268,6 @@
 	\end{aligned}
 \]
 
-### 第二章作业
-
-<object data="../home-work/Engineering-Thermodynamics-homework-2.pdf" type="application/pdf" width="100%" height="800">
-	<embed src="../home-work/Engineering-Thermodynamics-homework-2.pdf" type="application/pdf" />
-</object>
 
 
 ## 第三章 熵与热力学第二定律
@@ -492,13 +482,6 @@ $\delta S_g$为熵产,是不可逆因素造成的系统熵增加,仅可能大于
 	\end{aligned}	
 \]
 
-### 第三章作业
-
-<object data="../home-work/Engineering-Thermodynamics-homework-3.pdf" type="application/pdf" width="100%" height="800">
-	<embed src="../home-work/Engineering-Thermodynamics-homework-3.pdf" type="application/pdf" />
-</object>
-
-
 
 ## 第四章 热力学一般关系
 ---
@@ -704,11 +687,6 @@ $\mu_j$是在焓值不变时($dh = 0$)温度对压力的偏微商:
 	\mu_j = (\frac{\partial T}{\partial p})_{h}= \frac{1}{c_p} [T (\frac{\partial v}{\partial T })_{p} - v] =\frac{v}{c_p} (T \alpha_V - 1)
 \]
 
-### 第四章作业
-
-<object data="../home-work/Engineering-Thermodynamics-homework-4.pdf" type="application/pdf" width="100%" height="800">
-	<embed src="../home-work/Engineering-Thermodynamics-homework-4.pdf" type="application/pdf" />
-</object>
 
 ## 第五章 气体的热力性质
 ---

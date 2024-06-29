@@ -235,7 +235,7 @@ nav:
   - "👨‍🎓 学习笔记":
     - study-cs/index.md
     - python/Python-is-important.md
-    #- python/algorithms-notebook-in-python.md
+    - python/algorithms-notebook-in-python.md
     - energy/Engineering-Thermodynamics.md
     - python/DeepLearingBasic.md
   - "✍ 施工中":

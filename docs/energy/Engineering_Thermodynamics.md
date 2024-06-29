@@ -164,12 +164,6 @@
 
 		</font>
 
-### 第一章作业
-
-<object data="../home-work/Engineering-Thermodynamics-homework-1.pdf" type="application/pdf" width="100%" height="800">
-	<embed src="../home-work/Engineering-Thermodynamics-homework-1.pdf" type="application/pdf" />
-</object>
-
 ## 第二章 能量与热力学第一定律
 ---
 !!! note "知识梳理"  

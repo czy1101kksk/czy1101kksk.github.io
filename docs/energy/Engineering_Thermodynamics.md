@@ -831,18 +831,60 @@ $\mu_j$是在焓值不变时($dh = 0$)温度对压力的偏微商:
 		dS_{iso} \geq 0
 	\]
 	
+	当上述式子取到等号时，表明系统的熵增到达最大值，即可判断系统不再变化（处于平衡态）
+
 	</font>
 
 !!! note "任意封闭体系的平衡判据"
 	<font size = 3.5>
-	对于处于$T_0,p_0$的环境下的任意封闭体系，设功势函数为%\Psi = U + p_0 V - T_0 S%，有:
+	对于处于$T_0,p_0$的环境下的任意封闭体系，设功势函数为$\Psi = U + p_0 V - T_0 S$，有:
 
 	\[ 
-		-(du + p_0 v - T_0 ds) \geq \delta w_u
+		\begin{aligned}
+		-(du + p_0 v - T_0 ds) \geq \delta w_u \\
+		- \psi \geq \delta w_u \\
+		\end{aligned}
 	\]
 	
-	即系统完成的有用功总小于等于其功势函数的减小值
+	即系统完成的有用功总小于等于其功势函数的减小值，假设外界不对系统完成有用功（$\delta w_u \geq 0$）,则：
 	
+	\[ 
+		\begin{aligned}
+		-(du + p_0 v - T_0 ds) \geq \delta 0 \\
+		\psi \leq \delta w_u \\
+		\end{aligned}
+	\]
+
+	当上述式子表明:系统状态总是朝着功势函数$\Psi$减小的方向进行变化，当取到等号时，系统不平衡势消失，即为处于平衡态
+
+	!!! info "定温定容下的自由能判据（F）"
+		<font size = 3.5>
+		在$dT = 0,dv = 0$条件下，有：
+
+		\[ 
+			\begin{aligned}
+			&[du - d(Ts)]_{T,v} \leq 0 \\
+			&(df)_{T,v} \leq \\
+			\end{aligned}
+		\]
+		
+		即：在定温定容条件下，封闭系统朝自由能$F$减小的方向自发进行，平衡时自由能最小（自由能判据）
+		</font>
+
+	!!! info "定温定压下的自由能焓判据（G）"
+		<font size = 3.5>
+		在$dT = 0,dp = 0$条件下，有：
+
+		\[ 
+			\begin{aligned}
+			&[du + d(pv)- d(Ts)]_{T,p} \leq 0 \\
+			&(dg)_{T,p} \leq \\
+			\end{aligned}
+		\]
+		
+		即：在定温定压条件下，封闭系统朝自由焓$G$减小的方向自发进行，平衡时自由焓最小（自由焓判据）
+		</font>
+
 	</font>
 
 

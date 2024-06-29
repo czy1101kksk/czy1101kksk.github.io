@@ -25,8 +25,8 @@ statistics: true
     <center>
     <img src="img/122161543.png"width=200">
     <div style="text-align: font-size:20px;font-weight:bold">BRIGHT川 </div>
-    <div style="text-align: font-size:20px;font-weight:bold">🎓ZJU22级[能环](http://www.doe.zju.edu.cn/)本科生 </div>
-    <div style="text-align: font-size:20px;font-weight:bold">🔬**[ZJU-Engisim课题组](https://mp.weixin.qq.com/s/J8ZENZ5obwS8viFMMGiqJw)**实习生 </div>
+    <div style="text-align: font-size:20px;font-weight:bold">🎓ZJU大二[能环](http://www.doe.zju.edu.cn/)本科生 </div>
+    <div style="text-align: font-size:20px;font-weight:bold">🔬**[ZJU-Engisim课题组](https://mp.weixin.qq.com/s/J8ZENZ5obwS8viFMMGiqJw)**的小朋友 </div>
     <div style="text-align: font-size:3px;">头像作者:**[@kine_tougen](https://twitter.com/kine_tougen)**</div>
     </center>
 

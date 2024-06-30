@@ -1388,11 +1388,9 @@ $\mu_j$是在焓值不变时($dh = 0$)温度对压力的偏微商:
 
 循环放热量：$q_2 = c_v(T_5 - T_1)$
 
-混合循环热效率：$\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_5-T_1}{(T_3 - T_2) + \gamma (T_4 - T_3)}  = 1 - \frac{\lambda \rou^\gamma - 1}{\epsilon^{\gamma-1} [(\lambda-1) + \gamma \lambda (\rou - 1)] }$
+混合循环热效率：$\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_5-T_1}{(T_3 - T_2) + \gamma (T_4 - T_3)}  = 1 - \frac{\lambda \rho^\gamma - 1}{\epsilon^{\gamma-1} [(\lambda-1) + \gamma \lambda (\rho - 1)] }$
 
-
-
-
+可知，混合加热理想循环热效率随着压缩比$\epsilon=\frac{v_1}{v_2}$、定容升压比$\lambda=\frac{p_3}{p_2}$的增大而增大，随着预胀比$\rho=\frac{v_4}{v_3}$的增大而减小。
 
 ## 第十三章 制冷循环
 ---

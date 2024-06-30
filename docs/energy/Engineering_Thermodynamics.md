@@ -6,9 +6,9 @@
     
     - 课程:工程热力学(甲) Engineering Thermodynamics(A)
     
-    - 学分:4.0&ensp;&ensp;&ensp;&ensp;&ensp;课程代码: 59120030
+    - 学分:4.0&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;课程代码: 59120030
     
-    - 教师:俞自涛老师（主讲）&ensp;&ensp;&ensp;教材:《工程热力学(第三版)》(曾丹苓、敖越等) 
+    - 教师:俞自涛老师（主讲）&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;教材:《工程热力学(第三版)》(曾丹苓、敖越等) 
 
 	- 推荐阅读：★★★《工程热力学精要分析及经典题精解》（何雅玲）
 

@@ -1359,8 +1359,24 @@ $\mu_j$是在焓值不变时($dh = 0$)温度对压力的偏微商:
 
 热效率$\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_4 - T_1}{T_3 - T_2} = 1 - \frac{T_1}{T_2} = 1 - (\frac{v_2}{v_1})^{\gamma - 1} = 1 - \frac{1}{\epsilon^{\gamma - 1}}$
 
+由此$\eta_t = 1 - \frac{1}{\epsilon^{\gamma - 1}}$可知定容加热循环的效率取决于压缩比$\epsilon$，随着压缩比的增大而升高。
+
 <B>定压加热循环（布雷顿循环）<B>
 ---
+
+![](img/bulaidun.jpg)
+
+引入增压比$\pi = \frac{p_2}{p_1}$
+
+循环吸热量：$q_1 = c_p(T_3 - T_2)$
+
+循环放热量：$q_2 = c_p(T_4 - T_1)$
+
+净功: $w_net = q_1 - q_2$
+
+热效率$\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_4 - T_1}{T_3 - T_2} = 1 - \frac{T_1}{T_2} = 1 - (\frac{p_1}{p_2})^{\frac{\gamma - 1}{\gamma}} = 1 - \frac{1}{\pi^{\frac{\gamma - 1}{\gamma}}}$
+
+由此$\eta_t = 1 - \frac{1}{\pi^{\frac{\gamma - 1}{\gamma}}}$可知定压加热循环的效率取决于增压比$\pi$，随着增压比的增大而升高。
 
 
 

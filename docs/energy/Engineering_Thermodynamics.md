@@ -1379,9 +1379,18 @@ $\mu_j$是在焓值不变时($dh = 0$)温度对压力的偏微商:
 由此$\eta_t = 1 - \frac{1}{\pi^{\frac{\gamma - 1}{\gamma}}}$可知定压加热循环的效率取决于增压比$\pi$，随着增压比的增大而升高。
 
 
-
 <B>混合加热理想循环（）<B>
 ---
+
+![](img/hunhe1.jpg)
+
+循环吸热量：$q_1 = c_v(T_3 - T_2) + c_p(T_4 - T_3)$
+
+循环放热量：$q_2 = c_v(T_5 - T_1)$
+
+混合循环热效率：$\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_5-T_1}{(T_3 - T_2) + \gamma (T_4 - T_3)}  = 1 - \frac{\lambda \rou^\gamma - 1}{\epsilon^{\gamma-1} [(\lambda-1) + \gamma \lambda (\rou - 1)] }$
+
+
 
 
 

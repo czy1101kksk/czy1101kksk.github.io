@@ -1,4 +1,4 @@
-# 🔗Python学习笔记
+# 🔗Python校内课程笔记
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 !!! info "想说的话"
@@ -6,7 +6,7 @@
     
     <font size = 3>
 
-    python着实是我学习实践上的重点,我的培养方案中Python程序设计是必修的一门课,本页结合课内要求和**[CS50p](https://cs50.harvard.edu/python/)**做一个比较完善的个人笔记,用于补充python基础零散知识+应付课程考试
+    我的培养方案中Python程序设计是必修的一门课,本页结合课内要求和**[CS50p](https://cs50.harvard.edu/python/)**做一个比较完善的个人笔记,用于应付课程考试
     
     官方文档:[https://docs.python.org/3/library/functions.html](https://docs.python.org/3/library/functions.html)
     </font>

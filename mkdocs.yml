@@ -239,7 +239,7 @@ nav:
       - python/Python-is-important.md
     - python/cs224n-notebook.md
     #- python/cs231-notebook.md
-    #- python/d2l.md
+    - python/d2l.md
   #  - "📊数学学习笔记":
     #  - math/mathematical-analysis.md
     #  - math/linear-algebra.md

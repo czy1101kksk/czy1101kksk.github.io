@@ -240,9 +240,9 @@ num_epochs = 3
 for epoch in range(num_epochs):
     for X, y in dataLoader:
         l = loss(net(X) ,y)
-        trainer.zero_grad()
-        l.backward()
-        trainer.step()
+        trainer.zero_grad() #清除上一次的梯度值 
+        l.backward() #损失函数进行反向传播 求参数的梯度
+        trainer.step() #步进 根据指定的优化算法进行参数更新
     l = loss(net(features), labels)
     print(f'epoch {epoch + 1}, loss {l:f}')
 
@@ -252,3 +252,66 @@ b = net[0].bias.data
 print('b的估计误差：', true_b - b)
 
 ```
+
+!!! advice "如果我们用nn.MSELoss(reduction=‘sum’)替换nn.MSELoss()代码的行为相同，需要怎么更改学习速率？"
+    
+    <font size = 3>
+    需要将学习率lr除以batch_size(默认参数是'mean')
+    
+    原因：若损失函数采用'sum' ，等效于损失函数相对于'mean'放大，将会使得计算所得的梯度增大,这时候原有的学习率显得过大，无法高效逼近最优点。
+
+    </font>
+
+!!! advice "如果我们将权重初始化为零，会发生什么。算法仍然有效吗？"
+    
+    <font size = 3>
+    参考文章：[谈谈神经网络权重为什么不能初始化为0](https://zhuanlan.zhihu.com/p/75879624)
+
+    在单层网络中(一层线性回归层)，可以把权重初始化为0，但是当网络加深后，在全连接的情况下，在反向传播的时候，由于<B>权重的对称性</B>会导致出现隐藏神经元的对称性，使得多个隐藏神经元的作用就如同1个神经元，算法还是有效的，但是效果不大好。
+
+    </font>
+
+### Softmax回归
+
+在分类问题当中，我们需要得到每个类别的概率（因此有多个输出）,我们希望模型的输出$\hat{y}_j$可以视为属于类$j$的概率，然后选择具有最大输出值的类别$\operatorname*{argmax} y_j$作为我们的预测。 
+
+例如，如果$\hat{y}_1$、$\hat{y}_2$和$\hat{y}_3$分别为0.1、0.8和0.1， 那么我们预测的类别就是第2类。因此，我们要将多个输出数字的总和限制为1，并且每个输出永远大于0，
+
+<B>softmax函数</B>能够将未规范化的预测变换为非负数并且总和为1，同时让模型保持可导的性质(规范化)。
+
+\[
+    \hat{\mathbf{y}} = \mathrm{softmax}(\mathbf{o})\quad \text{其中} \quad 0 \leq \hat{y}_j = \frac{\exp(o_j)}{\sum_k \exp(o_k)}  \leq 1  
+\]
+
+在小批量样本处理中，其中特征维度（输入数量）为d，批量大小为n，输出为q，假设小批量样本的特征为$\mathbf{X} \in \mathbb{R}^{n \times d}$，权重矩阵为$\mathbf{W} \in \mathbb{R}^{d \times q}$，偏置为$\mathbf{b} \in \mathbb{R}^{1\times q}$，则softmax回归可表示为：
+
+\[
+   \begin{split}
+   \begin{aligned} 
+   \mathbf{O} &= \mathbf{X} \mathbf{W} + \mathbf{b}, \\ 
+   \hat{\mathbf{Y}} & = \mathrm{softmax}(\mathbf{O}). 
+   \end{aligned}
+   \end{split} 
+\]
+
+由上述易知，$\hat{\mathbf{y}}$可理解为<B>对给定任意输入
+$\mathbf{x}$的属于每个类的条件概率</B>。对于数据集$\{\mathbf{X}, \mathbf{Y}\}$具有n个样本，有：
+
+\[
+   P(\mathbf{Y} \mid \mathbf{X}) = \prod_{i=1}^n P(\mathbf{y}^{(i)} \mid \mathbf{x}^{(i)}). 
+\]
+
+要最大化$P(\mathbf{Y} \mid \mathbf{X})$,向上式做负对数化:
+
+\[
+    -\log P(\mathbf{Y} \mid \mathbf{X}) = \sum_{i=1}^n -\log P(\mathbf{y}^{(i)} \mid \mathbf{x}^{(i)})
+= \sum_{i=1}^n l(\mathbf{y}^{(i)}, \hat{\mathbf{y}}^{(i)})    
+\]
+
+即为：
+
+\[
+    l(\mathbf{y}, \hat{\mathbf{y}}) = - \sum_{j=1}^q y_j \log \hat{y}_j. 
+\]
+
+这个损失函数被称为交叉熵损失（cross-entropy loss）

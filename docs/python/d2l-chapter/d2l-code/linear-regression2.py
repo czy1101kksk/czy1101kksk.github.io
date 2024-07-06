@@ -23,7 +23,7 @@ net[0].weight.data.normal_(0, 0.01)
 net[0].bias.data.fill_(0)
 
 loss = nn.MSELoss(reduction='mean')
-trainer = torch.optim.SGD(net.parameters(), lr=0.03)
+trainer = torch.optim.SGD(net.parameters(), lr=0.05)
 
 num_epochs = 30
 for epoch in range(num_epochs):

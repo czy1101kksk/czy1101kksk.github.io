@@ -295,7 +295,9 @@ print('b的估计误差：', true_b - b)
 \]
 
 由上述易知，$\hat{\mathbf{y}}$可理解为<B>对给定任意输入
-$\mathbf{x}$的属于每个类的条件概率</B>。对于数据集$\{\mathbf{X}, \mathbf{Y}\}$具有n个样本，有：
+$\mathbf{x}$的属于每个类的条件概率</B>。对于softmax回归，我们可以使用$\|\boldsymbol{\hat y}^{(i)}-\boldsymbol{y}^{(i)}\|^2/2$，但实际上并<B>不需要预测概率与标签概率完全相同</B>,只需要对应的$\hat{\mathbf{y}}^{(i)}$比其他类别大即可。
+
+对于数据集$\{\mathbf{X}, \mathbf{Y}\}$具有n个样本，有：
 
 \[
    P(\mathbf{Y} \mid \mathbf{X}) = \prod_{i=1}^n P(\mathbf{y}^{(i)} \mid \mathbf{x}^{(i)}). 
@@ -305,13 +307,100 @@ $\mathbf{x}$的属于每个类的条件概率</B>。对于数据集$\{\mathbf{X}
 
 \[
     -\log P(\mathbf{Y} \mid \mathbf{X}) = \sum_{i=1}^n -\log P(\mathbf{y}^{(i)} \mid \mathbf{x}^{(i)})
-= \sum_{i=1}^n l(\mathbf{y}^{(i)}, \hat{\mathbf{y}}^{(i)})    
+= \sum_{i=1}^n H (\mathbf{y}^{(i)}, \hat{\mathbf{y}}^{(i)})    
 \]
 
-即为：
+其中：
 
 \[
-    l(\mathbf{y}, \hat{\mathbf{y}}) = - \sum_{j=1}^q y_j \log \hat{y}_j. 
+    H (\mathbf{y}^{(i)}, \hat{\mathbf{y}}^{(i)}) = -\sum_{j=1}^q y_j^{(i)} \log \hat y_j^{(i)}
 \]
 
-这个损失函数被称为交叉熵损失（cross-entropy loss）
+上式这个损失函数被称为交叉熵损失（cross-entropy loss）,因为向量$\boldsymbol y^{(i)}$只有其中的某一个元素为1，其余均为0,即<B>交叉熵只关心对正确类别的预测概率，因为只要其值足够大，就可以确保分类结果正确</B>
+
+假设训练数据集的样本数为 n，交叉熵损失函数定义为:
+
+\[
+    \ell(\boldsymbol{\Theta}) = \frac{1}{n} \sum_{i=1}^n H (\mathbf{y}^{(i)}, \hat{\mathbf{y}}^{(i)})        
+\]
+
+   根据softmax的定义，可知其导数：
+   
+\[
+\partial_{o_j} l(\mathbf{y}, \hat{\mathbf{y}}) = \frac{\exp(o_j)}{\sum_{k=1}^q \exp(o_k)} - y_j = \mathrm{softmax}(\mathbf{o})_j - y_j. 
+\]
+
+该导数即是softmax模型分配的概率与实际发生的情况之间的差异，这使梯度计算在实践中变得容易很多。
+
+!!! advice 
+
+    <font size = 3>
+    对上式$H (\mathbf{y}^{(i)}, \hat{\mathbf{y}}^{(i)}) = -\sum_{j=1}^q y_j^{(i)} \log \hat y_j^{(i)}$的解答：
+    ![](./d2l-img/softmax.png)
+
+    </font>
+
+!!! info "基于数学定义的softmax函数可能导致什么问题？提示：尝试计算exp(50)的大小。"
+
+    <font size = 3>
+
+    可能会导致数据溢出的情况。可以使用LogSoftmax代替，即在Softmax的基础上再做一次log。(nn.LogSoftmax())
+
+    \[
+        LogSoftmax(x_i) = log(\frac{exp(x_i)}{\sum_j exp(x_j)})    
+    \]
+
+    <B>LogSoftmax相对于Softmax的优势</B>
+    
+    - 对数运算时求导更容易，加快了反向传播的速度。
+    
+    - 解决Softmax可能存在的上溢和下溢的问题。
+
+    </font>
+
+    
+!!! advice "pytorch中的nn.CrossEntropyLoss()"
+
+    <font size = 3>
+
+    先说负对数似然函数NLLLoss()，本质上就是一种交叉熵函数：
+
+    ```python
+    predict = torch.Tensor([[4, 5, 1],
+                        [5, 5, 9]])
+    label = torch.tensor([1, 2])
+    nn.nllloss(predict, label, reduction='mean')
+    # output: tensor(-7)
+    ```
+    即在使用NLLLoss前要先使用LogSoftmax
+    
+    ```python
+    predict = torch.Tensor([[2, 3, 1],
+                        [3, 7, 9]])
+    predict = torch.log(torch.softmax(predict, dim=-1))
+    # predict: tensor([[-1.4076, -0.4076, -2.4076],
+                       [-6.1291, -2.1291, -0.1291]])
+    
+    label = torch.tensor([1, 2])
+    nllloss(predict, label)
+    # output: tensor(0.2684)
+
+    ```
+
+    <B>nn.CrossEntropyLoss()损失函数</B>
+
+    \[
+        CrossEntropyLoss() = NLLLoss(LogSoftmax())    
+    \]
+
+    ```python
+    cross_loss = nn.CrossEntropyLoss()
+    predict = torch.Tensor([[2, 3, 1],
+                            [3, 7, 9]])
+    label = torch.tensor([1, 2])
+    cross_loss(predict, label)
+    # output: tensor(0.2684)
+    ```
+
+    </font>
+

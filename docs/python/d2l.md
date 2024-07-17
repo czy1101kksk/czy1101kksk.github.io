@@ -19,5 +19,7 @@
 
     - [Chapter 0：PyTorch反向传播](./d2l-chapter/Pytorch_backward.md)
     - [Chapter 1：linear regression and multilayer perceptron](./d2l-chapter/chapter1.md)
+    - [Chapter 2：convolutional neural network](./d2l-chapter/chapter2.md)
+    - [Chapter 3：recurrent neural network](./d2l-chapter/chapter3.md)
 
     </font>

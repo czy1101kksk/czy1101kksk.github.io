@@ -404,3 +404,191 @@ $\mathbf{x}$的属于每个类的条件概率</B>。对于softmax回归，我们
 
     </font>
 
+### Softmax的简洁实现
+
+- 使用pytorch内置的Fashion-MNIST分类数据集
+
+```python
+mnist_train = torchvision.datasets.FashionMNIST(
+    root="../data", train=True, transform=transforms.ToTensor(), download=True)
+mnist_test = torchvision.datasets.FashionMNIST(
+    root="../data", train=False, transform=transforms.ToTensor(), download=True)
+
+# Fashion-MNIST由10个类别的图像组成,每个类别由训练数据集中的6000张图像和测试数据集中的1000张图像组成.
+
+batch_size = 256
+
+train_iter = data.DataLoader(mnist_train, batch_size, shuffle=True, num_workers=0)
+test_iter = data.DataLoader(mnist_test, batch_size, shuffle=True, num_workers=0)
+
+```
+
+- 设置网络，并且使用.apply()技巧对多层网络进行参数初始化
+
+```python
+def init_weights(module):   #权重初始化。apply()
+    if isinstance(module,nn.Linear):
+        nn.init.normal_(module.weight, std=0.01, mean=0)
+        nn.init.constant_(module.bias, 0)
+
+net = nn.Sequential(nn.Flatten(), 
+                    nn.Linear(784, 10))
+net.apply(init_weights)
+```
+
+- 设置优化器与损失函数
+
+```python
+loss = nn.CrossEntropyLoss(reduction='mean')
+trainer = torch.optim.SGD(net.parameters(), lr=0.1)
+```
+
+- 进行反向传播,计算分类准确度
+
+```python
+def evaluate_accuracy(net, iter):
+    cmp = 0
+    tot = 0
+    net.eval() # 将模型设置为评估模式
+    with torch.no_grad():
+        for X, y in iter:
+            y_hat = net(X)
+            y_hat = y_hat.argmax(axis=1)  # 在行中比较，选出最大的列索引
+            CountMatrix = y_hat == y
+            cmp += sum(CountMatrix)
+            tot += len(CountMatrix)
+    return cmp / tot
+
+num_epochs = 10
+
+for epoch in range(num_epochs):
+    for X_train , y_train in train_iter:
+        l =loss(net(X_train), y_train)
+        trainer.zero_grad()
+        l.backward()
+        trainer.step()
+    print(f'epoch{epoch}-accuracy:{evaluate_accuracy(net, train_iter) * 100:.3f}%')
+
+```
+
+## 多层感知机
+
+多层感知机（multilayer perceptron）通过在网络中加入一个或多个隐藏层来克服线性模型的限制，使其能处理更普遍的函数关系类型
+
+### 权重衰减
+
+在训练参数化机器学习模型时， 权重衰减（weight decay）是最广泛使用的正则化的技术之一， 它通常也被称为$L_2$正则化。将$L_2$范数作为惩罚项加到最小化损失的问题中,原来的训练目标最小化训练标签上的预测损失为最小化预测损失和惩罚项之和。如果权重向量增长过大，算法可能会更集中于最小化权重范数$\| \mathbf{w} \|^2$
+。
+
+\[
+    L(\mathbf{w}, b) + \frac{\lambda}{2} \|\mathbf{w}\|^2,    
+\]
+
+- 实现：
+
+```python
+trainer = torch.optim.SGD([
+        {"params":net[0].weight,'weight_decay': Lambda},  # 通过'weight_decay'设置权重的L2范数作为惩罚项
+        {"params":net[0].bias}], lr=0.01)
+```
+
+### 暂退法dropout
+
+在标准暂退法正则化中，通过按保留（未丢弃）的节点的分数进行规范化来消除每一层的偏差。 换言之，每个中间活性值h以暂退概率p由随机变量替换h'，如下所示：
+
+\[
+    \begin{split}
+    \begin{aligned}
+    h' =
+    \begin{cases}
+    0 & \text{ 概率为 } p \\
+    \frac{h}{1-p} & \text{ 其他情况}
+    \end{cases}
+    \end{aligned}
+    \end{split}    
+\]
+
+- dropout基础实现
+
+```python
+def dropout_layer(X, dropout):
+    assert 0 <= dropout <= 1
+    
+    if dropout == 1:# 在本情况中，所有元素都被丢弃
+        return torch.zeros_like(X)
+    
+    if dropout == 0:# 在本情况中，所有元素都被保留
+        return X
+    
+    mask = (torch.rand(X.shape) > dropout).float()
+    return mask * X / (1.0 - dropout)
+```
+
+- 简洁实现
+
+```python
+net = nn.Sequential(nn.Flatten(),
+        nn.Linear(784, 256),
+        nn.ReLU(),
+        # 在第一个全连接层之后添加一个dropout层
+        nn.Dropout(dropout1),
+        nn.Linear(256, 256),
+        nn.ReLU(),
+        # 在第二个全连接层之后添加一个dropout层
+        nn.Dropout(dropout2),
+        nn.Linear(256, 10))
+
+def init_weights(m):
+    if type(m) == nn.Linear:
+        nn.init.normal_(m.weight, std=0.01)
+
+net.apply(init_weights);
+```
+
+总结：
+
+- 暂退法在前向传播过程中，计算每一内部层的同时丢弃一些神经元。
+
+- 暂退法可以避免过拟合，它通常与控制权重向量的维数和大小结合使用的。
+
+!!! advice "如果更改第一层和第二层的暂退法概率,会发生什么情况?"
+   
+    <font size = 3>
+    第一层暂退法概率大,第二层暂退法概率小,则效果会较好。
+    
+    可能原因:
+    
+    - 前面层抽取的是比较底层的信息,有较多的无用信息冗余通过强神经元,从而使得网络记住这些冗余信息而学不到关键信息(导致过拟合),用较大Dropout较好,后面层主管高层抽象语义信息,较为关键,是把握识别整体的关键部分,用较小Dropout较好;
+    
+    - 一般前面层全连接数目比较大,抽取信息量比较多,自然带来冗余信息较多,那么多的数目连接,可以通过较大Dropout丢弃掉大部分的全连接
+
+    因此dropout能够减小网络对某些强神经元的依赖性，使得强弱神经元方差减小
+    
+    </font>
+
+### Xavier初始化
+
+Xavier初始化是一种在训练深度学习模型时常用的权重初始化方法。它是 Xavier Glorot 和 Yoshua Bengio 在 2010 年提出的，原文为 [Understanding the difficulty of training deep feedforward neural networks](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)。该初始化方法旨在保持激活函数的方差在前向传播和反向传播过程中大致相同，从而避免梯度消失或梯度爆炸的问题。如果方差过大，那么网络的层将会更难以学习；如果方差过小，那么该层的权重将会难以更新。
+
+> (xavier初始化只适用于关于0对称、呈线性的激活函数，比如 sigmoid、tanh)
+
+!!! info "梯度消失和爆炸"
+
+    <font size = 3>
+    在深度网络中，梯度消失和梯度爆炸是一个常见的问题。如果每一层都将方差放大，那么在多层网络中，梯度可能会很快增长至非常大的值（爆炸），或者减小至接近零（消失）。
+    
+    Xavier 初始化试图使得每一层的输出的方差接近于其输入的方差，从而避免梯度消失或梯度爆炸的问题，每一层的参数更新的幅度就不会相差太大，从而加速收敛。
+
+    </font>
+
+- `torch.nn.init.xavier_uniform_` 函数从均匀分布中抽取权重，其中:
+
+\[
+    U\left(-\sqrt{\frac{6}{n_\mathrm{in} + n_\mathrm{out}}}, \sqrt{\frac{6}{n_\mathrm{in} + n_\mathrm{out}}}\right)
+\]
+
+- `torch.nn.init.xavier_normal_` 函数从正态分布中抽取权重，其中:
+
+\[
+    \sigma^2 = \frac{2}{n_\mathrm{in} + n_\mathrm{out}}    
+\]

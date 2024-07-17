@@ -238,8 +238,9 @@ nav:
       - energy/Engineering_Thermodynamics.md
       - python/Python-is-important.md
     - python/cs224n-notebook.md
-    #- python/cs231-notebook.md
+    - python/cs231n.md
     - python/d2l.md
+    - python/python-something/fluent-python.md
   #  - "📊数学学习笔记":
     #  - math/mathematical-analysis.md
     #  - math/linear-algebra.md

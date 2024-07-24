@@ -252,5 +252,5 @@ nav:
   - "✍ 施工中":
     - wait-for-me.md
 
-plugins:
-  - mkdocs-jupyter
+#plugins:
+#  - mkdocs-jupyter

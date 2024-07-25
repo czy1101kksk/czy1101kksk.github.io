@@ -242,8 +242,7 @@ nav:
     - python/d2l.md
     - python/python-something/fluent-python.md
   - "👨‍🎓 Kaggle":
-    - "Practice":
-      - Kaggle\Getting-Started\Binary-Classification-of-Insurance-Cross-Selling\code.ipynb
+    - Kaggle/index.md
     - "ISIC-2024":
       - Kaggle/ISIC 2024 - Skin Cancer Detection with 3D-TBP/index.md
   #  - "📊数学学习笔记":

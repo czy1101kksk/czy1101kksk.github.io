@@ -230,6 +230,8 @@ nav:
     - "🎆 主页": index.md
   - "📜 论文阅读":
     - sci-paper/index.md
+    - sci-paper/computer-vision/EfficientNet.md
+    - sci-paper/computer-vision/Attention-is-all-you-need.md
     - "📰综合能源系统":
       - sci-paper/Load-Forecasting/[Applied Energy]A novel short-term multi-energy load forecasting method for integrated energy system based on feature separation-fusion technology and improved CNN.md
   - "👨‍🎓 学习笔记":

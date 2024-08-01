@@ -1,0 +1,1840 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="BRIGHT_CZY">
+      
+      
+        <link rel="canonical" href="https://czy1101kksk.github.io/study-cs/%E3%80%8ADEEP%20LEARNING%E3%80%8B/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+    
+    
+      
+        <title>🛠 《DEEP LEARNING》阅读笔记 - BRIGHT_CZY's site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-deep-learning阅读笔记" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BRIGHT_CZY&#39;s site" class="md-header__button md-logo" aria-label="BRIGHT_CZY's site" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/122161543?s=400&u=203bce014a72777aa55f7a4d63a2c98df3bac6e2&v=4" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BRIGHT_CZY's site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🛠 《DEEP LEARNING》阅读笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0 9.821 9.821 0 0 0-17.64 0Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/czy1101kksk/czy1101kksk.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BRIGHT_CZY/notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BRIGHT_CZY&#39;s site" class="md-nav__button md-logo" aria-label="BRIGHT_CZY's site" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/122161543?s=400&u=203bce014a72777aa55f7a4d63a2c98df3bac6e2&v=4" alt="logo">
+
+    </a>
+    BRIGHT_CZY's site
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/czy1101kksk/czy1101kksk.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BRIGHT_CZY/notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🎆 主页
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            🎆 主页
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🎆 主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    📜 论文阅读
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            📜 论文阅读
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🍥 论文阅读主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/computer-vision/EfficientNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EfficientNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/computer-vision/Attention-is-all-you-need/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attention is all you need
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    📰综合能源系统
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            📰综合能源系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/Load-Forecasting/%5BApplied%20Energy%5DA%20novel%20short-term%20multi-energy%20load%20forecasting%20method%20for%20integrated%20energy%20system%20based%20on%20feature%20separation-fusion%20technology%20and%20improved%20CNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Applied Energy]A novel short-term multi-energy load forecasting method for integrated energy system based on feature separation-fusion technology and improved CNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    👨‍🎓 学习笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            👨‍🎓 学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🛠 课程学习主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    📑专业课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            📑专业课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../energy/Engineering_Thermodynamics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🍥工程热力学(甲)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/Python-is-important/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🔗Python校内课程笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/cs224n-notebook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🛣[Deep Learning]Stanford CS224n:Natural Language Processing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/cs231n/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🔭Stanford CS231n:Deep Learning for Computer Vision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/d2l/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🔭Dive into Deeplearing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/python-something/fluent-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🛣 《流畅的Python》
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    👨‍🎓 Kaggle
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            👨‍🎓 Kaggle
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kaggle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些有用的笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ISIC-2024
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            ISIC-2024
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kaggle/ISIC 2024 - Skin Cancer Detection with 3D-TBP/index.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    None
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ✍ 施工中
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ✍ 施工中
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wait-for-me/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    施工中.....
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#part-i-applied-math-and-machine-learning-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part I: Applied Math and Machine Learning Basics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part I: Applied Math and Machine Learning Basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lecture-1-linear-algebra" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lecture 1: Linear Algebra
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#矩阵乘法" class="md-nav__link">
+    <span class="md-ellipsis">
+      矩阵乘法:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#单位矩阵i_n" class="md-nav__link">
+    <span class="md-ellipsis">
+      单位矩阵\(I_n\):
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#范数" class="md-nav__link">
+    <span class="md-ellipsis">
+      范数:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#正交矩阵" class="md-nav__link">
+    <span class="md-ellipsis">
+      正交矩阵
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#特征分解" class="md-nav__link">
+    <span class="md-ellipsis">
+      特征分解
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#奇异值分解" class="md-nav__link">
+    <span class="md-ellipsis">
+      奇异值分解
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moore-penrose-伪逆" class="md-nav__link">
+    <span class="md-ellipsis">
+      Moore-Penrose 伪逆
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#主成分分析principal-component-analysis-pca" class="md-nav__link">
+    <span class="md-ellipsis">
+      主成分分析（Principal Component Analysis, PCA)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="主成分分析（Principal Component Analysis, PCA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lecture-2-probability-and-information-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lecture 2: Probability and Information Theory
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#高斯分布gaussian-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      高斯分布(Gaussian distribution)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dirac-delta函数" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dirac \(\delta\)函数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#高斯混合模型gmmgaussian-mixture-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      高斯混合模型GMM（Gaussian Mixture Model）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高斯混合模型GMM（Gaussian Mixture Model）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lecture-3-numerical-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lecture 3: Numerical Computation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overﬂow-and-underﬂow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overﬂow and Underﬂow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#病态方程组" class="md-nav__link">
+    <span class="md-ellipsis">
+      病态方程组
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#基于梯度的优化方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      基于梯度的优化方法
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="-deep-learning阅读笔记">🛠 《DEEP LEARNING》阅读笔记<a class="headerlink" href="#-deep-learning阅读笔记" title="Permanent link"></a></h1>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<div class="admonition info">
+<p class="admonition-title">相关信息</p>
+<p><font size =4>
+正好ZJUAI协会有组队学AI的活动,面向我这种理论基础比较薄弱的同学,而且我从大一下开始学DL一直处于一个人闭门造车的阶段,找不到水平相近的人交流,所以毫不犹豫参加了组队学习的活动🤗（最新消息：已坑）</p>
+<ul>
+<li>
+<p>书籍:《DEEP LEARNING》</p>
+</li>
+<li>
+<p>作者：<a href="https://scholar.google.com/citations?user=iYN86KEAAAAJ&amp;hl=zh-CN&amp;oi=ao">Ian Goodfellow</a>, <a href="https://scholar.google.com/citations?hl=zh-CN&amp;user=kukA0LcAAAAJ">Yoshua Bengio</a>, <a href="https://scholar.google.com/citations?hl=zh-CN&amp;user=km6CP8cAAAAJ">Aaron Courville</a></p>
+</li>
+<li>电子书链接：https://www.deeplearningbook.org/
+</font></li>
+</ul>
+</div>
+<h2 id="part-i-applied-math-and-machine-learning-basics">Part I: Applied Math and Machine Learning Basics<a class="headerlink" href="#part-i-applied-math-and-machine-learning-basics" title="Permanent link"></a></h2>
+<h3 id="lecture-1-linear-algebra">Lecture 1: Linear Algebra<a class="headerlink" href="#lecture-1-linear-algebra" title="Permanent link"></a></h3>
+<hr />
+<ul>
+<li>张量(tensor): 当一个数组的元素分布在若干维度坐标的规则网络中,称之为张量,可记作<span class="arithmatex">\(\mathit{A_{i,j,k}}\)</span></li>
+</ul>
+<p><B>转置</B>(transpose):以对角线为轴对矩阵进行镜像: <span class="arithmatex">\(\mathit{(A^{\mathsf{T}})_{i,j}} = \mathit{A_{j,i}}\)</span></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="n">ExmapleTensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="n">TransposedTensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">ExmapleTensor</span><span class="p">)</span> 
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1"># torch.transpose(ExmapleTensor, 0, 1) 将第0维和第1维进行交换</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title"><B>广播机制</B></p>
+<p><font size = 4>
+在深度学习中,当矩阵运算形状不匹配时,允许在执行元素级操作时自动扩展数组的维度(<B>一般用于矩阵与单个向量之间的运算</B>)Broadcasting机制使用的前提是两个参与运算的张量是可broadcastable的</p>
+<p><B>Broadcastable</B></p>
+<ul>
+<li>
+<p>每个tensor至少是一维的</p>
+</li>
+<li>
+<p>两个tensor的维数从后往前对应，对应位置要么是相等的，要么其中一个是1，或者不存在</p>
+</li>
+</ul>
+<p>常用示例:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="n">BroadcastingTensor_1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>  
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1">#: tensor([3, 4, 5])</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="n">BroadcastingTensor_2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> 
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1">#: tensor([[2, 4],</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="c1">#          [4, 6]])</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="n">BroadcastingTensor_3</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]])</span> 
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="c1">#: tensor([[2, 3],</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1">#          [5, 6]])</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="n">BroadcastingTensor_multiply</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="c1">#: tensor([[1, 4],</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="c1">#          [3, 8]])</span>
+</code></pre></div></td></tr></table></div>
+</font></p>
+</div>
+<h2 id="矩阵乘法"><B>矩阵乘法</B>:<a class="headerlink" href="#矩阵乘法" title="Permanent link"></a></h2>
+<p>在进行矩阵乘法(matrix multiplication)时,矩阵<span class="arithmatex">\(\mathit{A}\)</span>的行数与矩阵<span class="arithmatex">\(\mathit{B}\)</span>的行数相等:</p>
+<div class="arithmatex">\[
+    \mathit{C_{m \times p}} = \mathit{A_{m \times n}} \mathit{B_{n \times p}}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Hadamard乘积</p>
+<p><font size = 3.5>
+Hadamard乘积（矩阵逐元素乘积）是指两个形状相同的张量之间的元素对应相乘的操作。这种操作在深度学习中经常用于实现多种功能(特征融合),记为:</p>
+<div class="arithmatex">\[
+    \mathit{C} = \mathit{A} \odot \mathit{B}    
+\]</div>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>    <span class="n">Tensor1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="n">Tensor2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">Tensor1</span><span class="p">,</span> <span class="n">Tensor2</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="c1">#:tensor([[ 3,  8],</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="c1">#         [18,  8]])</span>
+</code></pre></div></td></tr></table></div>
+</font></p>
+</div>
+<h2 id="单位矩阵i_n"><B>单位矩阵<span class="arithmatex">\(I_n\)</span></B>:<a class="headerlink" href="#单位矩阵i_n" title="Permanent link"></a></h2>
+<p>单位矩阵(identity matrix)所有沿着主对角线的元素都是1,而其他元素均为0</p>
+<div class="arithmatex">\[
+    I_n=
+    \begin{eqnarray}
+    \begin{pmatrix}
+        1 &amp; \cdots &amp; 0 \\
+        \vdots &amp; \ddots &amp; \vdots
+        \\0 &amp; \cdots &amp; 1
+    \end{pmatrix}
+    \end{eqnarray}
+\]</div>
+<p>对于单位矩阵<span class="arithmatex">\(I_n\)</span>,任意向量与<span class="arithmatex">\(I_n\)</span>相乘不会变化, 形式上: <span class="arithmatex">\(I_n \in \mathbb{R}^{n \times n} , \forall x \in \mathbb{R}^{n}, I_n x = x\)</span>  </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">IdentityTensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c1">#: tensor([[1., 0., 0.],</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1">#          [0., 1., 0.],</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1">#          [0., 0., 1.]])</span>
+</code></pre></div></td></tr></table></div>
+<p><B>矩阵逆(matrix inversion)</B>:矩阵<span class="arithmatex">\(\mathit{A}\)</span>的矩阵逆记作<span class="arithmatex">\(\mathit{A^{-1}}\)</span>,有:</p>
+<div class="arithmatex">\[
+    \mathit{A} \mathit{A^{-1}} = I_n
+\]</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.5</span><span class="p">]])</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">A_inv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> 
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="c1"># torch.linalg.inv()有当张量是方阵且有非零行列式时，才能计算逆</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;逆矩阵:&quot;</span><span class="p">,</span> <span class="n">A_inv</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="c1">#: 逆矩阵: tensor([[ -2.7000,   2.0000,   7.0000],</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="c1">#                 [  2.6000,  -1.0000, -11.0000],</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="c1">#                 [ -0.5000,   0.0000,   5.0000]])</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>      <span class="c1"># 输入一个不可逆矩阵,会报错</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="n">_LinAlgError</span><span class="p">:</span> <span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">:</span> <span class="n">The</span> <span class="n">diagonal</span> <span class="n">element</span> <span class="mi">2</span> <span class="ow">is</span> <span class="n">zero</span><span class="p">,</span> <span class="n">the</span> <span class="n">inversion</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">completed</span> <span class="n">because</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">matrix</span> <span class="ow">is</span> <span class="n">singular</span><span class="o">.</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">B_int</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="c1"># 输入矩阵的元素类型不支持</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">Input</span> <span class="n">tensor</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">floating</span> <span class="n">point</span> <span class="ow">or</span> <span class="nb">complex</span> <span class="n">tensor</span><span class="o">.</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="范数"><B>范数</B>:<a class="headerlink" href="#范数" title="Permanent link"></a></h2>
+<p>在深度学习中我们经常用<span class="arithmatex">\(L^p\)</span>范数来衡量一个向量的大小,记作:</p>
+<div class="arithmatex">\[
+    \lVert x \Vert_p =  ( \sum_{i=1}^n |x_i|^p )^{\frac{1}{p}}    
+\]</div>
+<ul>
+<li><B><span class="arithmatex">\(L^1\)</span>范数</B>(曼哈顿距离): 向量元素绝对值的总和,在零与非零元素之间的差异非常重要时使用<span class="arithmatex">\(L^1\)</span>范数</li>
+</ul>
+<div class="arithmatex">\[
+    \lVert x \Vert_1 =   \sum_{i} |x_i|     
+\]</div>
+<ul>
+<li><B><span class="arithmatex">\(L^2\)</span>范数</B>(欧几里得范数): 表示从远点出发到向量<span class="arithmatex">\(x\)</span>确定的点的欧几里得距离,是最常用的范数类型</li>
+</ul>
+<div class="arithmatex">\[
+    \lVert x \Vert_2 =  \sqrt{ \sum_{i} |x_i|^2 }     
+\]</div>
+<ul>
+<li><B><span class="arithmatex">\(L^∞\)</span>无穷范数</B>:无穷范数是向量中所有元素绝对值的最大值,度量了向量中的最大元素，对异常值非常敏感.</li>
+</ul>
+<div class="arithmatex">\[
+    \lVert x \Vert_∞ = \mathop{max}\limits_{i} (|x_i|)       
+\]</div>
+<ul>
+<li><B><span class="arithmatex">\(Frobenius\)</span>范数</B>:矩阵元素平方和的平方根,度量了矩阵的整体“能量”，适用于矩阵而非向量。(类似用于矩阵的<span class="arithmatex">\(L^2\)</span>范数)</li>
+</ul>
+<div class="arithmatex">\[
+    \lVert A \Vert_F =  \sqrt{ \sum_{i,j} A_{i,j}^2 }     
+\]</div>
+<h2 id="正交矩阵"><B>正交矩阵</B><a class="headerlink" href="#正交矩阵" title="Permanent link"></a></h2>
+<p>若存在向量<span class="arithmatex">\(x\)</span>与<span class="arithmatex">\(y\)</span>,满足<span class="arithmatex">\(x^T y = 0\)</span>,则向量<span class="arithmatex">\(x\)</span>与<span class="arithmatex">\(y\)</span>相互正交(orthogonal).正交矩阵是一个方阵，它的行向量和列向量都是<B>标准正交的</B>，即它们的内积为零，而每个向量的范数为一(<span class="arithmatex">\(\lVert x \Vert_2 = 1\)</span>)。具体来说，如果矩阵 <span class="arithmatex">\( Q \)</span> 是一个 <span class="arithmatex">\( n \times n \)</span> 的正交矩阵，那么它满足以下条件：</p>
+<div class="arithmatex">\[ Q^TQ = QQ^T = I_n \]</div>
+<p>由此可得:</p>
+<ul>
+<li>
+<p><strong>逆矩阵</strong>：正交矩阵的逆矩阵就是它的转置，即<span class="arithmatex">\( Q^{-1} = Q^T \)</span>。</p>
+</li>
+<li>
+<p><strong>行列式</strong>：正交矩阵的行列式的绝对值为 1，即 <span class="arithmatex">\( |\det(Q)| = 1 \)</span>。</p>
+</li>
+</ul>
+<h2 id="特征分解"><B>特征分解</B><a class="headerlink" href="#特征分解" title="Permanent link"></a></h2>
+<p>对于一个给定的方阵 <span class="arithmatex">\( A \)</span>，如果存在一个非零向量 <span class="arithmatex">\( v \)</span> 和一个标量 <span class="arithmatex">\( \lambda \)</span>，使得下面的等式成立：</p>
+<div class="arithmatex">\[ A \cdot v = \lambda \cdot v \]</div>
+<p>那么 <span class="arithmatex">\( \lambda \)</span> 被称为矩阵 <span class="arithmatex">\( A \)</span> 的一个特征值（Eigenvalue），而 <span class="arithmatex">\( v \)</span> 被称为对应的特征向量（Eigenvector）。</p>
+<p>特征分解的目的是将矩阵 <span class="arithmatex">\( A \)</span> 表示为一组<B>特征值和特征向量的乘积形式</B>。对于非奇异矩阵，特征分解可以写成：</p>
+<div class="arithmatex">\[ A = V \cdot diag(\lambda) \cdot V^{-1} \]</div>
+<p>其中，<span class="arithmatex">\( V \)</span> 是一个包含 <span class="arithmatex">\( A \)</span> 所有特征向量的矩阵，<span class="arithmatex">\( diag(\lambda) \)</span> 是一个对角矩阵，其对角线上的元素是对应的特征值。注意，不是所有矩阵都有特征分解，<B>只有方阵才可能有特征分解</B>。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># 创建一个 3x3 矩阵</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>                  <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="c1"># 计算特征值和特征向量</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># 输出特征值和特征向量</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvalues:&quot;</span><span class="p">,</span> <span class="n">eigenvalues</span><span class="p">)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvectors:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># 验证特征分解</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="n">reconstructed_A</span> <span class="o">=</span> <span class="n">eigenvectors</span> <span class="o">@</span> <span class="n">torch</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)</span> <span class="o">@</span> <span class="n">eigenvectors</span><span class="o">.</span><span class="n">T</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reconstructed A:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">reconstructed_A</span><span class="p">)</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="c1">#: Eigenvalues: tensor([ 1.6117e+01+0.j, -1.1168e+00+0.j, -1.3037e-15+0.j],dtype=torch.complex128)</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="c1">#: Eigenvectors:</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="c1">#: tensor([[-0.2320+0.j, -0.7858+0.j,  0.4082+0.j],</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="c1">#          [-0.5253+0.j, -0.0868+0.j, -0.8165+0.j],</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="c1">#          [-0.8187+0.j,  0.6123+0.j,  0.4082+0.j]], dtype=torch.complex128)</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="c1">#: Reconstructed A:</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="c1">#: tensor([[1.0000+0.j, 2.0000+0.j, 3.0000+0.j],</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a><span class="c1">#          [4.0000+0.j, 5.0000+0.j, 6.0000+0.j],</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a><span class="c1">#          [7.0000+0.j, 8.0000+0.j, 9.0000+0.j]], dtype=torch.complex128)</span>
+</code></pre></div></td></tr></table></div>
+<p>不是每一个矩阵都能分解为特征值与特征向量,并且可能会复数.对于实对称矩阵<span class="arithmatex">\(A\)</span>,每个<span class="arithmatex">\(A\)</span>都能分解为实特征向量与实特征值:</p>
+<div class="arithmatex">\[ A = Q \Lambda Q^T \]</div>
+<p>特征值<span class="arithmatex">\(\Lambda_{i,i}\)</span>对应的特征向量是矩阵<span class="arithmatex">\(Q\)</span>的第i列,记作<span class="arithmatex">\(Q_{:,i}\)</span>.</p>
+<p>所有特征值都是正数的矩阵被称为<B>正定(positive definite)</B>;所有特征值都是非负数的矩阵被称为半正定(positive semidefinite)。同样地，所有特征值都是负数的矩阵被称为<B>负定(negative definite)</B>;所有特征值都是非整数的矩阵称为半负定(negative semidefinite).半正定保证<span class="arithmatex">\(\forall x , x^T A x \ge 0\)</span>,正定矩阵保证<span class="arithmatex">\(x^T A x = 0, \Rightarrow x = 0\)</span></p>
+<p><img alt="" src="../img/UDU.png" /></p>
+<blockquote>
+<p>特征向量和特征值的作用效果:在这里，矩阵 <span class="arithmatex">\(A\)</span> 有两个标准正交的特征向量，对应特征值为 <span class="arithmatex">\(λ_1\)</span> 的 <span class="arithmatex">\(v^{(1)}\)</span> 以及对应特征值为 <span class="arithmatex">\(λ_2\)</span> 的 <span class="arithmatex">\(v^{(2)}\)</span>。(左) 我 们画出了所有的单位向量 <span class="arithmatex">\(u ∈ R_2\)</span> 的集合，构成一个单位圆。(右) 我们画出了所有的 <span class="arithmatex">\(Au\)</span> 点的集合。通过观察 <span class="arithmatex">\(A\)</span> 拉伸单位圆的方式，我们可以看到它将 <span class="arithmatex">\(v^{(i)}\)</span> 方向的空间拉伸了 <span class="arithmatex">\(λ_i\)</span> 倍。</p>
+</blockquote>
+<h2 id="奇异值分解"><B>奇异值分解</B><a class="headerlink" href="#奇异值分解" title="Permanent link"></a></h2>
+<p>奇异值分解（Singular Value Decomposition，简称SVD）是一种重要的矩阵分解方法，将矩阵分为奇异向量(Singular vector)与奇异值(Singular value).<B>每个实数矩阵都有奇异值分解,而不一定(非方阵)</B></p>
+<p>对于任意一个<span class="arithmatex">\(m \times n\)</span>的矩阵<span class="arithmatex">\(A\)</span>，SVD分解可以表示为：</p>
+<div class="arithmatex">\[
+    A_{m \times n} = U D V^T
+\]</div>
+<p>其中：</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(U\)</span> 是一个<span class="arithmatex">\(m \times m\)</span>的正交矩阵，其列向量称为<B>左奇异向量</B>。</p>
+</li>
+<li>
+<p><span class="arithmatex">\(D\)</span> 是一个<span class="arithmatex">\(m \times n\)</span>的对角矩阵，对角线上的元素称为<B>奇异值</B>，它们是非负实数，并按从大到小的顺序排列。奇异值反映了矩阵在对应奇异向量方向上的长度或“强度”。</p>
+</li>
+<li>
+<p><span class="arithmatex">\(V\)</span> 是一个<span class="arithmatex">\(n \times n\)</span>的正交矩阵，其列向量称为<B>右奇异向量</B>。</p>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="c1"># 创建一个5x3的随机矩阵</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="c1"># 计算奇异值分解</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="c1"># 打印结果的形状</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Vh</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="c1"># 计算重构矩阵并计算与原矩阵的距离</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="n">reconstructed_A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">)),</span> <span class="n">Vh</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="n">distance</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">reconstructed_A</span><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="c1">#: torch.Size([5, 3]) torch.Size([3]) torch.Size([3, 3])</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="c1">#  tensor(3.2090e-07)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="moore-penrose-伪逆"><B>Moore-Penrose 伪逆</B><a class="headerlink" href="#moore-penrose-伪逆" title="Permanent link"></a></h2>
+<p>Moore-Penrose伪逆是矩阵的一种广义逆矩阵，对于任意一个给定的矩阵<span class="arithmatex">\( A \)</span>，其Moore-Penrose伪逆记为<span class="arithmatex">\( A^+ \)</span>。伪逆有着广泛的应用，特别是在线性代数、数值分析和工程领域中。伪逆对于非方阵（即行数和列数不相等的矩阵）和不可逆（即行列式为零或非满秩的方阵）的矩阵都是有定义的。</p>
+<p>矩阵<span class="arithmatex">\(A\)</span>的伪逆定义为:</p>
+<div class="arithmatex">\[  A^+ = \lim_{a \rightarrow 0 } (A^T A + \alpha I )^{-1} A^T           \]</div>
+<p>在实际计算中采用公式:</p>
+<div class="arithmatex">\[  A^+ = V D^+ U^T                                            \]</div>
+<p>其中,<span class="arithmatex">\(U,D\)</span>和<span class="arithmatex">\(V\)</span>是矩阵<span class="arithmatex">\(A\)</span>奇异值分解后得到的矩阵.</p>
+<p>对角矩阵<span class="arithmatex">\(D\)</span>的伪逆<span class="arithmatex">\(D^+\)</span>是通过对<span class="arithmatex">\( D \)</span>的非零元素取倒数（即<span class="arithmatex">\( 1/\sigma_i \)</span>），然后将结果转置得到的。如果<span class="arithmatex">\( D \)</span>是对角矩阵，那么<span class="arithmatex">\( D^+ \)</span>也是一个对角矩阵，其对角线上的元素是原奇异值的倒数。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="c1"># 计算矩阵的伪逆</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="n">A_pinv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">rcond</span><span class="o">=</span><span class="mf">1e-15</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="c1">#: rcond：浮点数，用于确定哪些奇异值被认为是零。较小的 rcond 值会导致更多的奇异值被保留，从而得到更接近的伪逆；较大的 rcond 值会丢弃更多的小奇异值，得到的伪逆可能更加简洁。</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="主成分分析principal-component-analysis-pca"><B>主成分分析（Principal Component Analysis, PCA) </B><a class="headerlink" href="#主成分分析principal-component-analysis-pca" title="Permanent link"></a></h2>
+<p>PCA是一种线性降维算法，可以通过将数据投影到低维子空间来提取高维空间中的信息。PCA试图保留数据的主要部分，即具有更多变化的部分，并消除具有较少变化的非主要部分。</p>
+<p>假设在<span class="arithmatex">\(\mathbb{R}^{n}\)</span>空间中的m个点<span class="arithmatex">\([x^{(1)},x^{(2)},···,x^{(m)}]\)</span>,我们可以对这些点进行<B>有损压缩</B>,对于<span class="arithmatex">\(x^{(i)} \in \mathbb{R}^{n}\)</span>,创造一个对应编码向量<span class="arithmatex">\(c^{(i)} \in \mathbb{R}^{n}\)</span> <span class="arithmatex">\((l &lt; n)\)</span>,即可用更少的内存来储存原有信息,即寻找一个编码函数<span class="arithmatex">\(f(\mathit{x}) = \mathit{c}\)</span>,和解码函数<span class="arithmatex">\(\mathit{x} \approx g(\mathit{c})\)</span></p>
+<p>设<span class="arithmatex">\(\mathit{D} \in \mathbb{R}^{n \times l}\)</span>为解码矩阵,并且假定<span class="arithmatex">\(\mathit{D}\)</span>的列向量为单位范数并且彼此正交,则有<span class="arithmatex">\(g(\mathit{c}) = \mathit{Dc}\)</span>,</p>
+<p>为了得到最优编码<span class="arithmatex">\(c^*\)</span>,可以使用平方<span class="arithmatex">\(L^2\)</span>范数来衡量<span class="arithmatex">\(\mathit{x}\)</span>与<span class="arithmatex">\(g(\mathit{c})\)</span>的接近程度:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    c^* =&amp; \underset{c}{\arg\min} \lVert x - g(c) \Vert_2 ^2           \\  
+    =&amp; \underset{c}{\arg\min} (x - g(c))^T(x - g(c))                   \\
+    =&amp; \underset{c}{\arg\min} (x^T x - x^T g(c) - g(c)^T x + g(c)^T g(c)) \\
+    =&amp; \underset{c}{\arg\min} (x^T x - 2 x^T g(c)  + g(c)^T g(c)) \\
+    =&amp; \underset{c}{\arg\min} (- 2 x^T g(c)  + g(c)^T g(c)) \\
+    =&amp; \underset{c}{\arg\min} (- 2 x^T Dc + c^T D^T D c) \\
+    =&amp; \underset{c}{\arg\min} (- 2 x^T Dc + c^T I_{l \times l} c) \\
+    =&amp; \underset{c}{\arg\min} (- 2 x^T Dc + c^T c) \\
+    \end{aligned}
+\]</div>
+<p>要求这个向量函数<span class="arithmatex">\(- 2 x^T Dc + c^T c\)</span>要求最小值,对该式对<span class="arithmatex">\(c\)</span>求偏导:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \nabla_{c} (- 2 x^T&amp; Dc + c^T c) = 0              \\
+    - 2 D^T&amp; x + 2c = 0  \\
+    c =&amp; D^T x
+    \end{aligned}
+\]</div>
+<p>因此,对于编码与解码函数: <span class="arithmatex">\(f(x) = D^T x\)</span> ,<span class="arithmatex">\(r(x) = g(f(x)) = DD^T x \approx x\)</span></p>
+<p>需要寻求最优的<span class="arithmatex">\(D^*\)</span>,即最小化每个点的误差矩阵的<span class="arithmatex">\(Frobenius\)</span>范数:</p>
+<div class="arithmatex">\[
+    D^* = \underset{D}{\arg\min} \sqrt{\sum_{i,j} (x_{j}^{(i)} - r(x^{(i)})_{j} )^2},\text{subject to } D^T D = I_{l \times l}          
+\]</div>
+<p>考虑<span class="arithmatex">\(D\)</span>中单个列向量<span class="arithmatex">\(d_j\)</span>:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    d^* =&amp; \underset{d}{\arg\min} \sum_{i} \lVert x^{(i)} - dd^T x^{(i)} \Vert ^2 _{2}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    =&amp; \underset{d}{\arg\min} \sum_{i} \lVert x^{(i)} - (d^T x^{(i)})d \Vert ^2 _{2}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    =&amp; \underset{d}{\arg\min} \sum_{i} \lVert x^{(i)} - (x^{(i)T} d)d \Vert ^2 _{2}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    =&amp; \underset{d}{\arg\min} \lVert X - Xdd^T \Vert ^2 _{F}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    \text{记}X \in \mathbb{R}^{m \times n},其中X_{i,:} = x^{(i)T}                       \\
+    =&amp; \underset{d}{\arg\min} \lVert X - Xdd^T \Vert ^2 _{F}, \text{subject to } \lVert d \Vert_2 = 1       \\
+    =&amp; \underset{d}{\arg\min} Tr((X - Xdd^T)^T (X - Xdd^T) ), \text{subject to } \lVert d \Vert_2 = 1       \\
+    =&amp; \underset{d}{\arg\min} Tr(X^T X - X^T X d d^T - d d^T X^T X + d d^T X^T X d d^T ) \\
+    =&amp; \underset{d}{\arg\min} (2Tr( - X^T X d d^T) + Tr( d d^T X^T X d d^T))       \\
+    =&amp; \underset{d}{\arg\min} (- 2Tr(X^T X d d^T) + Tr( X^T X dd^T dd^T))         \\
+    =&amp; \underset{d}{\arg\min} (-2Tr(X^T X d d^T) + Tr( X^T X dd^T))         \\
+    =&amp; \underset{d}{\arg\min} (-Tr(X^T X d d^T))         \\
+    =&amp; \underset{d}{\arg\min} (-Tr(X^T X d d^T))         \\
+    =&amp; \underset{d}{\arg\max} (Tr(X^T X d d^T)), \text{subject to } d^T d = 1         \\
+    =&amp; \underset{d}{\arg\max} (Tr(d^T X^T X d)), \text{subject to } d^T d = 1         \\
+    \end{aligned}       
+\]</div>
+<p>即最优的<span class="arithmatex">\(d\)</span>是<span class="arithmatex">\(X^T X\)</span>最大特征值对应的特征向量,矩阵<span class="arithmatex">\(D\)</span>即是由前<span class="arithmatex">\(l\)</span>个最大特征值对应的特征向量组成的</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>            <span class="c1"># 导入PCA</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="c1"># 加载数据集</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="n">data</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="c1"># 标准化数据</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="n">scaled_data</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="c1"># 创建PCA模型并拟合数据</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># 选择要保留的主成分数量</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="n">principal_components</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">scaled_data</span><span class="p">)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="c1"># 创建新的DataFrame来存储主成分</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="n">principal_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">principal_components</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span> <span class="s1">&#39;PC2&#39;</span><span class="p">])</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="c1"># 可视化主成分</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;2 Component PCA&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">principal_df</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">],</span> <span class="n">principal_df</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../img/pca.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">torch.linalg模块</p>
+<p><font size =3.5>
+torch.linalg 是PyTorch中的一个线性代数功能模块，补充了现有的torch.matmul和torch.tensor运算，提供更全面的线性代数功能。torch.linalg 模块包含了一些线性代数的核心操作，例如矩阵分解、特征值和特征向量计算等。</p>
+<p></font></p>
+</div>
+<h3 id="lecture-2-probability-and-information-theory">Lecture 2: Probability and Information Theory<a class="headerlink" href="#lecture-2-probability-and-information-theory" title="Permanent link"></a></h3>
+<hr />
+<blockquote>
+<p>这一章很大一部分的内容就是比较基础的概率统计知识,如果学过相关课程的话很简单,便不做过多的笔记</p>
+</blockquote>
+<h2 id="高斯分布gaussian-distribution"><B>高斯分布(Gaussian distribution)</B><a class="headerlink" href="#高斯分布gaussian-distribution" title="Permanent link"></a></h2>
+<p>也称为正态分布（normal distribution）,</p>
+<div class="arithmatex">\[
+    \begin{equation}
+    N(x;\mu,σ^2) = \frac{1}{\sigma\sqrt{2\pi}} exp(- \frac{(x-\mu)^2}{2\sigma^2})
+    \end{equation}
+\]</div>
+<p>将正态分布推广到<span class="arithmatex">\(R^n\)</span>空间,称为多维正态分布(multivariate normal distribution),设n维向量<span class="arithmatex">\(X = [X_1,X_2,...X_N]^T\)</span>服从多变量正态分布,其参数为一个正定对称矩阵<span class="arithmatex">\(\Sigma\)</span>:</p>
+<div class="arithmatex">\[
+    \begin{equation}
+    N(x;\mu,\Sigma) = \sqrt{\frac{1}{(2 \pi)^n det(\Sigma)}} exp(-\frac{1}{2}(x - \mu)^T \Sigma^{-1} (x - \mu) ) 
+    \end{equation} 
+\]</div>
+<blockquote>
+<p>其中<span class="arithmatex">\(x = (x_1,...,x_n)^T\)</span>,<span class="arithmatex">\(\mu\)</span>为随机向量<span class="arithmatex">\(X\)</span>的n维均值向量,<span class="arithmatex">\(\Sigma\)</span>是<span class="arithmatex">\(X\)</span>的n阶协方差矩阵(正定矩阵以保证<span class="arithmatex">\(\Sigma_{-1}\)</span>存在)</p>
+</blockquote>
+<h2 id="dirac-delta函数"><B>Dirac <span class="arithmatex">\(\delta\)</span>函数</B><a class="headerlink" href="#dirac-delta函数" title="Permanent link"></a></h2>
+<p>在一些情况下，我们希望概率分布中的所有质量都集中在一个点上,而Dirac <span class="arithmatex">\(\delta\)</span>函数被定义成除了 0 以外的其他点的值都为0，但是积分为1,:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    p(x) = \delta (x - \mu) \\
+    \end{aligned}
+\]</div>
+<p>Dirac <span class="arithmatex">\(\delta\)</span>分布经常作为<B>经验分布 (empirical distribution)</B>的一个组成部分出现,如果有m个样本点，则在每个点所在的位置定义为<span class="arithmatex">\(\frac{1}{m}\)</span>乘以<span class="arithmatex">\(\delta\)</span>函数，这样最后得到的经验分布概率密度的积分刚好是1:</p>
+<div class="arithmatex">\[
+    \hat{p(x)} = \frac{1}{m} \sum_{i=1}^{m} \delta (x - x^{(i)})
+\]</div>
+<h2 id="高斯混合模型gmmgaussian-mixture-model"><B>高斯混合模型GMM（Gaussian Mixture Model）</B><a class="headerlink" href="#高斯混合模型gmmgaussian-mixture-model" title="Permanent link"></a></h2>
+<p>GMM是概率密度的万能近似器（universal approximator）,任何平滑的概率密度都可以用具有足够多组件的高斯混合模型以任意精度来逼近。GMM模型使用多个高斯分布的组合来刻画某个数据分布</p>
+<div class="arithmatex">\[
+    p(x_i | \Theta) = \sum_{k=1}^{K} \phi_k \mathcal{N}(x_i | \mu_k, \Sigma_k)
+\]</div>
+<p>上式为一个高斯混合(Gaussian Mixture),其中每一个高斯密度函数称为<B>混合的分模型(component)</B>,每个分模型有自己的<span class="arithmatex">\(\mu_i\)</span>和<span class="arithmatex">\(\sigma_i\)</span>(对于多维数据,则是协方差矩阵<span class="arithmatex">\(\Sigma_i\)</span>),(下面用<span class="arithmatex">\(\Theta\)</span> 表示模型的参数，即所有高斯分量的均值、协方差和权重)。每个高斯分量的概率密度函数 <span class="arithmatex">\(\mathcal{N}(x_i | \mu_k, \Sigma_k)\)</span> 表示为：其中:</p>
+<div class="arithmatex">\[
+    \mathcal{N}(x_i | \mu_k, \Sigma_k) = \frac{1}{(2\pi)^{D/2}|\Sigma_k|^{1/2}} \exp\left(-\frac{1}{2}(x_i - \mu_k)^T \Sigma_k^{-1} (x_i - \mu_k)\right)
+\]</div>
+<div class="arithmatex">\[
+    \sum_{k=1}^{K} \phi_i = 1
+\]</div>
+<p>参数<span class="arithmatex">\(\phi_i\)</span>即为模型的混合系数(mixing coefficients).
+GMM 的似然函数可以写为：</p>
+<div class="arithmatex">\[
+L(\Theta | X) = \prod_{i=1}^{N} p(x_i | \Theta)
+\]</div>
+<p>为了简化计算，通常我们对对数似然函数进行对数化：</p>
+<div class="arithmatex">\[
+\log L(\Theta | X) = \sum_{i=1}^{N} \log \left( \sum_{k=1}^{K} \phi_k \mathcal{N}(x_i | \mu_k, \Sigma_k) \right)
+\]</div>
+<p>GMM 的参数估计通常通过<B>EM算法（Expectation-Maximization Algorithm）</B>来实现。EM 算法的基本思想是通过迭代的方式交替进行 E 步（Expectation Step）和 M 步（Maximization Step）来估计参数。在 E 步中，我们计算每个样本属于每个高斯分量的概率（即后验概率），在 M 步中，我们使用这些后验概率来更新参数。通过迭代执行 E 步和 M 步，我们可以逐步优化参数，并且最终收敛到局部最优解。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span>
+<span class="normal"><a href="#__codelineno-9-34">34</a></span>
+<span class="normal"><a href="#__codelineno-9-35">35</a></span>
+<span class="normal"><a href="#__codelineno-9-36">36</a></span>
+<span class="normal"><a href="#__codelineno-9-37">37</a></span>
+<span class="normal"><a href="#__codelineno-9-38">38</a></span>
+<span class="normal"><a href="#__codelineno-9-39">39</a></span>
+<span class="normal"><a href="#__codelineno-9-40">40</a></span>
+<span class="normal"><a href="#__codelineno-9-41">41</a></span>
+<span class="normal"><a href="#__codelineno-9-42">42</a></span>
+<span class="normal"><a href="#__codelineno-9-43">43</a></span>
+<span class="normal"><a href="#__codelineno-9-44">44</a></span>
+<span class="normal"><a href="#__codelineno-9-45">45</a></span>
+<span class="normal"><a href="#__codelineno-9-46">46</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Ellipse</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="c1"># 生成一些示例数据</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>                    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]),</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>                    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])])</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="c1"># 创建 GMM 模型实例并拟合数据</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="n">n_components</span> <span class="o">=</span> <span class="mi">3</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="n">gmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="c1"># 获取每个分量的参数</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="n">means</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">means_</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="n">covariances</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">covariances_</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="c1"># 创建绘图</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a><span class="c1"># 绘制数据点</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a>
+<a id="__codelineno-9-27" name="__codelineno-9-27"></a><span class="c1"># 绘制每个高斯分量的轮廓和椭圆</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28"></a><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_components</span><span class="p">):</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30"></a>    <span class="c1"># 绘制椭圆</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31"></a>    <span class="n">cov_matrix</span> <span class="o">=</span> <span class="n">covariances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32"></a>    <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">)</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33"></a>    <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">*</span><span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34"></a>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">5.991</span> <span class="o">*</span> <span class="n">eigenvalues</span><span class="p">)</span>  <span class="c1"># 95%置信区间</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35"></a>    <span class="n">ellipse</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="n">means</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37"></a>
+<a id="__codelineno-9-38" name="__codelineno-9-38"></a>    <span class="c1"># 标注均值</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">means</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">means</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Component </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40"></a>
+<a id="__codelineno-9-41" name="__codelineno-9-41"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Mixture Model&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-43" name="__codelineno-9-43"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-44" name="__codelineno-9-44"></a><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45"></a><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-9-46" name="__codelineno-9-46"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../img/GMMmodel.png" /></p>
+<h3 id="lecture-3-numerical-computation">Lecture 3: Numerical Computation<a class="headerlink" href="#lecture-3-numerical-computation" title="Permanent link"></a></h3>
+<hr />
+<h2 id="overﬂow-and-underﬂow"><B>Overﬂow and Underﬂow</B><a class="headerlink" href="#overﬂow-and-underﬂow" title="Permanent link"></a></h2>
+<p>下溢(underflow):当接近零的数被四舍五入为零时发生下溢</p>
+<p>上溢(overflow):当大量级的数被近似为∞或−∞时发生上溢,进一步的运算通常会导致这些无限值变为非数字。</p>
+<h2 id="病态方程组"><B>病态方程组</B><a class="headerlink" href="#病态方程组" title="Permanent link"></a></h2>
+<p>由实际问题得到的方程组的系数矩阵或者常数向量的元素，本身会存在一定的误差；这些初始数据的误差在计算过程中就会向前传播，从而影响到方程组的解。病态方程组是指因系数的很小改变却导致解改变很大的方程组，称相应的系数矩阵A为病态矩阵。病态方程组对任何算法都将产生数值不稳定性。</p>
+<p>假设函数<span class="arithmatex">\(f(x)=A^{-1}x\)</span>,当<span class="arithmatex">\(A \in \mathbb{R}^{n \times n}\)</span>具有特征值分解时,其条件数为</p>
+<div class="arithmatex">\[
+    \max_{i,j} |\frac{\lambda_i}{\lambda_j}|    
+\]</div>
+<p>当该数较大时,矩阵求逆对输入的误差特别敏感.这种敏感性是矩阵本身的固有特性，而不是矩阵求逆期间舍入误差的结果。即使我们乘以完全正确的矩阵逆，病态条件的矩阵也会放大预先存在的误差。在实践中，该错误将与求逆过程本身的数值误差进一步复合。</p>
+<h2 id="基于梯度的优化方法"><B>基于梯度的优化方法</B><a class="headerlink" href="#基于梯度的优化方法" title="Permanent link"></a></h2>
+<p>在任务中我们需要最小化/最大化的函数称为目标函数（objective function）或准则（criterion）,当我们对其进行最小化时，也把它称为代价函数（cost function）、损失函数（loss function）或误差函数（error function）.一般使用最为基础的梯度下降法（gradient descent）更新参数来寻优.</p>
+<div class="arithmatex">\[
+    \hat{\mathbb{\theta}} = \mathbb{\theta} - \alpha \nabla f(\mathbb{\theta})
+\]</div>
+<p><span class="arithmatex">\(\alpha\)</span>即为学习率（learning rate）,是一个确定步长大小的正标量.</p>
+<p>后面的两个小节是一些凸优化的内容,准备新开一个note单独写.......</p>
+<p>&lt;待续&gt;</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/czy1101kksk" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://space.bilibili.com/35052889" target="_blank" rel="noopener" title="space.bilibili.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0s16.1 2.868 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0c8.8 0 16.1 2.868 21.9 8.603 5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1zm-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8 6.3-6.5 9.7-14.3 10.1-23.5V173.8zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5-9.6 0-17.5-3.2-23.6-9.5-6.1-6.3-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2 6.3-6.3 13.2-9.6 23.3-10 9.2.4 17 3.7 23.3 10zm191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.1 6.3-14 9.5-23.6 9.5-9.6 0-17.4-3.2-23.6-9.5-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2 6.3-6.3 14.1-9.6 23.3-10 9.2.4 17 3.7 23.3 10z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<532651226@qq.com>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

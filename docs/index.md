@@ -5,8 +5,6 @@ statistics: true
 
 # Aloha ! Here is “BRIGHT_Czy’s Notebook
 
-
-
 !!! quote "Quote🌏"
     <center>
     <font size=4>

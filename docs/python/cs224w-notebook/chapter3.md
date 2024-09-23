@@ -1073,3 +1073,64 @@ class SpGAT(nn.Module):
 ```
 </details> 
 
+### The over-smoothing problem
+
+When we stack many GNNLayers together, the output of the network will suffer from <B>the over-smoothing problem:all the node embeddings converge to the same value</B>
+
+But we want to see the diffierences between different nodes.
+
+Why does this problem happen: <B>Receptive field of a GNN</B>
+
+- <B>Receptive field of a GNN</B>: the set of nodes that determine the embedding of a node of interest.
+
+![](./img/y1.png)
+
+In a 3-layer GNN, the receptive field overlap for two nodes(感受野重叠过大). The shared neighbors quickly grows when the number of GNNlayers $>=$ 3.So we should be cautious when adding GNNLayers.
+
+> If two nodes have highly-overlapped receptive fields, then their embeddings are highly similar
+
+- <B>Goal:Making a shallow GNN more expressive.</B>
+
+![](./img/t1.png)
+
+![](./img/t2.png)
+
+![](./img/t3.png)
+
+![](./img/t4.png)
+![](./img/t4%20(2).png)
+
+![](./img/t5.png)
+
+### Manipulate Graphs
+
+![](./img/t6.png)
+
+![](./img/t7.png)
+
+### Feature Augmentation on Graphs
+
+![](./img/t8%20(1).png)
+![](./img/t8%20(2).png)
+
+![](./img/t9.png)
+
+### Add Virtual Nodes/Edges: Augment sparse graphs
+
+- Add virtual edges
+
+![](./img/t10%20(1).png)
+
+- Add virtual nodes
+
+![](./img/t11.png)
+
+### Node Neighborhood Sampling
+
+![](./img/t12.png)
+
+![](./img/t15%20(1).png)
+
+![](./img/t15%20(2).png)
+
+![](./img/t15%20(3).png)

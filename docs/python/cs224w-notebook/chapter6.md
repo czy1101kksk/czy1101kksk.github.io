@@ -67,7 +67,7 @@ $$
 m_{u,r}^{(l)} = \frac{1}{c_{v,r}} W_r^{(l)} h^{(l)}_u
 $$
 
-- Self-loop"
+- Self-loop
 
 $$
 m_{v}^{(l)} = W_0^{(l)} h^{(l)}_v
@@ -81,9 +81,57 @@ $$
 
 ![](./img/tu5.png)
 
-### Block Diagonal Matrix
+### Block Diagonal Matrix（分块对角矩阵）
 
 ![](./img/tu6.png)
 
-![](./img/tu7.png)
+### Basis Learning
+
+![](./img/tu8.png)
+
+### RGCN for Link Prediction
+
+Firstly, assume $(E, r_3, A)$ is training supervision edge, all the other edges are training message edges
+
+![](./img2/1.png)
+
+- Use RGCN to score the training supervision edge $(E, r_3, A)$
+
+- Create a negative edge by perturbing the supervision edge , e.g. $(E, r_3, B)$, $(E, r_3, D)$
+
+> Note that negative edges should not belong to training message edges or training supervision edges.
+
+- Use GNN model to score negative edge
+
+- Optimize a standatd CrossEntropy loss 
+
+1. Maximize the score of training supervision edge
+
+2. Minimize the score of negative edges
+
+$$
+\mathcal{l} = -log \sigma (f_{r3} (h_E,h_A)) - log (1-\sigma(f_{r3} (h_E-h_B)))
+$$
+
+![](./img2/2.png)
+
+![](./img2/3.png)
+
+> Hits@k:一个评估信息检索系统性能的指标，常用于推荐系统、搜索引擎和图神经网络（GNN）等场景.对于给定的预测列表，如果真实的元素出现在列表的前 k 个位置中，则认为是一个成功的预测（Hit）。Hits@k 指标计算的是所有成功的预测占总预测次数的比例。
+
+> Reciprocal Rank (RR):一个衡量信息检索系统性能的指标，它特别关注最相关结果的排名。在推荐系统、搜索引擎、图神经网络等领域中，这个指标用来评估模型预测的准确性和相关性。在给定的查询中，取最相关结果的排名的倒数。如果最相关的结果排名越靠前，其倒数（即 Reciprocal Rank）就越大，表示系统的性能越好。
+
+![](./img2/4.png)
+
+### Understanding RGCN(paper)
+
+阅读地址：[Modeling Relational Data with Graph Convolutional Networks](https://arxiv.org/abs/1703.06103)
+
+假设有向标记图$G=(V,\epsilon,R)$，其中节点$v_i \in V$，有标签的边为$(v_i,r,v_j) \in \epsilon$，关系类型$r \in R$.
+
+本文最初的动机是将本地图邻域上运行的GCN扩展到大规模关系数据。这些及相关方法(如GNN)可以理解为一个简单的可微消息传递框架的特殊情况：
+
+$$
+h_i^{(l+1)} = \sigma \Big( \sum_{m \in \mathcal{M}_i} g_m (h_i^{(l)}, h_j^{(l)}) \Big)
+$$
 

@@ -43,7 +43,7 @@ $$
 
 - Edge with edge types: $(u,v) \in \mathbf{E}$
 
-- Edge types: $\(u,v): \phi (u,v)$
+- Edge types: $(u,v): \phi (u,v)$
 
 heterogeneous graph's relation type for edge $e$ is a tuple:$r(u,v) = (\tau(u,v), \phi(u,v), \tau(v))$
 

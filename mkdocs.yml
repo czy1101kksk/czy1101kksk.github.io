@@ -241,6 +241,10 @@ nav:
       - sci-paper/cs/MoE.md
       - sci-paper/cs/GAN.md
       - sci-paper/ComputationalPhysics/Transovler.md
+      - sci-paper/ComputationalPhysics/AeroGTO/aerogto.md
+      - sci-paper/ComputationalPhysics/DeepONet.md
+      - sci-paper/ComputationalPhysics/FNO.md
+      - sci-paper/ComputationalPhysics/Transovler.md
     - "📰综合能源系统":
       - sci-paper/Load-Forecasting/[Applied Energy]A novel short-term multi-energy load forecasting method for integrated energy system based on feature separation-fusion technology and improved CNN.md
   - "👨‍🎓 学习笔记":
@@ -253,10 +257,6 @@ nav:
     - python/cs224w.md
     - python/d2l.md
     - python/python-something/fluent-python.md
-  - "👨‍🎓 Kaggle":
-    - Kaggle/index.md
-    - "ISIC-2024":
-      - Kaggle/ISIC 2024 - Skin Cancer Detection with 3D-TBP/index.md
   #  - "📊数学学习笔记":
     #  - math/mathematical-analysis.md
     #  - math/linear-algebra.md

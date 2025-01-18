@@ -32,14 +32,6 @@ statistics: true
     <div style="text-align: font-size:45px;font-weight:bold">🔮当前学习方向/兴趣:<B>Multi-energy Load Forecasting</B>/Graph Neural Network/ AI4Science </div>
     <div style="text-align: font-size:20px;font-weight:bold">🐰爱好:羽毛球🏸,[Mr.Quin](https://space.bilibili.com/15810/dynamic)忠实观众,学自己感兴趣的知识</div>
     <div style="text-align: font-size:20px;font-weight:bold"></div>
-
-
-!!! example "准备学习🏵"
-    <center>
-    <font  color= #608DBD size=2>
-    C++ / 高等代数 / PRML
-    </font>
-    </center>
     
 ???+ note "Contact Me"
     <font size=2>

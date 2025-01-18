@@ -147,7 +147,7 @@ ACTIVATION = {'gelu': nn.GELU, 'tanh': nn.Tanh, 'sigmoid': nn.Sigmoid, 'relu': n
 
 
 class Physics_Attention_Irregular_Mesh(nn.Module):
-    def __init__(self, dim, heads=8, dim_head=64, dropout=0., slice_num=64):
+    def __init__(self, dim, heads=8, dim_head=64, dropout=0., slice_num=64): 
         super().__init__()
         inner_dim = dim_head * heads
         self.dim_head = dim_head
@@ -180,25 +180,26 @@ class Physics_Attention_Irregular_Mesh(nn.Module):
             .permute(0, 2, 1, 3).contiguous()  # B H N C
         x_mid = self.in_project_x(x).reshape(B, N, self.heads, self.dim_head) \
             .permute(0, 2, 1, 3).contiguous()  # B H N C
-        slice_weights = self.softmax(self.in_project_slice(x_mid) / self.temperature)  # B H N G
-        # Temperature Parameter
+        slice_weights = self.softmax(self.in_project_slice(x_mid) / self.temperature)  # B H N G(slices)
+        # Temperature Parameter 调节分布的平滑度
         slice_norm = slice_weights.sum(2)  # B H G
-        slice_token = torch.einsum("bhnc,bhng->bhgc", fx_mid, slice_weights)
+        slice_token = torch.einsum("bhnc,bhng->bhgc", fx_mid, slice_weights) # B H G C
+        # 爱因斯坦求和约定 
         slice_token = slice_token / ((slice_norm + 1e-5)[:, :, :, None].repeat(1, 1, 1, self.dim_head))
-
+                                    # (B H G 1) --> (B H G C)
         ### (2) Attention among slice tokens
-        q_slice_token = self.to_q(slice_token)
+        q_slice_token = self.to_q(slice_token) # B H G C
         k_slice_token = self.to_k(slice_token)
         v_slice_token = self.to_v(slice_token)
-        dots = torch.matmul(q_slice_token, k_slice_token.transpose(-1, -2)) * self.scale
-        attn = self.softmax(dots)
-        attn = self.dropout(attn)
-        out_slice_token = torch.matmul(attn, v_slice_token)  # B H G D
+        dots = torch.matmul(q_slice_token, k_slice_token.transpose(-1, -2)) * self.scale # B H G G
+        attn = self.softmax(dots) # B H G G
+        attn = self.dropout(attn) 
+        out_slice_token = torch.matmul(attn, v_slice_token)  # B H G G x B H G C ——> B H G C 注意力分配后的切片
 
         ### (3) Deslice
-        out_x = torch.einsum("bhgc,bhng->bhnc", out_slice_token, slice_weights)
+        out_x = torch.einsum("bhgc,bhng->bhnc", out_slice_token, slice_weights) # 反切片 B H G C x B H N G ——> B H N C
         out_x = rearrange(out_x, 'b h n d -> b n (h d)')
-        return self.to_out(out_x)
+        return self.to_out(out_x) # B N dim
 
 
 class MLP(nn.Module):
@@ -260,7 +261,7 @@ class Transolver_block(nn.Module):
         if self.last_layer:
             return self.mlp2(self.ln_3(fx))
         else:
-            return fx
+            return fx # B N dim
 
 
 class Model(nn.Module):
@@ -275,16 +276,17 @@ class Model(nn.Module):
                  fun_dim=1,
                  out_dim=1,
                  slice_num=32,
-                 ref=8,
-                 unified_pos=False
+                 ref=8, 
+                 unified_pos=False # 在输入特征中添加统一的空间位置信息
                  ):
-        super(Model, self).__init__()
+        super(Model, self). __init__()
         self.__name__ = 'UniPDE_3D'
         self.ref = ref
         self.unified_pos = unified_pos
         if self.unified_pos:
             self.preprocess = MLP(fun_dim + self.ref * self.ref * self.ref, n_hidden * 2, n_hidden, n_layers=0,
                                   res=False, act=act)
+            # MLP(self, n_input, n_hidden, n_output,)
         else:
             self.preprocess = MLP(fun_dim + space_dim, n_hidden * 2, n_hidden, n_layers=0, res=False, act=act)
 
@@ -301,7 +303,7 @@ class Model(nn.Module):
                                      for _ in range(n_layers)])
         self.initialize_weights()
         self.placeholder = nn.Parameter((1 / (n_hidden)) * torch.rand(n_hidden, dtype=torch.float))
-
+        # 占位符
     def initialize_weights(self):
         self.apply(self._init_weights)
 

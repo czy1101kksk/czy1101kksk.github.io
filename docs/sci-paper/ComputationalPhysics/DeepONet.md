@@ -19,7 +19,7 @@ a neural network with a single hidden layer can approximate accurately any nonli
 
 But the theorem only guarantees a small approximation error for a sufficient large network, and does not consider the important optimization and <B>generalization errors.</B>
 
-DeepONet consists of two sub-networks:brand net(encoding the input func) and trunk net(encoding the location s for output func).
+DeepONet consists of two sub-networks:branch net(encoding the input func) and trunk net(encoding the location s for output func).
 
 ![](./img/d1.png)
 

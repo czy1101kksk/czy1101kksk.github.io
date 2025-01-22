@@ -257,9 +257,10 @@ nav:
     - python/cs224w.md
     - python/d2l.md
     - python/python-something/fluent-python.md
-  #  - "📊数学学习笔记":
-    #  - math/mathematical-analysis.md
-    #  - math/linear-algebra.md
+  - "📊杂项":
+    - math/FFT.md
+    - math/RBF.md
+    # - math/math.md 
   - "✍ 施工中":
     - wait-for-me.md
 

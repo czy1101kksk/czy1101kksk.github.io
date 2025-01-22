@@ -8,6 +8,7 @@
     
     论文地址：[Fourier Neural Operator for Parametric Partial Differential Equations](https://arxiv.org/abs/2010.08895)
 
+    
     代码:[https://github.com/neuraloperator/neuraloperator/blob/main/neuralop/models/fno.py](https://github.com/neuraloperator/neuraloperator/blob/main/neuralop/models/fno.py)
 
     </font>
@@ -44,22 +45,45 @@ $$
 
 来构建$G^†$的近似，其中$\Theta$是有限维的参数空间
 
+<B>Notation</B>:
+
+- $x \in D ⊂ \mathbb{R}^d$: 偏微分方程的空间域，方程所定义的空间区域，即自变量（通常是空间坐标）取值的范围。
+
+- $a \in \mathcal{A} = (D; \mathbb{R}^{d_a})，u \in \mathcal{U} = (D; \mathbb{R}^{d_u})$，输入函数与输出解函数。
+
+- $v(x) \in \mathbb{R}^{d_v}$：神经网络中间层的输出。
+
+- $\mathcal{k}:\mathbb{R}^{2(d+1)} \rightarrow \mathbb{R}^{d_v \times d_v}$，算子核将$(x, y, a(x)， a(y))$映射到$dv \times dv$矩阵
+
+- $\phi$:算子核网络$\mathcal{k}$的参数
+
+- $k$:傅里叶模式/波数(Fourier modes / wave numbers)。$k_{max}$:傅立叶层中使用的最大傅立叶模式。
+
 <B>离散化(Discretization)</B>
 
-由于$a_j$与$u_j$通常是函数，为了用数值方法处理它们，我们使用逐点评估（point-wise evaluations）的方法，设$D_j=\{x_1,...,x_n\} \subset D$为$D$的n点离散化，并且我们观察到$a_j|_{D_j} \in \mathbb{R}^{n\times d_a}$和u_j|_{D_j} \in \mathbb{R}^{n\times d_u}，组成了由j索引的有限个input-output数据对。
+由于$a_j$与$u_j$通常是函数，为了用数值方法处理它们，我们使用逐点评估（point-wise evaluations）的方法，设$D_j=\{x_1,...,x_n\} \subset D$为$D$的n点离散化，并且我们观察到$a_j|_{D_j} \in \mathbb{R}^{n\times d_a}$和$u_j|_{D_j} \in \mathbb{R}^{n\times d_u}$，组成了由j索引的有限个input-output数据对。
 
 ![](./img/d22.png)
 
 傅里叶神经算子的完整架构：
-（1）从输入$a$开始
 
-(2)通过神经网络$P$提升到更高维度的通道空间；
 
-(3)应用四层积分算子和激活函数；
+$$
+\boxed{
 
-(4)通过神经网络$Q$传回目标维度；
+\begin{aligned}
+(1)&从输入a开始; \\
 
-(5)输出$u$。
+(2)&通过神经网络P提升到更高维度的通道空间;\\
+
+(3)&应用四层积分算子和激活函数;\\
+
+(4)&通过神经网络Q传回目标维度;\\
+
+(5)&输出u。
+\end{aligned}
+}
+$$
 
 对于傅里叶层（Fourier layer）：从输入$v$开始。
 
@@ -83,10 +107,10 @@ $$
 <B>积分算子核$\mathcal{K}$(Kernel integral operator)</B>
 
 $$
-\mathcal{K}(v,a)(x) := \int_D κ_\phi \Bigl(x,y,a(x),a(y)\Bigr)v(y)dy \tag{3} 
+(\mathcal{K}(v,a) v_t)(x) := \int_D κ_\phi \Bigl(x,y,a(x),a(y)\Bigr)v_t(y)dy，\forall x \in D
 $$
 
-其中$\kappa_\phi : \mathbb{R}^{2(d+d_a)} \rightarrow \mathbb{R}^{d_v \times d_v}$是由$\phi \in \Theta_K$参数化的神经网络，扮演了核函数的角色，我们从数据中学习它。注意，即使积分算子是线性的，神经算子也可以通过组合线性积分算子和非线性激活函数来学习高度非线性算子，类似于标准神经网络。
+其中$\kappa_\phi : \mathbb{R}^{2(d+d_a)} \rightarrow \mathbb{R}^{d_v \times d_v}$是由$\phi \in \Theta_K$参数化的神经网络，扮演了核函数的角色，我们从数据中学习它。注意，<B>即使积分算子是线性的，神经算子也可以通过组合线性积分算子和非线性激活函数来学习高度非线性算子，类似于标准神经网络</B>。
 
 <B>傅里叶神经算子(Fourier Neural Operator)</B>
 
@@ -98,7 +122,7 @@ $$
 
 对$j=1,...,d_v$成立
 
-令$\kappa_\phi(x, y, a(x), a(y))=\kappa_\phi(x-y)$，应用卷积定理得到：$ \left(\mathcal{K}(a ; \phi) v_t\right)(x)=\mathcal{F}^{-1}\left(\mathcal{F}\left(\kappa_\phi\right) \cdot \mathcal{F}\left(v_t\right)\right)(x), \quad \forall x \in D $，因此，我们提出直接在傅里叶空间中参数化$\kappa_\phi$。
+令$\kappa_\phi(x, y, a(x), a(y))=\kappa_\phi(x-y)$，应用卷积定理得到：$\left(\mathcal{K}(a ; \phi) v_t\right)(x)=\mathcal{F}^{-1}\left(\mathcal{F}\left(\kappa_\phi\right) \cdot \mathcal{F}\left(v_t\right)\right)(x), \quad \forall x \in D$，因此，我们提出直接在傅里叶空间中参数化$\kappa_\phi$。
 
 <B>傅里叶积分算子</B>
 

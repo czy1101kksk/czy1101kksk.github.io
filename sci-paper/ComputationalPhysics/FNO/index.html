@@ -1,0 +1,1503 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="BRIGHT_CZY">
+      
+      
+        <link rel="canonical" href="https://czy1101kksk.github.io/sci-paper/ComputationalPhysics/FNO/">
+      
+      
+        <link rel="prev" href="../DeepONet/">
+      
+      
+        <link rel="next" href="../Transovler/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>FNO: Fourier Neural Operator for Parametric Partial Differential Equations - BRIGHT_CZY's site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fno-fourier-neural-operator-for-parametric-partial-differential-equations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="BRIGHT_CZY&#39;s site" class="md-header__button md-logo" aria-label="BRIGHT_CZY's site" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/122161543?s=400&u=203bce014a72777aa55f7a4d63a2c98df3bac6e2&v=4" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BRIGHT_CZY's site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              FNO: Fourier Neural Operator for Parametric Partial Differential Equations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0 9.821 9.821 0 0 0-17.64 0"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/czy1101kksk/czy1101kksk.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BRIGHT_CZY/notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="BRIGHT_CZY&#39;s site" class="md-nav__button md-logo" aria-label="BRIGHT_CZY's site" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/122161543?s=400&u=203bce014a72777aa55f7a4d63a2c98df3bac6e2&v=4" alt="logo">
+
+    </a>
+    BRIGHT_CZY's site
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/czy1101kksk/czy1101kksk.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BRIGHT_CZY/notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🎆 主页
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            🎆 主页
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🎆 主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    📜 论文阅读
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            📜 论文阅读
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🍥 论文阅读主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DL论文
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            DL论文
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs/EfficientNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EfficientNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs/Attention-is-all-you-need/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attention is all you need
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs/Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs/MAE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MAE：Masked Autoencoders Are Scalable Vision Learners
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs/ViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT：An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs/Distilling-the-knowledge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distilling the Knowledge in a Neural Network
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs/Noisy-students/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Self-training with Noisy Student improves ImageNet classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs/MoE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cs/GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN：Generative Adversarial Nets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transovler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transolver: A Fast Transformer Solver for PDEs on General Geometries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AeroGTO/aerogto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AeroGTO:An Efficient Graph-Transformer Operator for Learning Large-Scale Aerodynamics of 3D Vehicle Geometries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DeepONet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DeepONet: Learning nonlinear operators via DeepONet based on the universal approximation theorem of operators
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    FNO: Fourier Neural Operator for Parametric Partial Differential Equations
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    FNO: Fourier Neural Operator for Parametric Partial Differential Equations
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#介绍" class="md-nav__link">
+    <span class="md-ellipsis">
+      介绍
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transovler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transolver: A Fast Transformer Solver for PDEs on General Geometries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    📰综合能源系统
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            📰综合能源系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load-Forecasting/%5BApplied%20Energy%5DA%20novel%20short-term%20multi-energy%20load%20forecasting%20method%20for%20integrated%20energy%20system%20based%20on%20feature%20separation-fusion%20technology%20and%20improved%20CNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Applied Energy]A novel short-term multi-energy load forecasting method for integrated energy system based on feature separation-fusion technology and improved CNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    👨‍🎓 学习笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            👨‍🎓 学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../study-cs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🛠 课程学习主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    📑专业课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            📑专业课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../energy/Engineering_Thermodynamics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🍥工程热力学(甲)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/Python-is-important/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🔗Python校内课程笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/cs224n-notebook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🛣[Deep Learning]Stanford CS224n:Natural Language Processing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/cs231n/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🔭Stanford CS231n:Deep Learning for Computer Vision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/cs224w/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🔭Stanford CS224w:Machine Learning with Graphs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/d2l/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🔭Dive into Deeplearing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/python-something/fluent-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🛣 《流畅的Python》
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    📊杂项
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            📊杂项
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/FFT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    快速傅里叶变换（FFT）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/RBF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    径向基函数(Radial basis function)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ✍ 施工中
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ✍ 施工中
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wait-for-me/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    施工中.....
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#介绍" class="md-nav__link">
+    <span class="md-ellipsis">
+      介绍
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="fno-fourier-neural-operator-for-parametric-partial-differential-equations">FNO: Fourier Neural Operator for Parametric Partial Differential Equations<a class="headerlink" href="#fno-fourier-neural-operator-for-parametric-partial-differential-equations" title="Permanent link"></a></h1>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<div class="admonition info">
+<p class="admonition-title">相关信息</p>
+<p><font size = 3.5></p>
+<p>论文地址：<a href="https://arxiv.org/abs/2010.08895">Fourier Neural Operator for Parametric Partial Differential Equations</a></p>
+<p>代码:<a href="https://github.com/li-Pingan/fourier-neural-operator">https://github.com/li-Pingan/fourier-neural-operator</a></p>
+<p></font></p>
+</div>
+<h3 id="介绍">介绍<a class="headerlink" href="#介绍" title="Permanent link"></a></h3>
+<p>神经网络(neural networks)的经典发展主要集中在学习有限维欧几里得空间之间的映射。最近，这已经推广到神经算子(neural operators)，它们学习函数空间之间的映射。对于偏微分方程（PDEs），神经算子直接学习从任何函数参数依赖性到解的映射。因此，它们学习了一整个PDEs族，与经典方法解决方程的一个实例形成对比。</p>
+<p>本文中，我们通过直接在傅里叶空间(Fourier space)中参数化(parameterize)积分核(integral kernel)来制定一个新的神经算子，从而实现了富有表现力和高效的架构。我们对Burgers方程、Darcy流和Navier-Stokes方程进行了实验。</p>
+<h3 id="方法">方法<a class="headerlink" href="#方法" title="Permanent link"></a></h3>
+<p>首先概述两种主流基于神经网络的PDE方法：有限维算子(finite-dimensional operators)和神经有限元方法(Neural-FEM)。</p>
+<p><B>有限维算子(finite-dimensional operators)</B></p>
+<p>将解算子参数化为有限维欧几里得空间之间的深度卷积神经网络。本质上是与网格相关的，需要对不同的分辨率和离散化进行修改和调整。（换一种分辨率或者换一个初边界条件，往往误差表现不稳定，擅长特定场景的特定优化）</p>
+<p><B>神经有限元方法(Neural-FEM)</B></p>
+<p>直接将解函数参数化为神经网络（PINNs类模型），与网格无关且精确，但对于任何给定的新的函数参数/系数实例，都需要训练一个新的神经网络（对于PINNs来说，训练过程就是求解过程）。</p>
+<p>本文的方法旨在通过有限的观测数据对学习一个映射关系，这个映射是定义在无限维空间之间的。在很多应用中，尤其是与偏微分方程（PDE）相关的问题，输入和输出通常是无限维的函数空间而不是有限维的向量空间。FNO的目标是从这些输入输出数据对中学习到这种映射。</p>
+<p>设<span class="arithmatex">\(D ⊂ \mathbb{R}^d\)</span> 为一个有界开集，<span class="arithmatex">\(\mathcal{A} = \mathcal{A}(D; \mathbb{R}^{d_a})\)</span> 和 <span class="arithmatex">\(\mathcal{U} = \mathcal{U}(D; \mathbb{R}^{d_u})\)</span> 分别是从<span class="arithmatex">\(D\)</span>到<span class="arithmatex">\(\mathbb{R}^{d_a}\)</span>、从<span class="arithmatex">\(D\)</span>到<span class="arithmatex">\(\mathbb{R}^{d_u}\)</span>的无限维函数空间。</p>
+<p>另外，设<span class="arithmatex">\(G^† : \mathcal{A} → \mathcal{U}\)</span>是一个非线性的映射。通常在实际问题中，<span class="arithmatex">\(G^†\)</span>代表的是某种物理或数学过程，比如本文中<span class="arithmatex">\(G^†\)</span>为带参数的偏微分方程的解算子（the solution operators of parametric PDEs）。</p>
+<p>假设我们有观察<span class="arithmatex">\(\{ a_j , u_j \}^N_{j=1}\)</span>，其中<span class="arithmatex">\(a_j ∈ \mathcal{A}\)</span>从<span class="arithmatex">\(\mathcal{A}\)</span>中根据某个概率分布<span class="arithmatex">\(\mu\)</span>抽取，而<span class="arithmatex">\(u_j = G^†(a_j)\)</span>可能被噪声损坏。我们通过构建参数映射:</p>
+<div class="arithmatex">\[
+ G : \mathcal{A} \times \Theta \rightarrow \mathcal{U} 
+\]</div>
+<p>来构建<span class="arithmatex">\(G^†\)</span>的近似，其中<span class="arithmatex">\(\Theta\)</span>是有限维的参数空间</p>
+<p><B>Notation</B>:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(x \in D ⊂ \mathbb{R}^d\)</span>: 偏微分方程的空间域，方程所定义的空间区域，即自变量（通常是空间坐标）取值的范围。</p>
+</li>
+<li>
+<p><span class="arithmatex">\(a \in \mathcal{A} = (D; \mathbb{R}^{d_a})，u \in \mathcal{U} = (D; \mathbb{R}^{d_u})\)</span>，输入函数与输出解函数。</p>
+</li>
+<li>
+<p><span class="arithmatex">\(v(x) \in \mathbb{R}^{d_v}\)</span>：神经网络中间层的输出。</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathcal{k}:\mathbb{R}^{2(d+1)} \rightarrow \mathbb{R}^{d_v \times d_v}\)</span>，算子核将<span class="arithmatex">\((x, y, a(x)， a(y))\)</span>映射到<span class="arithmatex">\(dv \times dv\)</span>矩阵</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\phi\)</span>:算子核网络<span class="arithmatex">\(\mathcal{k}\)</span>的参数</p>
+</li>
+<li>
+<p><span class="arithmatex">\(k\)</span>:傅里叶模式/波数(Fourier modes / wave numbers)。<span class="arithmatex">\(k_{max}\)</span>:傅立叶层中使用的最大傅立叶模式。</p>
+</li>
+</ul>
+<p><B>离散化(Discretization)</B></p>
+<p>由于<span class="arithmatex">\(a_j\)</span>与<span class="arithmatex">\(u_j\)</span>通常是函数，为了用数值方法处理它们，我们使用逐点评估（point-wise evaluations）的方法，设<span class="arithmatex">\(D_j=\{x_1,...,x_n\} \subset D\)</span>为<span class="arithmatex">\(D\)</span>的n点离散化，并且我们观察到<span class="arithmatex">\(a_j|_{D_j} \in \mathbb{R}^{n\times d_a}\)</span>和<span class="arithmatex">\(u_j|_{D_j} \in \mathbb{R}^{n\times d_u}\)</span>，组成了由j索引的有限个input-output数据对。</p>
+<p><img alt="" src="../img/d22.png" /></p>
+<p>傅里叶神经算子的完整架构：</p>
+<p>$$
+\boxed{</p>
+<p>\begin{aligned}
+(1)&amp;从输入a开始; \</p>
+<p>(2)&amp;通过神经网络P提升到更高维度的通道空间;\</p>
+<p>(3)&amp;应用四层积分算子和激活函数;\</p>
+<p>(4)&amp;通过神经网络Q传回目标维度;\</p>
+<p>(5)&amp;输出u。
+\end{aligned}
+}
+$$</p>
+<p>对于傅里叶层（Fourier layer）：从输入<span class="arithmatex">\(v\)</span>开始。</p>
+<p>在顶部：应用傅里叶变换<span class="arithmatex">\(\mathcal{F}\)</span>，再对低频率的信号进行线性变换 
+ ，滤除较高频率的信号；然后应用傅里叶逆变换<span class="arithmatex">\(\mathcal{F}^{-1}\)</span>。</p>
+<p>在底部：应用一个局部线性变换<span class="arithmatex">\(W\)</span>。</p>
+<p><B>迭代更新(Iterative updates)</B></p>
+<p>我们将通过一个Fourier layer的过程表示为<span class="arithmatex">\(v_t → v_{t+1}\)</span>:</p>
+<div class="arithmatex">\[
+v_{t+1}(x) := \sigma \Big( W v_t(x) + ( \mathcal{K}(a;\phi) v_t(x))    \Big)
+\]</div>
+<p>其中<span class="arithmatex">\(\mathcal{K} : \mathcal{A} \times \Theta_{\mathcal{K}} \rightarrow \mathcal{L} (\mathcal{U}(D;\mathbb{R}^{d_v}),\mathcal{U}(D;\mathbb{R}^{d_v}))\)</span>是映射到<span class="arithmatex">\(\mathcal{U}(D;\mathbb{R}^{d_v})\)</span>上的有界线性算子，由<span class="arithmatex">\(\phi \in \Theta_K\)</span>参数化，<span class="arithmatex">\(W : \mathbb{R}^{d_v} \rightarrow \mathbb{R}^{d_v}\)</span>是一个线性变换。</p>
+<p>我们选用<span class="arithmatex">\(\mathcal{K}(a;\phi)\)</span>作为积分算子核变换（kernel integral transformation），并用一个神经网络来参数化。</p>
+<p><B>积分算子核<span class="arithmatex">\(\mathcal{K}\)</span>(Kernel integral operator)</B></p>
+<div class="arithmatex">\[
+(\mathcal{K}(v,a) v_t)(x) := \int_D κ_\phi \Bigl(x,y,a(x),a(y)\Bigr)v_t(y)dy，\forall x \in D
+\]</div>
+<p>其中<span class="arithmatex">\(\kappa_\phi : \mathbb{R}^{2(d+d_a)} \rightarrow \mathbb{R}^{d_v \times d_v}\)</span>是由<span class="arithmatex">\(\phi \in \Theta_K\)</span>参数化的神经网络，扮演了核函数的角色，我们从数据中学习它。注意，<B>即使积分算子是线性的，神经算子也可以通过组合线性积分算子和非线性激活函数来学习高度非线性算子，类似于标准神经网络</B>。</p>
+<p><B>傅里叶神经算子(Fourier Neural Operator)</B></p>
+<p>我们提出用一个定义在傅里叶空间上的卷积算子，替代上述的积分算子核。设<span class="arithmatex">\(\mathcal{F}\)</span>为<span class="arithmatex">\(f:D\rightarrow \mathbb{R}^{d_v}\)</span>的傅里叶变换，则：</p>
+<div class="arithmatex">\[
+ (\mathcal{F} f)_j(k)=\int_D f_j(x) e^{-2 i \pi\langle x, k\rangle} \mathrm{d} x, \quad\left(\mathcal{F}^{-1} f\right)_j(x)=\int_D f_j(k) e^{2 i \pi\langle x, k\rangle} \mathrm{d} k 
+\]</div>
+<p>对<span class="arithmatex">\(j=1,...,d_v\)</span>成立</p>
+<p>令<span class="arithmatex">\(\kappa_\phi(x, y, a(x), a(y))=\kappa_\phi(x-y)\)</span>，应用卷积定理得到：<span class="arithmatex">\(\left(\mathcal{K}(a ; \phi) v_t\right)(x)=\mathcal{F}^{-1}\left(\mathcal{F}\left(\kappa_\phi\right) \cdot \mathcal{F}\left(v_t\right)\right)(x), \quad \forall x \in D\)</span>，因此，我们提出直接在傅里叶空间中参数化<span class="arithmatex">\(\kappa_\phi\)</span>。</p>
+<p><B>傅里叶积分算子</B></p>
+<div class="arithmatex">\[
+\left(\mathcal{K}(\phi) v_t\right)(x)=\mathcal{F}^{-1}\left(R_\phi \cdot\left(\mathcal{F} v_t\right)\right)(x) \quad \forall x \in D \tag{4} 
+\]</div>
+<p>其中<span class="arithmatex">\(R_\phi\)</span>是周期函数<span class="arithmatex">\(\kappa: \bar{D} \rightarrow \mathbb{R}^{d_v \times d_v}\)</span>的傅里叶变换，由<span class="arithmatex">\(\phi \in \Theta_{\mathcal{K}}\)</span>参数化，即为上图中的<span class="arithmatex">\(R\)</span></p>
+<p>设频率模式<span class="arithmatex">\(k \in D\)</span>，有<span class="arithmatex">\((\mathcal{F} v_t)(k) \in \mathbb{C}^{d_v}\)</span>和<span class="arithmatex">\(R_\phi(k) \in \mathbb{C}^{d_v \times d_v}\)</span>。我们假设<span class="arithmatex">\(\mathcal{k}\)</span>为周期性的，允许傅里叶级数展开，所以我们使用离散形式的<span class="arithmatex">\(k \in \mathbb{Z}^d\)</span>，我们通过在最大模数处截断傅里叶级数<span class="arithmatex">\(k_{\max }=\left|Z_{k_{\max }}\right|= \{ k \in \mathbb{Z}^d: | k_j| \leq  k_{\max , j} ,j=1,...,d \}\)</span>来选择有限维参数化。因此<span class="arithmatex">\(R_\phi\)</span>可以参数化为<span class="arithmatex">\(\mathbb{C}^{k_{max} \times d_v \times d_v}\)</span>的张量。</p>
+<p><B>离散情况和快速傅里叶变换(FFT)</B></p>
+<p>设域D<span class="arithmatex">\(离散化为\)</span>n \in \mathcal{N}<span class="arithmatex">\(个离散点，则有\)</span>v_t \in \mathbb{R}^{n \times d_v}<span class="arithmatex">\(和\)</span>\mathcal{F} (v_t) \in \mathbb{C}^{n \times d_v}<span class="arithmatex">\(。由于采用了截断，所以实际上\)</span>\mathcal{F} (v_t) \in \mathbb{C}^{k_{max} \times d_v}<span class="arithmatex">\(，权重张量\)</span>R_\phi \in \mathbb{C}^{k_{max} \times d_v \times d_v}$。</p>
+<div class="arithmatex">\[
+(R \cdot (\mathcal{F} v_t))_{k,l} = \sum_{j=1}^{d_v} R_{k,l,j}(\mathcal{F} v_t)_{k,j}，\quad k =1,...,k_{max}, j = 1,...,d_v 
+\]</div>
+<p>当离散化是均匀的，分辨率为<span class="arithmatex">\(s_1 \times s_2 \times...\times s_d = n\)</span>，<span class="arithmatex">\(\mathcal{F}\)</span>可以替换为快速傅里叶变换。当<span class="arithmatex">\(f \in \mathbb{R}^{n\times d_v}, k=\left(k_1, \ldots, k_d\right) \in \mathbb{Z}_{s_1} \times \cdots \times \mathbb{Z}_{s_d}\)</span>，快速傅里叶变换定义为：</p>
+<div class="arithmatex">\[
+ \begin{aligned} &amp; (\hat{\mathcal{F}} f)_l(k)=\sum_{x_1=0}^{s_1-1} \cdots \sum_{x_d=0}^{s_d-1} f_l\left(x_1, \ldots, x_d\right) e^{-2 i \pi \sum_{j=1}^d \frac{x_j k_j}{s_j}} \\ &amp; \left(\hat{\mathcal{F}}^{-1} f\right)_l(x)=\sum_{k_1=0}^{s_1-1} \cdots \sum_{k_d=0}^{s_d-1} f_l\left(k_1, \ldots, k_d\right) e^{2 i \pi \sum_{j=1}^d \frac{x_j k_j}{s_j}} \end{aligned} 
+\]</div>
+<p>在这种情况下，截断模式的集合变为：</p>
+<div class="arithmatex">\[
+Z_{k_{max}} = \{(k_1, \cdots, k_d) \in \mathbb{Z}_{s_1} \times \cdots \times \mathbb{Z}_{s_d} | k_j \leq k_{max,j} \space or \space s_j - k_j \leq k_{max,j} , 对于 j = 1, \cdots , d\} 
+\]</div>
+<p>即<span class="arithmatex">\(Z_{k_{max}}\)</span>是截断后的傅里叶模式集合，在离散化的多维空间中，每个维度上只保留前<span class="arithmatex">\(k_{max}\)</span>个低频以及对应的高频(由于傅里叶变换的周期性)</p>
+<p><span class="arithmatex">\(R\)</span>权重张量一个<span class="arithmatex">\(s_1 \times  · · · \times s_d \times d_v \times d_v\)</span>的张量。在实践中，选择每个通道产生<span class="arithmatex">\(k_{max,j} = 12\)</span>足以满足我们考虑的所有任务。</p>
+<p><B>对离散化的不变性</B>:</p>
+<p>傅里叶层是离散化不变的，因为它们可以学习和评估以任意方式离散化的函数。该架构在输入和输出的任何分辨率下都具有一致的误差。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/czy1101kksk" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://space.bilibili.com/35052889" target="_blank" rel="noopener" title="space.bilibili.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<532651226@qq.com>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

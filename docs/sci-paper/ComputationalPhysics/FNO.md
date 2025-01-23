@@ -8,8 +8,7 @@
     
     论文地址：[Fourier Neural Operator for Parametric Partial Differential Equations](https://arxiv.org/abs/2010.08895)
 
-    
-    代码:[https://github.com/neuraloperator/neuraloperator/blob/main/neuralop/models/fno.py](https://github.com/neuraloperator/neuraloperator/blob/main/neuralop/models/fno.py)
+    代码:[https://github.com/li-Pingan/fourier-neural-operator](https://github.com/li-Pingan/fourier-neural-operator)
 
     </font>
 
@@ -136,7 +135,7 @@ $$
 
 <B>离散情况和快速傅里叶变换(FFT)</B>
 
-设$D$离散化为$n \in \mathcal{N}$个离散点，则有$v_t \in \mathbb{R}^{n \times d_v}$和$\mathcal{F} (v_t) \in \mathbb{C}^{n \times d_v}$。由于采用了截断，所以实际上$\mathcal{F} (v_t) \in \mathbb{C}^{k_{max} \times d_v}$，权重张量$R_\phi \in \mathbb{C}^{k_{max} \times d_v \times d_v}$。
+设域D$离散化为$n \in \mathcal{N}$个离散点，则有$v_t \in \mathbb{R}^{n \times d_v}$和$\mathcal{F} (v_t) \in \mathbb{C}^{n \times d_v}$。由于采用了截断，所以实际上$\mathcal{F} (v_t) \in \mathbb{C}^{k_{max} \times d_v}$，权重张量$R_\phi \in \mathbb{C}^{k_{max} \times d_v \times d_v}$。
 
 $$
 (R \cdot (\mathcal{F} v_t))_{k,l} = \sum_{j=1}^{d_v} R_{k,l,j}(\mathcal{F} v_t)_{k,j}，\quad k =1,...,k_{max}, j = 1,...,d_v 
@@ -154,40 +153,13 @@ $$
 Z_{k_{max}} = \{(k_1, \cdots, k_d) \in \mathbb{Z}_{s_1} \times \cdots \times \mathbb{Z}_{s_d} | k_j \leq k_{max,j} \space or \space s_j - k_j \leq k_{max,j} , 对于 j = 1, \cdots , d\} 
 $$
 
-$R$为一个$s_1 \times  · · · \times s_d \times d_v \times d_v$的张量。
+即$Z_{k_{max}}$是截断后的傅里叶模式集合，在离散化的多维空间中，每个维度上只保留前$k_{max}$个低频以及对应的高频(由于傅里叶变换的周期性)
+
+$R$权重张量一个$s_1 \times  · · · \times s_d \times d_v \times d_v$的张量。在实践中，选择每个通道产生$k_{max,j} = 12$足以满足我们考虑的所有任务。
+
+<B>对离散化的不变性</B>:
+
+傅里叶层是离散化不变的，因为它们可以学习和评估以任意方式离散化的函数。该架构在输入和输出的任何分辨率下都具有一致的误差。
 
 
-
-
-
-
-假设我们现在有一个偏微分方程写成了算子模式：
-
-$$
-(\mathcal{L}_a u)(x) = f(x),x \in D
-$$
-
-$$
-u(x) = 0,x \in \partial D
-$$
-
-其中$\mathcal{L}_a$是算子，而$a \in \mathcal{A}$为算子的参数，$f(x)$为右端项（在很多物理方程中被视为强迫项），而$u(x)$是我们的目标求解对象。
-
-使用格林函数法(一种偏微分方程求解析解的方法)，构造一个格林函数$G$，使得：
-
-$$
-u(x) = \int_D G_a(x,y)f(y)dy
-$$
-
-这个格林函数可以被视作一个核函数(Kernel function)，举一个具体的例子，假设$G_a$已经被我们学习出来了，那么我们要计算$u(0)$的时候，我们就可以计算：
-
-$$
-u(0) = \int_D G_a(0,y)f(y)dy
-$$
-
-这个格林函数$G$可以理解为一个核函数，FNO先将格林函数$G_a$通过傅里叶变换变成了频域，再通过一个神经网络去学习这个频域的核函数。这个频域的核函数可以被视作一个频域的卷积核。傅里叶空间里每一个点都是有良好定义的，只与不同的频谱有关，与实际离散空间的离散无关。因此模型能在低分辨率的离散空间上训练，而且在高分辨率的离散空间上推理。
-
-$$
-(\mathcal{L}_a u)(x) = \mathcal{F}^{-1}(\mathcal{F}(\mathcal{L}_a) \cdot \mathcal{F}(u))(x),x \in D
-$$
 

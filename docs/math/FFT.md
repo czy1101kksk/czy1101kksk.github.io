@@ -1,5 +1,8 @@
 # 快速傅里叶变换（FFT）
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
 ### 傅里叶级数
 
 对于周期为$T$的函数$f(t)$，傅里叶级数的目标是将它表示为一系列复指数函数的线性组合：
@@ -8,7 +11,7 @@ $$
 f(t) = \sum_{n=-\infty}^{\infty} c_n e^{j n \omega_0 t}，w_0 = \frac{2\pi}{T}
 $$
 
-其中，$e^{j n \omega_0 t}$是基函数，满足正交性（不同频率的复指数函数在特定区间上的积分结果为零，而同一频率的积分结果为非零值（通常为周期长度）：
+其中，$e^{j n \omega_0 t}= \cos{(n \omega_0 t)} + j \sin{(n \omega_0 t)}$是基函数，满足正交性（不同频率的复指数函数在特定区间上的积分结果为零，而同一频率的积分结果为非零值（通常为周期长度）：
 
 $$
 \int_{-T/2}^{T/2} e^{j n \omega_0 t} \cdot e^{-j m \omega_0 t} dt = \delta(n-m) \cdot T = 

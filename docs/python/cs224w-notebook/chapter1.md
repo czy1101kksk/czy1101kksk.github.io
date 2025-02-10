@@ -14,15 +14,24 @@
     https://github.com/TommyZihao/zihao_course/tree/main/CS224W
     
     Slides: http://web.stanford.edu/class/cs224w/slides
+
+    Optional Readings：
+    
+    [DeepWalk: Online Learning of Social Representations](https://arxiv.org/pdf/1403.6652)
+
+    [node2vec: Scalable Feature Learning for Networks](https://arxiv.org/pdf/1607.00653)
+
+    [Network Embedding as Matrix Factorization](https://arxiv.org/pdf/1710.02971.pdf)
     
     </font>
+
 
 ## Node Embeddings
 ---
 
 ![](./img/c1.png)
 
-在传统机器学习流程中，我们需要对原始数据进行特征工程```feature engineering```（比如提取特征等），但是现在我们使用表示学习```representation learning```的方式来自动学习到数据的特征，直接应用于下流预测任务。
+在传统机器学习流程中，我们需要对原始数据进行特征工程```feature engineering```（比如提取特征等），但是现在我们使用表示学习```representation learning```的方式来自动学习到数据的特征，直接应用于下游预测任务。
 
 图的表示学习：Map nodes into an embedding space, similarity of embeddings between nodes indicates their similarity in the network.For exmaple : Both nodes are close to each other(connected by an edge).
 
@@ -59,12 +68,12 @@ $$
 
 ![](./img/c7.png)
 
-> $P(v|\mathbf{z}_u)$是从$u$开始随机游走能到$v$的概率，衡量$u$和$v$的相似度，用节点embedding向量相似性算概率。
+> $P(v|\mathbf{z}_u)$是从$u$开始随机游走能到$v$的概率，衡量$u$和$v$的相似度，用节点embedding向量相似性算概率。 
 
 ![](./img/c8.png)
 
 $$
-\mathbf{z}^T_u \mathbf{z}_v = \text{the probability that u and v c0-occur on a random walk over the graph}
+\mathbf{z}^T_u \mathbf{z}_v = \text{the probability that u and v co-occur on a random walk over the graph}
 $$
 
 ![](./img/c9.png)
@@ -91,7 +100,7 @@ The definition of nearby nodes and our goal to learn a mapping:
 
     $\mathop{\arg\min}\limits_{z} ℒ = \mathop{\sum}\limits_{u \in V} \mathop{\sum}\limits_{v \in N_R(u)} - \log P(v | \mathbf{z}_u)$
 
-    > 即使得相邻的nodes之间的相似度最大化
+    > 使相邻的nodes之间的相似度最大化
 
 ![](./img/c10.png)
 
@@ -115,19 +124,55 @@ $$
 
 ![](./img/c13.png)
 
+> 层次Softmax（Hierarchical Softmax）优化算法，避免计算所有词的softmax
+
 > 上述的随机游走策略是完全随机的，固定长度的游走，是否需要改进？
 
-### Node2Vec：Biased Walks
+### DeepWalk：RandWalk + Skip-Gram
+---
 
-> Node2Vec和随机游走的区别是如何定义相邻节点集——以及如何定义随机游走的策略
+Code：[https://github.com/phanein/deepwalk](https://github.com/phanein/deepwalk)
+
+DeepWalk将图数据与自然语言处理技术（Word2Vec）相结合，通过随机游走将图结构转化为节点序列，然后使用Skip-Gram模型训练词嵌入，用于学习网络中顶点的潜在表示。
+
+![](./img/deepwalk.png)
+
+①从网络中的每个节点开始分别进行RandomWalk采样，得到局部相关联的训练数据；
+
+②对采样数据进行SkipGram训练，将离散的网络节点表示成向量化，最大化节点共现，使用Hierarchical Softmax来做超大规模分类的分类器
+
+
+
+### Node2Vec：Biased Walks
+---
+
+Code：https://github.com/aditya-grover/node2vec
+
+> Node2Vec和随机游走的区别是如何定义相邻节点集——以及如何定义随机游走的策略(偏随机游走)
 
 ![](./img/c14.png)
+
+- BFS：节点功能角色structural equivalence
+
+- DFS：同质社群homophily
+
 
 Node2Vec gives two parameters to control the random walk:
 
 - Return parameter $p$: probability of returning to the previous node
 
 - In-out parameter $q$: the “ratio” of BFS vs. DFS
+
+引入这两个超参数$p，q$，来控制随机游走的策略。假设当前随机游走经过边$(t,v)$到达节点$v$。则转移策略遵循以下公式：$\pi_{vx}=\alpha_{pq}(t,x) \cdot w_{vx}$，转移策略为$\alpha_{pq}(t,x)$，$w_vx$是节点$v$与$x$之间的边权。$d_{tx}$为节点$t$和$x$之间的最短路径距离：
+
+$$
+\alpha_{pq}(t,x) = 
+\begin{cases}
+\frac{1}{p}, & if \quad d_{tx}=0 \\
+1, & if \quad d_{tx}=1  \\
+\frac{1}{q}, & if \quad d_{tx}=2 \\
+\end{cases}
+$$
 
 ![](./img/c15.png)
 ![](./img/c16.png)
@@ -167,8 +212,6 @@ $$
 ![](./img/a1.png)
 
 - Approach 3: Anonymous Walks(匿名随机游走)
-
-
 
 
 ![](./img/c22%20(1).png)

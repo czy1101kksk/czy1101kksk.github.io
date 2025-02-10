@@ -51,6 +51,7 @@ AeroGTO通过使用kNN来增强```frequency-enhanced GNN```进行精确的局部
 $$
 \min_{\theta \in \Theta} \frac{1}{D} \sum_{k=1}^{D} \mathcal{L}_k (\theta) = \min_{\theta \in \Theta} \frac{1}{D} \sum_{k=1}^{D} \frac{\|\hat{\mathbf{s}}^k-\mathbf{s}^k\|_{2}}{\|\mathbf{s}^k\|_{2}}
 $$
+
 训练数据集的大小，$\theta$ 是网络参数，$\Theta$是参数空间。
 
 #### Model Architecture

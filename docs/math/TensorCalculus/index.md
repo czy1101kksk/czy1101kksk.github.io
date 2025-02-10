@@ -1,4 +1,4 @@
-# 数学分析 Mathematical Analysis：个人笔记
+# 张量分析：Tensor Analysis
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
@@ -6,14 +6,15 @@
 !!! info "相关信息"
     <font size = 3.5>
     
-    相关阅读资料: Baby rudin，梅加强，谢惠民
+    相关阅读资料:
+
     </font>
 
 !!! note "章节"
     <font size = 3.5>
 
-    - [ 1：](./chapter/1.md) 
+    - [ 1：](begin.md) 
 
-    - [ 2：](./chapter/2.md) 
+    - [ 2：](./chapter/.md) 
 
     </font>

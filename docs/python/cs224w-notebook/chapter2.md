@@ -19,9 +19,9 @@
 
 ### The limitation of node embedding 
 
-- $O(|V|d)$ parameters are needed：every node has its own unique embedding
+- $O(|V|d)$ parameters are needed：No sharing of parameters between nodes，every node has its own unique embedding
 
-- have no ability to generate embeddings for nodes that are not in the training set
+- Have no ability to generate embeddings for nodes that are not in the training set
 
 - Do not incorporate structural node features (e.g. node type, node degree)
 
@@ -69,6 +69,8 @@ z_v =& h_v^{(K)}(\text{Final node embedding})\\
 $$
 
 设$H^{(k)}=[h_1^{(k)},...,h_{|V|}^{(k)}]^T$，则$\sum_{u \in N_v} h_u^{(k)}=A_{v,:}H^{(k)}$
+
+> A 为一个稀疏的单位矩阵，Example:$\begin{bmatrix} 1 & 0 & ... & 0 & 1 & 0 \\ 1 & 0 & ... & 0 & 1 & 0 \\ ...  \\ 1 & 0 & ... & 0 & 1 & 0 \\ \end{bmatrix}$
 
 设对角矩阵（diagonal matrix）$D$,即$D_{v,v}=Deg(v)=|N(v)|$,则$D_{v,v}^{-1}=1/|N(v)|$.
 

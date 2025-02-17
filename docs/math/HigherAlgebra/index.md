@@ -12,7 +12,7 @@
 !!! note "章节"
     <font size = 3.5>
 
-    - [ 1：矩阵](./chapter/1.md) 
+    - [ 1：矩阵基础](./chapter/1.md) 
 
     - [ 2：多项式环](./chapter/2.md) 
 

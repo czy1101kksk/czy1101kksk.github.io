@@ -13,6 +13,7 @@
     </font>
 
 ### Abstract
+---
 
 Since PDEs are typically discretized into large-scale meshes with complex geometries, it's hard for traditional Transformers to capture intricate physical corrlations directly form massive individual points.
 

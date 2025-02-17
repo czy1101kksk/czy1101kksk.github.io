@@ -245,6 +245,7 @@ nav:
       - sci-paper/ComputationalPhysics/DeepONet.md
       - sci-paper/ComputationalPhysics/FNO.md
       - sci-paper/ComputationalPhysics/Transovler.md
+      - sci-paper/ComputationalPhysics/Transolver++.md
     - "📰综合能源系统":
       - sci-paper/Load-Forecasting/[Applied Energy]A novel short-term multi-energy load forecasting method for integrated energy system based on feature separation-fusion technology and improved CNN.md
   - "👨‍🎓 学习笔记":
@@ -260,7 +261,8 @@ nav:
   - "📊杂项":
     - math/FFT.md
     - math/RBF.md
-    # - math/math.md 
+    - math/TensorCalculus/index.md
+    - math/HigherAlgebra/index.md
   - "✍ 施工中":
     - wait-for-me.md
 

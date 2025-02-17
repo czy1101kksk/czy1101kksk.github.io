@@ -26,6 +26,37 @@
     </font>
 
 
+```NetworkX```提供了多个类来存储不同类型的图，如有向图和无向图。它还提供了用于创建多重图（有向图和无向图）的类。
+
+```python
+import networkx as nx
+
+# Create an undirected graph G
+G = nx.Graph()
+print(G.is_directed())  # False
+
+# Create a directed graph H
+H = nx.DiGraph()
+print(H.is_directed())  # True
+
+# Add graph level attribute
+G.graph["Name"] = "Bar"
+print(G.graph)
+```
+
+<B>Node</B>
+---
+
+```python
+# Add one node with node level attributes
+G.add_node(0, feature=5, label=1)
+
+# Get attributes of the node 0
+node_0_attr = G.nodes[0] # {'feature': 5, 'label': 1}
+
+G.nodes(data=True) # {0: {'feature': 5, 'label': 1}}
+```
+
 ## Node Embeddings
 ---
 
@@ -168,9 +199,9 @@ Node2Vec gives two parameters to control the random walk:
 $$
 \alpha_{pq}(t,x) = 
 \begin{cases}
-\frac{1}{p}, & if \quad d_{tx}=0 \\
-1, & if \quad d_{tx}=1  \\
-\frac{1}{q}, & if \quad d_{tx}=2 \\
+\frac{1}{p}, & if \ \  d_{tx}=0 .\\
+1, & if \ \ d_{tx}=1  .\\
+\frac{1}{q}, & if \ \ d_{tx}=2 .\\
 \end{cases}
 $$
 
@@ -180,12 +211,41 @@ $$
 
 >Core idea: Embedding nodes so that distances in embedding space reflect node similarities in the original network.
 
+<B>Alias采样</B>
+
+Node2vecWalk中不再是随机抽取邻接点，而是按概率抽取。Alias的核心思想是将一个非均匀分布转化为多个<B>均匀分布的组合</B>，能够加快采样速度，初始化后的采样时间复杂度为$O(1)$，需要存储```accepet```与```alias```两个数组，空间复杂度为$O(2N)$。
+
+给定如下离散概率分布，有$N$个可能发生的事件。每列矩形面积表示该事件发生的概率，柱状图中所有矩形的面积之和为1。
+
+![](./img/alias1.png)
+
+再根据这个矩形，转换成相应的```Accept```表和```Alias```表。
+
+![](./img/alias3.png)
+
+将每个事件的发生的概率乘以$N$，此时会有部分矩形的面积大于1，部分矩形的面积小于1。切割面积大于1的矩形，填补到面积小于1的矩形上，并且每一列至多由两个事件的矩形构成，最终组成一个面积为$1 \times N$的矩形。
+
+
+![](./img/alias2.png)
+
+首先从$1$~$N$随机生成一个整数i，决定从$1 \times N$矩形中选择第几列，再生成一个均匀随机数$u \in (0,1)$，若若```u < Accept[i]```，则采样```i```对应的事件，否则采样```Alias[i]```。
+
+因为该采样过程不需要根据随机概率在区分度为$N$的线段中寻找，只需要<B>2选1</B>，所以复杂度降低至$O(1)$，这也是其优于传统采样的原因。
+
+![](./img/node2vec.png)
+
 ![](./img/c18.png)
 
 ### Matrix Factorization
 
+![](./img/matrix.png)
 ![](./img/c19.png)
 ![](./img/c20.png)
+
+
+在Deepwalk和Node2Vec中，我们通过随机游走得到节点序列，使得节点相似度（node similarity）的定义更加复杂
+
+
 
 ### Limitations
 

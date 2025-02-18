@@ -11,14 +11,14 @@
 <B>导热部分</B>
 ---
 
-[Heat Conduction](./pdf/heat-conduction.pdf)
+[Heat-Conduction.pdf](https://czy1101kksk.github.io/energy/pdf/heat-conduction.pdf)
 
 <B>对流部分</B>
 ---
 
-[Convection](./pdf/convection.pdf)
+[Convection.pdf](https://czy1101kksk.github.io/energy/pdf/convection.pdf)
 
 <B>辐射部分</B>
 ---
 
-[Radiation](./pdf/radiation.pdf)
+[Radiation.pdf](https://czy1101kksk.github.io/energy/pdf/radiation.pdf)

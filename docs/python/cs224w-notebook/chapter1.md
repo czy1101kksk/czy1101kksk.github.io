@@ -120,7 +120,6 @@ print(graph)
 # train_mask 附加属性，描述了我们已经知道哪些节点的社区分配
 print(graph.num_nodes, graph.num_edges) # 34 156
 
-
 graph.has_isolated_nodes() # False 
 graph.has_self_loops() # False
 graph.is_undirected() # True 

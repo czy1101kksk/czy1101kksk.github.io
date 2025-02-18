@@ -253,12 +253,13 @@ nav:
     - "📑专业课程笔记":
       - energy/Engineering_Thermodynamics.md
       - python/Python-is-important.md
+      - energy/heat_transfer.md
     - python/cs224n-notebook.md
     - python/cs231n.md
     - python/cs224w.md
     - python/d2l.md
     - python/python-something/fluent-python.md
-  - "📊杂项":
+  - "📊 杂项":
     - math/FFT.md
     - math/RBF.md
     - math/TensorCalculus/index.md

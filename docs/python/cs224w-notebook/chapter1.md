@@ -54,8 +54,78 @@ G.add_node(0, feature=5, label=1)
 # Get attributes of the node 0
 node_0_attr = G.nodes[0] # {'feature': 5, 'label': 1}
 
-G.nodes(data=True) # {0: {'feature': 5, 'label': 1}}
+G.nodes(data=True) # {0: {'feature': 5, 'label': 1}} 
+
+G.add_nodes_from([
+  (1, {"feature": 1, "label": 1}),
+  (2, {"feature": 2, "label": 2})
+]) # add more nodes through list
+
+# Get number of nodes
+num_nodes = G.number_of_nodes()
+
+# Loop through all nodes 
+for node in G.nodes(data=True):
+    print(node)
 ```
+
+<B>Edge</B>
+---
+
+```python
+# Add one edge with edge weight
+G.add_edge(0, 1, weight=0.5)
+
+G.add_edges_from([
+  (1, 2, {"weight": 0.3}),
+  (2, 0, {"weight": 0.1})
+])
+
+for edge in G.edges():
+  print(edge)
+
+num_edges = G.number_of_edges()
+
+nx.draw(G, with_labels=True)
+```
+
+![](./img2/NodeAndEdge.png)
+
+<B>nodes'relation</B>
+---
+
+```python
+G.degree[1] # node's degree
+G.degree() # [(0, 2), (1, 2), (2, 2)]
+
+for neighbor in G.neighbors(1):
+    print(neighbor) 
+# 0 2
+```
+
+<B>PyTorch Geometric (PyG)</B>是关于Pytorch的图深度学习拓展库。
+
+```python
+import torch
+from torch_geometric.datasets import KarateClub 
+# 空手道俱乐部的 34 名成员的社交网络
+
+dataset = KarateClub()
+print(len(dataset), dataset.num_features, dataset.num_classes) # 1 34 4
+# 数据集包含的图数，节点表示向量的维度，节点类别数
+
+graph = dataset[0]
+print(graph)
+# Data(x=[34, 34], edge_index=[2, 156], y=[34], train_mask=[34]) 
+# train_mask 附加属性，描述了我们已经知道哪些节点的社区分配
+print(graph.num_nodes, graph.num_edges) # 34 156
+
+
+graph.has_isolated_nodes() # False 
+graph.has_self_loops() # False
+graph.is_undirected() # True 
+```
+
 
 ## Node Embeddings
 ---

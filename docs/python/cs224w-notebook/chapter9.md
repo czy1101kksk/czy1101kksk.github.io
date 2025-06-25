@@ -47,6 +47,8 @@ Question: What proteins are associated with adverse events caused by Fulvestrant
 
 Because the completed(probabilistic) KGs is a dense graph, we need a way to answer path-based queries over an incomplete knowledge graph
 
+> <B>We want our approach to implicitly impute and account for the incomplete KG</B>
+
 Task: Predictive queries
 
 - Want to be able to answer arbitrary queries while implicitly imputing for the missing information

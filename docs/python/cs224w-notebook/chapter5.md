@@ -53,7 +53,7 @@
 
 ### Graph Isomorphism Network(GIN)
 
-GIN‘s neighbor aggregation function is <B>injective</B>, so GIN is the most expressive GNN
+GIN(图同构网络)'s neighbor aggregation function is <B>injective</B>, so GIN is the most expressive GNN
 
 ![](./img/u10.png)
 
@@ -107,7 +107,6 @@ class S2VGraph(object):
         self.neighbors = []
         self.node_features = 0 # 节点特征
         self.edge_mat = 0
-
         self.max_neighbor = 0
 '''
 COLLAB 是一个科学合作数据集。图对应于研究人员的自我网络，即研究人员及其合作者是节点，边表示两个研究人员之间的合作。研究人员的自我网络有三个可能的标签，即高能物​​理、凝聚态物理和天体物理，这些是研究人员所属的领域。该数据集有 5,000个图，每个图（graphs）都有标签 0、1 或 2。

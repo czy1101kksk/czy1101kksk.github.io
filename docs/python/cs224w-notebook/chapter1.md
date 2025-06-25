@@ -125,6 +125,39 @@ graph.has_self_loops() # False
 graph.is_undirected() # True 
 ```
 
+<B>Visualize the graph</B>
+---
+
+```python
+import matplotlib.pyplot as plt
+from torch_geometric.utils import to_networkx
+
+# Visualization function for NX graph or PyTorch tensor
+def visualize(h, color, epoch=None, loss=None, accuracy=None):
+    plt.figure(figsize=(7,7))
+    plt.xticks([])
+    plt.yticks([])
+
+    if torch.is_tensor(h):
+        h = h.detach().cpu().numpy()
+        plt.scatter(h[:, 0], h[:, 1], s=140, c=color, cmap="Set2")
+        if epoch is not None and loss is not None and accuracy['train'] is not None and accuracy['val'] is not None:
+            plt.xlabel((f'Epoch: {epoch}, Loss: {loss.item():.4f} \n'
+                       f'Training Accuracy: {accuracy["train"]*100:.2f}% \n'
+                       f' Validation Accuracy: {accuracy["val"]*100:.2f}%'),
+                       fontsize=16)
+    else:
+        nx.draw_networkx(h, pos=nx.spring_layout(h, seed=42), with_labels=False,
+                         node_color=color, cmap="Set2")
+    plt.show()
+
+G = to_networkx(data, to_undirected=True)
+visualize(G, color=data.y)
+```
+
+![](./img2/graphimg.png)
+
+
 
 ## Node Embeddings
 ---
@@ -346,3 +379,60 @@ $$
 ![](./img/c22%20(1).png)
 
 ![](./img/c22%20(2).png)
+
+<B>Implement a node embedding model</B>
+---
+
+we usually use ```nn.Embedding``` to create an embedding layer.
+
+```python
+emb_sample = nn.Embedding(num_embedding=4, embedding_dim=8)
+
+emb_sample.weight.data.shape
+# torch.Size([4, 8])
+
+emb_sample.weight 
+# Parameter containing:
+#tensor([[-0.6076,  0.6043, -0.9907, -0.2478, -1.1062, -0.8926, -1.8408, -1.9413],
+#        [-0.7810, -0.4061,  0.5273, -0.5027, -1.2964, -0.8965,  0.2274,  0.5739],
+#        [-0.9227, -0.9500,  0.4401,  0.0330, -0.8612, -0.7178, -1.0709, -0.8083],
+#        [-1.4989, -0.2842, -0.3344, -0.5047, -0.4363, -1.3749, -0.6169, -2.5654]],
+#       requires_grad=True)
+```
+
+```python
+def create_node_emb(num_node=34, embedding_dim=8):
+    emb = nn.Embedding(num_embeddings=num_node, embedding_dim=embedding_dim)
+    emb.weight.data = torch.rand(num_node, embedding_dim)
+    # emb.weight.data.normal_()
+    return emb
+
+emb = create_node_emb()
+```
+
+<B>Train the embedding</B>
+---
+
+```python
+import torch.nn as nn
+from torch.optim import SGD
+from torch.nn.functional import sigmoid
+
+def accuracy(pred, label):
+    return sum(torch.round(pred) == label) / len(pred)
+
+def train(emb, loss_fn, train_label, train_edge):
+    epochs = 500
+    learning_rate = 0.1
+
+    optimizer = SGD(emb.parameters(), lr=learning_rate, momentum=0.9)
+
+    for i in range(epochs):
+        optimizer.zero_grad()
+        pred = sigmoid(torch.sum(emb(train_edge)[0].mul(emb(train_edge)[1]),1))
+        loss = loss_fn(pred, train_label)        
+        loss.backward()  # Derive gradients.
+        optimizer.step()  # Update parameters based on gradients.                
+        print("Epoch {} Loss: {}, Accuracy: {}".format(i,loss,accuracy(pred, train_label)))
+    return emb    
+```

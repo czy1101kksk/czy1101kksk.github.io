@@ -113,23 +113,6 @@ For example, in the car design task, different samples of diverse shapes are all
 
 To further examine <B>the generalizability(泛化性) of Transolver in real-world applications</B>, we experiment with OOD airfoil design tasks, where the test set has completely different Reynolds and angles of attacks.
 
-### Benchmark
-
-(1)Elasticity
-
-(2)Plasticity
-
-(3)Airfoil
-
-(4)Pipe
-
-(5)NS
-
-(6)Darcy
-
-(7)Shape-Net Car
-
-(8)AirfRANS
 
 ### Code
 
@@ -356,3 +339,8 @@ class Model(nn.Module):
         return fx[0]
 ```
 </details> 
+
+
+
+### 实验细节
+

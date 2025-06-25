@@ -262,6 +262,7 @@ nav:
   - "📊 杂项":
     - math/FFT.md
     - math/RBF.md
+    - math/GumbelSoftmax.md
     - math/TensorCalculus/index.md
     - math/HigherAlgebra/index.md
   - "✍ 施工中":

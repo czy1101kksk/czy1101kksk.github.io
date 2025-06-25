@@ -63,7 +63,7 @@ $$
 \widetilde{A} = A + I
 $$
 
-将节点自身与其近邻粗暴的加和的聚合方法显然是有问题的，相当于我们变相的改变了特征的量级，随着迭代的增加，特征量级会变得越来越大。因此我们引入$D=Deg(N(v))= \sum_j A_{ij}$的度矩阵（与该节点相邻节点的数据）,并且考虑自身信息，在$D$上加入单位矩阵$I$：$\widetilde{D}=D+I=\sum_j \widetilde{A}_{ij}$
+将节点自身与其近邻粗暴的加和的聚合方法显然是有问题的，相当于我们变相的改变了特征的量级，随着迭代的增加，特征量级会变得越来越大。因此我们引入$D=Deg(N(v))= \sum_j A_{ij}$的度矩阵（与该节点相邻节点的数据）,并且考虑自身信息，在$D$上加入单位矩阵$I$（自环）：$\widetilde{D}=D+I=\sum_j \widetilde{A}_{ij}$
 
 最终，我们得到：$\widetilde{D}^{-1} \widetilde{A} X$
 
@@ -343,8 +343,6 @@ test()
 ![](./img/k6.png)
 ![](./img/k7.png)
 
-
-
 论文标题: [Inductive Representation Learning on Large Graphs](https://arxiv.org/abs/1609.02907)
 
 ```GCN```本身有一个局限，即没法快速表示新节点。```GCN```需要把所有节点都参与训练（整个图都丢进去训练）才能得到```node embedding```，如果新```node```来了，没法得到新```node```的```embedding```。所以说，```GCN```是```transductive```的。（```Transductive```任务是指：训练阶段与测试阶段都基于同样的图结构）
@@ -363,7 +361,7 @@ GraphSAGE的核心思想在于<B>先使用采样的方法，采样固定数量�
 
 - 将邻居节点的信息通过```aggregate```函数聚合起来更新刚刚采样的结点。
 
-- 计算采样结点处的损失，如果是无监督任务，则目标设为<B>图上邻居结点的编码相似</B>（在这个过程中，如果我们希望邻居节点的编码相似，那么我们就可以将聚合后的特征进行归一化，使得它们在向量空间中的距离更加接近，从而增强节点表示的相似性）；如果是有监督任务，则根据有监督结点的标签和最后的值计算loss反传更新。
+- 计算采样结点处的损失，如果是无监督任务，则目标设为<B>图上邻居结点的编码相似</B>（在这个过程中，如果我们希望邻居节点的编码相似，那么我们就可以将聚合后的特征进行归一化，使得它们在向量空间中的距离更加接近，从而增强节点表示的相似性）；如果是有监督任务，则根据有监督结点的标签和最后的值计算loss来更新参数。
 
 <B>邻居节点的选取</B>
 
@@ -437,7 +435,7 @@ class Classification(nn.Module):
 				nn.init.xavier_uniform_(param)
 
 	def forward(self, embeds):
-		logists = torch.log_softmax(self.layer(embeds), 1)
+		logists = torch.log_softmax(self.layer(embeds), dim=1)
 		return logists
 
 # class Classification(nn.Module):
@@ -522,24 +520,38 @@ class UnsupervisedLoss(object):
 		
 		return loss
 
-	def get_loss_margin(self, embeddings, nodes):
-		assert len(embeddings) == len(self.unique_nodes_batch)
-		assert False not in [nodes[i]==self.unique_nodes_batch[i] for i in range(len(nodes))]
+	def get_loss_margin(self, embeddings, nodes): # Margin loss
+		'''
+        embeddings: 节点嵌入向量
+        nodes: 节点列表
+        self.unique_nodes_batch: 包含所有唯一节点的列表，用于索引节点
+        self.node_positive_pairs / self.node_negtive_pairs: 节点的正负样本对
+        '''
+        assert len(embeddings) == len(self.unique_nodes_batch)
+
+        # 确保 nodes 中的节点顺序与 unique_nodes_batch 一致
+		assert False not in [nodes[i]==self.unique_nodes_batch[i] for i in range(len(nodes))] 
+
 		node2index = {n:i for i,n in enumerate(self.unique_nodes_batch)}
 
 		nodes_score = []
+
+        # 确保每个节点有对应的正样本和负样本
 		assert len(self.node_positive_pairs) == len(self.node_negtive_pairs)
+
 		for node in self.node_positive_pairs:
 			pps = self.node_positive_pairs[node]
 			nps = self.node_negtive_pairs[node]
 			if len(pps) == 0 or len(nps) == 0:
 				continue
-
 			indexs = [list(x) for x in zip(*pps)]
 			node_indexs = [node2index[x] for x in indexs[0]]
 			neighb_indexs = [node2index[x] for x in indexs[1]]
+
+            #  计算正样本的余弦相似度
 			pos_score = F.cosine_similarity(embeddings[node_indexs], embeddings[neighb_indexs])
-			pos_score, _ = torch.min(torch.log(torch.sigmoid(pos_score)), 0)
+			# 选择最小的对数概率值吗, 提高模型对困难样本的敏感度
+            pos_score, _ = torch.min(torch.log(torch.sigmoid(pos_score)), 0)
 
 			indexs = [list(x) for x in zip(*nps)]
 			node_indexs = [node2index[x] for x in indexs[0]]
@@ -547,13 +559,13 @@ class UnsupervisedLoss(object):
 			neg_score = F.cosine_similarity(embeddings[node_indexs], embeddings[neighb_indexs])
 			neg_score, _ = torch.max(torch.log(torch.sigmoid(neg_score)), 0)
 
-			nodes_score.append(torch.max(torch.tensor(0.0).to(self.device), neg_score-pos_score+self.MARGIN).view(1,-1))
+            # self.MARGIN 类似SVM中的软间隔
+			nodes_score.append(torch.max(torch.tensor(0.0).to(self.device), neg_score - pos_score + self.MARGIN).view(1,-1))
 			# nodes_score.append((-pos_score - neg_score).view(1,-1))
 
 		loss = torch.mean(torch.cat(nodes_score, 0),0)
 
 		# loss = -torch.log(torch.sigmoid(pos_score))-4*torch.log(torch.sigmoid(-neg_score))
-		
 		return loss
 
 	def extend_nodes(self, nodes, num_neg=6): 
@@ -570,6 +582,7 @@ class UnsupervisedLoss(object):
 		# print(self.positive_pairs)
 		self.get_negtive_nodes(nodes, num_neg)
 		# print(self.negtive_pairs)
+
 		self.unique_nodes_batch = list(set([i for x in self.positive_pairs for i in x]) | set([i for x in self.negtive_pairs for i in x]))
 		assert set(self.target_nodes) < set(self.unique_nodes_batch)
 		return self.unique_nodes_batch
@@ -579,14 +592,17 @@ class UnsupervisedLoss(object):
 
 	def get_negtive_nodes(self, nodes, num_neg):
 		for node in nodes:
-			neighbors = set([node])
+			neighbors = set([node]) 
 			frontier = set([node])
+
+            # 邻居随机游走
 			for i in range(self.N_WALK_LEN):
 				current = set()
 				for outer in frontier:
 					current |= self.adj_lists[int(outer)]
 				frontier = current - neighbors
 				neighbors |= current
+
 			far_nodes = set(self.train_nodes) - neighbors
 			neg_samples = random.sample(far_nodes, num_neg) if num_neg < len(far_nodes) else far_nodes
 			self.negtive_pairs.extend([(node, neg_node) for neg_node in neg_samples])
@@ -623,7 +639,6 @@ class SageLayer(nn.Module):
 		self.out_size = out_size
 		self.gcn = gcn
 		self.weight = nn.Parameter(torch.FloatTensor(out_size, self.input_size if self.gcn else 2 * self.input_size))
-
 		self.init_params()
 
 	def init_params(self):
@@ -845,7 +860,7 @@ $$
 
 $$
 h_i' =  \sigma( \frac{1}{K} \sum_{k=1}^{K}  \sum_{j \in \mathcal{N}(i)} \alpha_{ij}^k \mathbf{W}^k h_j)
-$$
+$$ 
 
 <details> 
 <summary>layers</summary>
@@ -871,14 +886,14 @@ class GraphAttentionLayer(nn.Module):
         self.leakyrelu = nn.LeakyReLU(self.alpha)
 
     def forward(self, h, adj):
-        Wh = torch.mm(h, self.W) # h.shape: (N, in_features), Wh.shape: (N, out_features)
-        e = self._prepare_attentional_mechanism_input(Wh)
+        Wh = torch.mm(h, self.W) # h.shape: (N, in_features), W.shape: (in_features, out_features) --> Wh.shape: (N, out_features)
+        e = self._prepare_attentional_mechanism_input(Wh) # e.shape (N, N)
 
         zero_vec = -9e15*torch.ones_like(e)
         attention = torch.where(adj > 0, e, zero_vec) # 逐元素操作 e if adj > 0 else -9e15
-        attention = F.softmax(attention, dim=1)
+        attention = F.softmax(attention, dim=1) # atten.shape (N, N)
         attention = F.dropout(attention, self.dropout, training=self.training)
-        h_prime = torch.matmul(attention, Wh)
+        h_prime = torch.matmul(attention, Wh) # atten.shape (N, N), Wh.shape: (N, out_features) -> h_prime.shape: (N, out_features)
 
         if self.concat:
             return F.elu(h_prime)
@@ -910,7 +925,7 @@ class GraphAttentionLayer(nn.Module):
         return self.__class__.__name__ + ' (' + str(self.in_features) + ' -> ' + str(self.out_features) + ')'
 
 class SpecialSpmmFunction(torch.autograd.Function): 
-	# 在 稀疏矩阵乘法 中只对 稀疏区域 进行 反向传播 计算
+	# 在稀疏矩阵乘法中只对稀疏区域进行反向传播计算
     """Special function for only sparse region backpropataion layer."""
     @staticmethod
     def forward(ctx, indices, values, shape, b):
@@ -1075,7 +1090,7 @@ class SpGAT(nn.Module):
 
 ### The over-smoothing problem
 
-When we stack many GNNLayers together, the output of the network will suffer from <B>the over-smoothing problem:all the node embeddings converge to the same value</B>
+When we stack many ```GNNLayers``` together, the output of the network will suffer from <B>```the over-smoothing problem```: all the node embeddings converge to the same value</B>
 
 But we want to see the diffierences between different nodes.
 
@@ -1085,7 +1100,7 @@ Why does this problem happen: <B>Receptive field of a GNN</B>
 
 ![](./img/y1.png)
 
-In a 3-layer GNN, the receptive field overlap for two nodes(感受野重叠过大). The shared neighbors quickly grows when the number of GNNlayers $>=$ 3.So we should be cautious when adding GNNLayers.
+In a 3-layer GNN, the receptive field overlap for two nodes(感受野重叠过大). The shared neighbors quickly grows when the number of ```GNNlayers >= 3```.So we should be cautious when adding GNNLayers.
 
 > If two nodes have highly-overlapped receptive fields, then their embeddings are highly similar
 

@@ -1,0 +1,3856 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="BRIGHT_CZY">
+      
+      
+        <link rel="canonical" href="https://czy1101kksk.github.io/energy/Engineering_Thermodynamics/">
+      
+      
+        <link rel="prev" href="../../study-cs/">
+      
+      
+        <link rel="next" href="../../python/Python-is-important/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>工程热力学(甲) - BRIGHT_CZY's site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#工程热力学甲" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BRIGHT_CZY&#39;s site" class="md-header__button md-logo" aria-label="BRIGHT_CZY's site" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/122161543?s=400&u=203bce014a72777aa55f7a4d63a2c98df3bac6e2&v=4" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BRIGHT_CZY's site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              工程热力学(甲)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0 9.821 9.821 0 0 0-17.64 0"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/czy1101kksk/czy1101kksk.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BRIGHT_CZY/notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BRIGHT_CZY&#39;s site" class="md-nav__button md-logo" aria-label="BRIGHT_CZY's site" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/122161543?s=400&u=203bce014a72777aa55f7a4d63a2c98df3bac6e2&v=4" alt="logo">
+
+    </a>
+    BRIGHT_CZY's site
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/czy1101kksk/czy1101kksk.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BRIGHT_CZY/notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🎆 主页
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            🎆 主页
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🎆 主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📜 论文阅读
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            📜 论文阅读
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🍥 论文阅读主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DL论文
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            DL论文
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/cs/EfficientNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EfficientNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/cs/Attention-is-all-you-need/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Attention is all you need
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/cs/Bert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/cs/MAE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MAE：Masked Autoencoders Are Scalable Vision Learners
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/cs/ViT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ViT：An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/cs/Distilling-the-knowledge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Distilling the Knowledge in a Neural Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/cs/Noisy-students/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Self-training with Noisy Student improves ImageNet classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/cs/MoE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/cs/GAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GAN：Generative Adversarial Nets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/ComputationalPhysics/Transovler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transolver: A Fast Transformer Solver for PDEs on General Geometries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/ComputationalPhysics/AeroGTO/aerogto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AeroGTO:An Efficient Graph-Transformer Operator for Learning Large-Scale Aerodynamics of 3D Vehicle Geometries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/ComputationalPhysics/DeepONet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DeepONet: Learning nonlinear operators via DeepONet based on the universal approximation theorem of operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/ComputationalPhysics/FNO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FNO: Fourier Neural Operator for Parametric Partial Differential Equations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/ComputationalPhysics/Transovler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transolver: A Fast Transformer Solver for PDEs on General Geometries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/ComputationalPhysics/Transolver%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transolver++: An Accurate Neural Solver for PDEs on Million-Scale Geometries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📰综合能源系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            📰综合能源系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sci-paper/Load-Forecasting/%5BApplied%20Energy%5DA%20novel%20short-term%20multi-energy%20load%20forecasting%20method%20for%20integrated%20energy%20system%20based%20on%20feature%20separation-fusion%20technology%20and%20improved%20CNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    [Applied Energy]A novel short-term multi-energy load forecasting method for integrated energy system based on feature separation-fusion technology and improved CNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    👨‍🎓 学习笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            👨‍🎓 学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../study-cs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🛠 课程学习主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📑专业课程笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            📑专业课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    工程热力学(甲)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    工程热力学(甲)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#第一章-基本概念及定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一章 基本概念及定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一章 基本概念及定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#热力系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      热力系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#准静态过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      准静态过程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#可逆过程-准静态--无耗散" class="md-nav__link">
+    <span class="md-ellipsis">
+      可逆过程: 准静态 + 无耗散:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第二章-能量与热力学第一定律" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二章 能量与热力学第一定律
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章 能量与热力学第一定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#热力学第一定律的表达式" class="md-nav__link">
+    <span class="md-ellipsis">
+      热力学第一定律的表达式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#开口系能量方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      开口系能量方程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#稳定流动能量方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      稳定流动能量方程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第三章-熵与热力学第二定律" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三章 熵与热力学第二定律
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三章 熵与热力学第二定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#卡诺定理" class="md-nav__link">
+    <span class="md-ellipsis">
+      卡诺定理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#制冷热泵循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      制冷热泵循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#熵" class="md-nav__link">
+    <span class="md-ellipsis">
+      熵
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#孤立体系isolated-system熵增原理" class="md-nav__link">
+    <span class="md-ellipsis">
+      孤立体系(isolated system)熵增原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#熵方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      熵方程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="熵方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#闭口系统熵方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      闭口系统熵方程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#开口系统熵方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      开口系统熵方程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第四章-热力学一般关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四章 热力学一般关系
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第四章 热力学一般关系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#比热容" class="md-nav__link">
+    <span class="md-ellipsis">
+      比热容
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#热力学能焓熵的微分式" class="md-nav__link">
+    <span class="md-ellipsis">
+      热力学能、焓熵的微分式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#热系数之间的一般关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      热系数之间的一般关系
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第五章-气体的热力性质" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五章 气体的热力性质
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第五章 气体的热力性质">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#平均比热容" class="md-nav__link">
+    <span class="md-ellipsis">
+      平均比热容
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第六章-蒸汽的热力性质" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六章 蒸汽的热力性质
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第六章 蒸汽的热力性质">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#热力学判据" class="md-nav__link">
+    <span class="md-ellipsis">
+      热力学判据
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#吉布斯相率" class="md-nav__link">
+    <span class="md-ellipsis">
+      吉布斯相率
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#克劳修斯-克拉贝龙方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      克劳修斯-克拉贝龙方程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#蒸汽定压发生过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      蒸汽定压发生过程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第七章-理想气体混合物与湿空气" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七章 理想气体混合物与湿空气
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第七章 理想气体混合物与湿空气">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#干球湿球温度绝热饱和温度t_w和露点温度t_d" class="md-nav__link">
+    <span class="md-ellipsis">
+      干球，湿球温度、绝热饱和温度\(T_w\)和露点温度\(T_d\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#湿空气的重要参数以干空气为单位" class="md-nav__link">
+    <span class="md-ellipsis">
+      湿空气的重要参数（以干空气为单位
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#焓湿图h-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      焓湿图（h-s）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第八章-理想气体的热力过程待补" class="md-nav__link">
+    <span class="md-ellipsis">
+      第八章 理想气体的热力过程(待补)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第九章-气体与蒸汽的流动待补" class="md-nav__link">
+    <span class="md-ellipsis">
+      第九章 气体与蒸汽的流动（待补）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十章-气体的压缩" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十章 气体的压缩
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十章 气体的压缩">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#多级压缩中间冷却" class="md-nav__link">
+    <span class="md-ellipsis">
+      多级压缩，中间冷却
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#压气机绝热效率eta" class="md-nav__link">
+    <span class="md-ellipsis">
+      压气机绝热效率\(\eta\)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#余隙容积" class="md-nav__link">
+    <span class="md-ellipsis">
+      余隙容积
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十一章-蒸汽动力循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十一章 蒸汽动力循环
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十一章 蒸汽动力循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#蒸汽卡诺循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      蒸汽卡诺循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#朗肯循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      朗肯循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#再热循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      再热循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#回热循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      回热循环
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十二章-气体动力循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十二章 气体动力循环
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十二章 气体动力循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#定容加热循环otto循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      定容加热循环（otto循环）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#定压加热循环布雷顿循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      定压加热循环（布雷顿循环）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#混合加热理想循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      混合加热理想循环
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十三章-制冷循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十三章 制冷循环
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十三章 制冷循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#逆卡诺循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      逆卡诺循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#空气压缩制冷循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      空气压缩制冷循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#蒸汽压缩制冷循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      蒸汽压缩制冷循环
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十四章-化学反应系统的热力学原理待补" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十四章 化学反应系统的热力学原理（待补）
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/Python-is-important/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔗Python校内课程笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../heat_transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    传热学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/cs224n-notebook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🛣[Deep Learning]Stanford CS224n:Natural Language Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/cs231n/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔭Stanford CS231n:Deep Learning for Computer Vision
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/cs224w/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔭Stanford CS224w:Machine Learning with Graphs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/d2l/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔭Dive into Deeplearing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/python-something/fluent-python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🛣 《流畅的Python》
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📊 杂项
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            📊 杂项
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/FFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    快速傅里叶变换（FFT）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/RBF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    径向基函数(Radial basis function)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/GumbelSoftmax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gumbel-Softmax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/TensorCalculus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    张量分析：Tensor Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/HigherAlgebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    高等代数：Higher Algebra 个人笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ✍ 施工中
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ✍ 施工中
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wait-for-me/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    施工中.....
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#第一章-基本概念及定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一章 基本概念及定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一章 基本概念及定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#热力系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      热力系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#准静态过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      准静态过程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#可逆过程-准静态--无耗散" class="md-nav__link">
+    <span class="md-ellipsis">
+      可逆过程: 准静态 + 无耗散:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第二章-能量与热力学第一定律" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二章 能量与热力学第一定律
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章 能量与热力学第一定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#热力学第一定律的表达式" class="md-nav__link">
+    <span class="md-ellipsis">
+      热力学第一定律的表达式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#开口系能量方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      开口系能量方程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#稳定流动能量方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      稳定流动能量方程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第三章-熵与热力学第二定律" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三章 熵与热力学第二定律
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三章 熵与热力学第二定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#卡诺定理" class="md-nav__link">
+    <span class="md-ellipsis">
+      卡诺定理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#制冷热泵循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      制冷热泵循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#熵" class="md-nav__link">
+    <span class="md-ellipsis">
+      熵
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#孤立体系isolated-system熵增原理" class="md-nav__link">
+    <span class="md-ellipsis">
+      孤立体系(isolated system)熵增原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#熵方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      熵方程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="熵方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#闭口系统熵方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      闭口系统熵方程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#开口系统熵方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      开口系统熵方程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第四章-热力学一般关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四章 热力学一般关系
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第四章 热力学一般关系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#比热容" class="md-nav__link">
+    <span class="md-ellipsis">
+      比热容
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#热力学能焓熵的微分式" class="md-nav__link">
+    <span class="md-ellipsis">
+      热力学能、焓熵的微分式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#热系数之间的一般关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      热系数之间的一般关系
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第五章-气体的热力性质" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五章 气体的热力性质
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第五章 气体的热力性质">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#平均比热容" class="md-nav__link">
+    <span class="md-ellipsis">
+      平均比热容
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第六章-蒸汽的热力性质" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六章 蒸汽的热力性质
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第六章 蒸汽的热力性质">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#热力学判据" class="md-nav__link">
+    <span class="md-ellipsis">
+      热力学判据
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#吉布斯相率" class="md-nav__link">
+    <span class="md-ellipsis">
+      吉布斯相率
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#克劳修斯-克拉贝龙方程" class="md-nav__link">
+    <span class="md-ellipsis">
+      克劳修斯-克拉贝龙方程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#蒸汽定压发生过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      蒸汽定压发生过程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第七章-理想气体混合物与湿空气" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七章 理想气体混合物与湿空气
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第七章 理想气体混合物与湿空气">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#干球湿球温度绝热饱和温度t_w和露点温度t_d" class="md-nav__link">
+    <span class="md-ellipsis">
+      干球，湿球温度、绝热饱和温度\(T_w\)和露点温度\(T_d\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#湿空气的重要参数以干空气为单位" class="md-nav__link">
+    <span class="md-ellipsis">
+      湿空气的重要参数（以干空气为单位
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#焓湿图h-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      焓湿图（h-s）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第八章-理想气体的热力过程待补" class="md-nav__link">
+    <span class="md-ellipsis">
+      第八章 理想气体的热力过程(待补)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第九章-气体与蒸汽的流动待补" class="md-nav__link">
+    <span class="md-ellipsis">
+      第九章 气体与蒸汽的流动（待补）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十章-气体的压缩" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十章 气体的压缩
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十章 气体的压缩">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#多级压缩中间冷却" class="md-nav__link">
+    <span class="md-ellipsis">
+      多级压缩，中间冷却
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#压气机绝热效率eta" class="md-nav__link">
+    <span class="md-ellipsis">
+      压气机绝热效率\(\eta\)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#余隙容积" class="md-nav__link">
+    <span class="md-ellipsis">
+      余隙容积
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十一章-蒸汽动力循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十一章 蒸汽动力循环
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十一章 蒸汽动力循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#蒸汽卡诺循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      蒸汽卡诺循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#朗肯循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      朗肯循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#再热循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      再热循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#回热循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      回热循环
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十二章-气体动力循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十二章 气体动力循环
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十二章 气体动力循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#定容加热循环otto循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      定容加热循环（otto循环）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#定压加热循环布雷顿循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      定压加热循环（布雷顿循环）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#混合加热理想循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      混合加热理想循环
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十三章-制冷循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十三章 制冷循环
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十三章 制冷循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#逆卡诺循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      逆卡诺循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#空气压缩制冷循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      空气压缩制冷循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#蒸汽压缩制冷循环" class="md-nav__link">
+    <span class="md-ellipsis">
+      蒸汽压缩制冷循环
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第十四章-化学反应系统的热力学原理待补" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十四章 化学反应系统的热力学原理（待补）
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="工程热力学甲">工程热力学(甲)<a class="headerlink" href="#工程热力学甲" title="Permanent link"></a></h1>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<details class="summary" open="open">
+<summary>🌇Information</summary>
+<p><font size =3.5></p>
+<ul>
+<li>
+<p>课程:工程热力学(甲) Engineering Thermodynamics(A)</p>
+</li>
+<li>
+<p>学分:4.0&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;课程代码: 59120030</p>
+</li>
+<li>
+<p>教师:俞自涛老师（主讲）&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;教材:《工程热力学(第三版)》(曾丹苓、敖越等) </p>
+</li>
+<li>
+<p>推荐阅读：★★★《工程热力学精要分析及经典题精解》（何雅玲）</p>
+</li>
+<li>
+<p>成绩：5.0&ensp;期末卷面94分</p>
+</li>
+</ul>
+</details>
+<p></font>
+<font size = 3.5></p>
+<blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;无意中选到了慧能班的课,自己和俞老师还算比较熟悉,班上一共只有20多人所以听课体验还不错.期末考试占总评60%，有8个简答题+3个计算大题，总体难度一般，计算题侧重于最后11-14章的几个经典循环和6、7章的水蒸气与湿空气热力过程（看98上的回忆也有可能会考比较基础的第九章喷管），如果在考前能将前面几章的概念过一遍并且熟悉常考计算题型，应付考试就完全没问题了。</p>
+</blockquote>
+<p></font></p>
+<h2 id="第一章-基本概念及定义">第一章 基本概念及定义<a class="headerlink" href="#第一章-基本概念及定义" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:热力系统与外界,开口系与闭口系,绝热系,孤立系,平衡状态,状态参数(T、p),表压力与真空度,可逆过程与准静态过程,温标</p>
+<p>🔧计算:压力计(表压<span class="arithmatex">\(p_e\)</span>)与真空计(真空度<span class="arithmatex">\(p_v\)</span>),不同温标之间的相关计算</p>
+<p></font></p>
+</div>
+<h3 id="热力系统">热力系统<a class="headerlink" href="#热力系统" title="Permanent link"></a></h3>
+<p>热力系统是人为分割出来的作为热力学分析对象的<B>有限物质系统</B>,而与系统进行<B>质能交换</B>的物体为外界:</p>
+<ul>
+<li>
+<p>闭口系:与外界只有能量交换而没有物质交换(<B>物质不透过边界</B>),即控制质量<span class="arithmatex">\(\frac{dm}{dt}=0\)</span>(<span class="arithmatex">\(C.M.\)</span>)</p>
+</li>
+<li>
+<p>开口系:不仅有能量交换也有物质交换,即控制体积/控制体(<span class="arithmatex">\(C.V.\)</span>).</p>
+<blockquote>
+<p>开口系与闭口系的区分在于<B>有没有质量越过边界</B></p>
+</blockquote>
+</li>
+<li>
+<p>绝热系:系统与外界没有热量交换</p>
+</li>
+<li>
+<p>孤立系:既没有能量交换也没有物质交换(显然,孤立系必然为绝热系)</p>
+<blockquote>
+<p>孤立系不代表不发生作用,而是一切相互作用都发生在系统内部,如:将某一系统以及与之发生质能交换的外界看作一个大的系统,该联合系统即为孤立系统</p>
+</blockquote>
+</li>
+<li>
+<p>可压缩系统:由可压缩流体构成的热力系统</p>
+</li>
+<li>
+<p>简单可压缩系统:仅有<B>准静态体积变化功</B>(膨胀功、压缩功)的可压缩系统</p>
+</li>
+</ul>
+<p><font size = 4>状态参数→</font>描述工质所处<B>平衡状态</B>的宏观物理量,反映的是大量分子运动的宏观平均效果(由此可知,状态方程是在平衡状态下,状态参数的关系式)</p>
+<div class="admonition note">
+<p class="admonition-title">平衡状态</p>
+<p><font size = 3>
+在不受外界影响的条件下(系统与外界的不平衡势消失)系统的内部状态能始终保持不变(宏观变化全部停止,宏观性质不变)即为<B>平衡状态</B></p>
+<blockquote>
+<p><B>只有平衡状态的系统才能用状态参数来描述,只要有两个独立状态参数即可确定一个状态,所有其他状态参数均可表示为这两个状态参数的函数</B></p>
+</blockquote>
+<p></font></p>
+</div>
+<blockquote>
+<p>当热力系经历一封闭状态变化过程而又恢复到原始状态时,其状态参数的变化为0,即:<span class="arithmatex">\(\oint d \xi= 0\)</span></p>
+</blockquote>
+<ul>
+<li>
+<p>基本状态参数:p, V, T</p>
+</li>
+<li>
+<p>强度量(p, T):与物质的数量无关,不具有可加性,对<B>处于平衡状态的系统</B>才具有确定的数值</p>
+</li>
+<li>
+<p>广延量/尺度量(V, U, H, S):与工质质量成正比,具有可加性</p>
+</li>
+</ul>
+<details class="advice" open="open">
+<summary>温度</summary>
+<p><font size = 3.4>
+温度是描述和判断系统与其他系统/外界处于<B>热平衡状态</B>的参数</p>
+<div class="admonition note">
+<p class="admonition-title">热力学温标(绝对温标)</p>
+<p>热力系温标(K)将水的三相点温度定为基准点,规定为273.16K,而绝对零度为0K,而其他温标与热力系温标仅是零点取值的不同.</p>
+</div>
+<p><B>温标转换</B>:通过将新温标(线性)与已知温标(如热力学绝对温标)的尺度作对应,求得两种温标的线性关系,设某一温标(<span class="arithmatex">\(^oN\)</span>)在1个标准大气压下的冰点与汽点为<span class="arithmatex">\(T_1^oN与T_2^oN\)</span>,已知热力学绝对温标(K),则</p>
+<div class="arithmatex">\[  
+    \frac{T_2 - T_1}{373.15 - 273.15} = \frac{ \{T_{N}\}_{^oN} - T_1 }{ \{T_{N}\}_{K} - 273.15 }          
+\]</div>
+<p>由此,即可求得两个温标之间的线性关系: <span class="arithmatex">\(\{T_{N}\}_{^oN} = \frac{T_2 - T_1}{373.15 - 273.15} (\{T_{N}\}_{K} - 273.15)\)</span></p>
+<p></font></p>
+</details>
+<div class="admonition note">
+<p class="admonition-title">压力</p>
+<p><font size =3.8></p>
+<p><B>单位面积</B>上所受的垂直作用力为压力(压强)[<span class="arithmatex">\(Pa\)</span>],测量工质压力的仪器为压力计</p>
+<div class="admonition note">
+<p class="admonition-title">压力计的工作原理</p>
+<p><font size =3.4></p>
+<p>压力计测量的是工质绝对压力<span class="arithmatex">\(p\)</span>与外界环境压力<span class="arithmatex">\(p_b\)</span>之差,即相对压力/表压(<span class="arithmatex">\(p_e, p_v\)</span>),而绝对压力与大气压力无关,因此大气压力变化并不会影响绝对压力:</p>
+<div class="arithmatex">\[
+    \begin{equation}
+    p=
+    \begin{cases}
+    p_b + p_e &amp;, \text{ $ p &gt; p_b $ } (p_e为表压力)   \\
+    p_b - p_v &amp;, \text{ $ p &lt; p_b $ } (p_v为真空度)   \\
+    \end{cases}
+    \end{equation}
+\]</div>
+<p></font></p>
+<p><img alt="" src="../img/pe-pv-p.jpg" /></p>
+</div>
+<p></font>    </p>
+</div>
+<h3 id="准静态过程">准静态过程<a class="headerlink" href="#准静态过程" title="Permanent link"></a></h3>
+<hr />
+<p>状态变化无限缓慢,弛豫时间很短而<B>无限接近平衡状态</B>的过程</p>
+<blockquote>
+<p><font size = 4><B>准静态条件</B>:气体工质与外界之间的温差/压力差为无限小,若还存在其他不平衡势则必须加上相应的无限小条件,<B>只有准静态过程在坐标图中可用连续曲线来表示</B></font></p>
+</blockquote>
+<div class="arithmatex">\[
+    即: p \rightarrow p_{out} + \frac{F}{A}, T \rightarrow T_{out}
+\]</div>
+<h3 id="可逆过程-准静态--无耗散">可逆过程: 准静态 + 无耗散:<a class="headerlink" href="#可逆过程-准静态--无耗散" title="Permanent link"></a></h3>
+<hr />
+<p>准静态过程中可能会发生能量的耗散(比如外部机械器件之间摩擦力的作用),而可逆过程着眼于工质与外界作用产生的总效果,<B>不仅要求工质内部是平衡的,而且工质与外界可以无条件的逆复,该理想过程中不存在任何耗散(即返回原来状态并且在外界不留下任何变化)</B></p>
+<div class="admonition note">
+<p class="admonition-title">过程热量的概念</p>
+<p>"热量"[<span class="arithmatex">\(J\)</span>]一词为热力系与外界之间仅仅由于温度不同而通过边界传递的能量,是用来度量传递能量多少的<B>过程量</B>,与状态参数(只取决于初、终态)不同,过程量与进行的路径有关,不能表示为状态参数的函数</p>
+<p>在<B>可逆过程</B>中,热量可表示为:</p>
+<div class="arithmatex">\[
+    \Delta q = Tds, q_{1-2} = \int _{1}^{2} Tds
+\]</div>
+<p><img alt="示热图" height="200px" src="../img/heat.jpg" width="300px" /></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">可逆状态下的功</p>
+<p><font size = 3.4></p>
+<blockquote>
+<p>功[<span class="arithmatex">\(J\)</span>]与热量一样是能量传递的度量,是过程量,,不能表示为状态参数的函数(<span class="arithmatex">\(w \neq f(p,v)\)</span>),热力学规定对外做功为"+",外界对系统做功为"-"</p>
+</blockquote>
+<p>对于可逆过程中的体积变化功:</p>
+<div class="arithmatex">\[
+    \Delta W = Fdx = pAdx = pdV, W_{1-2} = \int _{1}^{2} pdV
+\]</div>
+<p><img alt="示功图" height="200px" src="../img/w.jpg" width="300px" />
+</font></p>
+<div class="admonition note">
+<p class="admonition-title">有用功</p>
+<p><font size = 3.4>
+闭口系工质膨胀所做的功并不全部有用于膨胀,有一部分用来排斥大气和摩擦耗散,余下的才是有用功<span class="arithmatex">\(W_{u}\)</span>,即</p>
+<div class="arithmatex">\[
+    W_u = W - p_{0} \Delta V - W_f
+\]</div>
+<p>若为可逆过程,则<span class="arithmatex">\(W_f=0\)</span>,可得:</p>
+<div class="arithmatex">\[
+    W_u = \int _{1}^{2} pdV - p_{0} \Delta V 
+\]</div>
+<p></font></p>
+</div>
+</div>
+<p>1.为什么自由膨胀是不可逆过程？</p>
+<h2 id="第二章-能量与热力学第一定律">第二章 能量与热力学第一定律<a class="headerlink" href="#第二章-能量与热力学第一定律" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:热力系第一定律,热力学能<span class="arithmatex">\(U\)</span>,焓<span class="arithmatex">\(H\)</span>的定义,推进功和流动功,开口系能量方程,稳定流动能量方程</p>
+<p>🔧计算:开口系能量方程,稳定流动能量方程 （不涉及一般开口系公式）</p>
+<p></font></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">推进功和流动功</p>
+<p><font size = 4>
+推进功差<span class="arithmatex">\(p_2 v_2 - p_1 v_1 = \Delta (pv)\)</span>是维系工质流动所需的功,称为流动功</p>
+<p><B>流动功</B>可视为流动过程中系统与外界由于物质进出而传递的机械功
+<img alt="推进功" src="../img/pv.jpg" /></p>
+<p></font></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">焓的定义</p>
+<p><font size = 4>
+焓[<span class="arithmatex">\(J\)</span>]是系统中因引入/排除工质还改变的总能量(热力学能+推进功),即<span class="arithmatex">\(H=U+pV\)</span></p>
+<p>显然,焓是一个状态参数,有<span class="arithmatex">\(\Delta h_{1-2} = \int_{1}^{2} dh = h_2 - h_1\)</span>, <span class="arithmatex">\(\oint dh = 0\)</span>
+</font></p>
+</div>
+<h3 id="热力学第一定律的表达式">热力学第一定律的表达式<a class="headerlink" href="#热力学第一定律的表达式" title="Permanent link"></a></h3>
+<hr />
+<p>根据热力学第一定律的原则,<B>系统中储存能量的增加 = 进入系统的能量 - 离开系统的能量</B>,对一个微元过程,有:</p>
+<div class="arithmatex">\[
+    \delta Q = dU + \delta W
+\]</div>
+<p>对于可逆过程,有:</p>
+<div class="arithmatex">\[
+    \delta Q = dU + pdV, Q = \Delta U + \int_{1}^{2}pdV
+\]</div>
+<p>对于循环,<span class="arithmatex">\(\oint dU = 0\)</span>,有:</p>
+<div class="arithmatex">\[
+    \oint \delta Q = \oint dU + \oint \delta W = \oint \delta W , 即Q_{net} = W_{net}
+\]</div>
+<p>可知在循环中,交换的净热量<span class="arithmatex">\(Q_{net}\)</span>等于净功量<span class="arithmatex">\(W_{net}\)</span></p>
+<h3 id="开口系能量方程">开口系能量方程<a class="headerlink" href="#开口系能量方程" title="Permanent link"></a></h3>
+<hr />
+<p>如下图的开口系场景,在<span class="arithmatex">\(d \tau\)</span>时间内的微元过程,<span class="arithmatex">\(\delta m_1,dV_1 \rightarrow \delta m_2,dV_2\)</span>,系统从外界接收热量<span class="arithmatex">\(\delta Q\)</span>,工质对机器设备做功<span class="arithmatex">\(\delta W_i\)</span>(内部功),系统总能量增加<span class="arithmatex">\(dE_{cv}\)</span>
+<img alt="开口系能量传递" src="../img/outdoor.jpg" /></p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \delta Q &amp;= dE_{cv} + (dE_2 + p_2 d V_2) - (dE_1 + p_1 d V_1) + \delta W_i   \\
+    &amp;\Rightarrow  dE_{cv} + (\frac{1}{2}c_{2}^{2} + gz_2) \delta m_2 - (\frac{1}{2}c_{1}^{2} + gz_1)\delta m_1 + \delta W_i    \;   (*)  \\
+    \end{aligned}
+\]</div>
+<h3 id="稳定流动能量方程">稳定流动能量方程<a class="headerlink" href="#稳定流动能量方程" title="Permanent link"></a></h3>
+<hr />
+<p>对于稳定流动,热力系任何截面上工质的所有参数都不随时间改变,因此必要条件为<span class="arithmatex">\(\frac{dE_{cv}}{d \tau} = 0\)</span>, 因此上述(*)式变为:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \delta Q &amp;= dH + \frac{1}{2} m dc^2 + mgdz + \delta W_i  \\
+    \delta q &amp;= dh + \frac{1}{2} dc^2 + gdz + \delta w_i  \\
+    \end{aligned}
+\]</div>
+<p>其中<span class="arithmatex">\(\delta w_i\)</span>代表1kg工质进入系统后在机器内部做的功</p>
+<p>实际上将等式后三项的机械功称为技术功<span class="arithmatex">\(W_t = \frac{1}{2} m dc^2 + mgdz + \delta W_i\)</span>,因此:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    Q &amp;= \Delta H + W_t  \\
+    \delta Q &amp;= dH + \delta W_t  \\
+    \delta q &amp;= dh + \delta w_t  \\
+    \end{aligned}
+\]</div>
+<p>对于上述公式还可以继续变形,引入容积变化功:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    W_{\text{容积变化功}} &amp;= q - \Delta u =  \frac{1}{2} \Delta c^2 + g \Delta z + \Delta (pv)  \\
+    &amp;\Rightarrow W_t + \Delta (pv)         \\ 
+    W_t &amp;= W_{\text{容积变化功}} - \Delta (pv)  \\
+    \text{对于可逆过程:} W_t &amp;= \int_{1}^{2}pdV - \Delta (pv)  \\
+    &amp;= \int_{1}^{2}pdV - \int_{1}^{2}d(pv) = -\int_{1}^{2}vdp  \\
+     即为 \delta w_t &amp;= -vdp  \\
+     \delta q &amp;= dh + \delta w_t = dh -vdp  \\
+     \delta Q &amp;= dH -Vdp  \\
+    \end{aligned}
+\]</div>
+<p>1.体积变化功、技术功、轴功的关系？</p>
+<h2 id="第三章-熵与热力学第二定律">第三章 熵与热力学第二定律<a class="headerlink" href="#第三章-熵与热力学第二定律" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:热力学第二定律的两种表述,卡诺循环,状态参数熵</p>
+<p>🔧计算:卡诺定理,熵方程</p>
+<p></font></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">热力学第二定律</p>
+<p><font size = 3.4></p>
+<ul>
+<li>克劳修斯表述(热量传递角度):不可能将热从低温物体传至高温物体而不引起其它变化。</li>
+</ul>
+<blockquote>
+<p>强调"自发地,不付代价地"</p>
+</blockquote>
+<ul>
+<li>开尔文表述(热功转换角度):不可能从<B>单一热源</B>取热，并使之完全转变为有用功(全部对外做功)而不产生其它影响。(不可能制造一台机器,在循环动作中把一重物升高的同时使热源冷却),<span class="arithmatex">\(Q_{热源放热} &gt; \Delta W\)</span></li>
+</ul>
+<blockquote>
+<p>不可能将从热源取得的热全部转换为功,不可避免地将一部分传递给温度更低的低温热源</p>
+</blockquote>
+<p><B>非自发过程(热转为功/低温向高温传热)的实现必须有一个自发反应(高温向低温传热/机械能转变为热能)作为补充条件</B></p>
+<p></font></p>
+</div>
+<h3 id="卡诺定理">卡诺定理<a class="headerlink" href="#卡诺定理" title="Permanent link"></a></h3>
+<hr />
+<p>卡诺发现热机循环中的不可逆因素(耗散)都会引起功损失,因此假设一个理想的<B>可逆热机</B>,工质在热源相同温度下定温吸热,冷源相同温度下定温放热.</p>
+<div class="admonition note">
+<p class="admonition-title">卡诺循环(Carnot Cycle)</p>
+<p><font size = 4>
+卡诺循环在<span class="arithmatex">\(T_1与T_2\)</span>两个热源之间的正向循环,由两个可逆定温过程与两个可逆绝热过程组成.</p>
+<p><img alt="卡诺循环" src="../img/kanuo.jpg" /></p>
+<p>根据循环特性,卡诺循环效率为:</p>
+<div class="arithmatex">\[
+    \eta_t = \frac{w_{net}}{q_1} = \frac{q_1 - q_2}{q_1} = 1 - \frac{q_2}{q_1} = 1 - \frac{T_2 \left| \Delta s_{c-d} \right| }{T_1 \left| \Delta s_{a-b} \right|} = 1 - \frac{T_2}{T_1}
+\]</div>
+<div class="admonition info">
+<p class="admonition-title">卡诺循环的特点</p>
+<p><font size = 3.5></p>
+<ul>
+<li>
+<p>卡诺循环的热效率仅仅取决于两个热源的温度,若提高高温热源<span class="arithmatex">\(T_1\)</span>,降低低温热源<span class="arithmatex">\(T_2\)</span>(提高工作热源温差),则能够提高循环热效率</p>
+</li>
+<li>
+<p>不能制造出在两个温度不同的热源间工作的热机，而使其效率超过同样热源见工作的可逆热机.(可逆热机效率最高)</p>
+</li>
+<li>
+<p>在两个固定热源之间工作的一切可逆热机具有相同的效率<span class="arithmatex">\(\eta_t =1 - \frac{T_2}{T_1}\)</span>。</p>
+</li>
+<li>
+<p>若<span class="arithmatex">\(T_1 = T_2\)</span>,则<span class="arithmatex">\(\eta_t = 0\)</span>,说明热能产生动力一定要温差作为热力学条件,所以单一热源连续做功的机器(第二类永动机)不存在
+</font></p>
+</li>
+</ul>
+</div>
+<p></font></p>
+</div>
+<h3 id="制冷热泵循环">制冷热泵循环<a class="headerlink" href="#制冷热泵循环" title="Permanent link"></a></h3>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">逆卡诺循环</p>
+<p><font size = 4>
+对于制冷机/热泵:从冷源吸热<span class="arithmatex">\(Q_2\)</span>,向热源放热<span class="arithmatex">\(Q_1\)</span>,性能系数<span class="arithmatex">\([COP]\)</span>(制冷系数/供暖系数)</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \text{耗功量:} W = Q_1 - Q_2 \\
+    \end{aligned}
+\]</div>
+<p></font></p>
+</div>
+<h3 id="熵">熵<a class="headerlink" href="#熵" title="Permanent link"></a></h3>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">克劳修斯不等式</p>
+<p><font size = 3.5>
+假设一个情景,某闭口系统在某过程中有热<span class="arithmatex">\(\delta Q\)</span>与功<span class="arithmatex">\(\delta W\)</span>穿过边界,可逆机从温度为<span class="arithmatex">\(T_0\)</span>的恒温热源得到<span class="arithmatex">\(\delta Q_R\)</span>,同时完成功量<span class="arithmatex">\(\delta W_R\)</span>,最终将热<span class="arithmatex">\(\delta Q\)</span>传递给任意温度为<span class="arithmatex">\(T\)</span>的某一系统.完成的总功量为<span class="arithmatex">\(\delta W_T = \delta W_R + \delta W\)</span>可知:</p>
+<div class="arithmatex">\[
+    \begin{aligned} 
+    \delta W_R &amp;= \delta Q_R - \delta Q   \\
+    \delta W &amp;= \delta Q - dU       \\
+    \text{由于可逆机,}\frac{T_0}{T} &amp;=\frac{\delta Q_R}{\delta Q}  \\
+    \Rightarrow  \delta W_T &amp;= \frac{T_0}{T} \delta Q - dU  \\
+    \text{对封闭循环,}  \oint \delta W_T &amp;= T_0 \oint \frac{\delta Q}{T} - \oint dU  \\
+    \text{在循环中,单一热源不可能输出有用功:} \oint \delta W_T &amp;= T_0 \oint \frac{\delta Q}{T} \le 0  \\
+    \text{可得}\oint \frac{\delta Q}{T} &amp;\le 0
+    \end{aligned}   
+\]</div>
+<p><img alt="热力学框图" height="200px" src="../img/theo.jpg" width="400px" /></p>
+<blockquote>
+<p>此不等式表明：所有可逆循环的克劳修斯积分值<span class="arithmatex">\(\oint \frac{\delta Q}{T} = 0\)</span>，所有不可逆循环的克劳修斯积分值<span class="arithmatex">\(\oint \frac{\delta Q}{T} &lt; 0\)</span>。故本不等式可作为判断一切任意循环是否可逆的依据。应用克劳修斯不等式还可推出如下的重要结论:任何系统或工质经历一个不可逆的绝热过程之后，其熵值必将有所增大。</p>
+</blockquote>
+<p></font></p>
+</div>
+<p>根据克劳修斯不等式,设<span class="arithmatex">\(dS = \frac{\delta Q}{T}\)</span>,称S为熵(Entropy)[<span class="arithmatex">\(kJ/K\)</span>],是一种尺度量,具有可加性</p>
+<p>对于熵的计算,只能按照可逆路径来进行,有:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \oint dS = \oint \frac{\delta Q}{T} &amp;= 0,        \\
+    \Delta S = S_2 - S_1 &amp;= \int_{1}^{2} \frac{\delta Q}{T} \\
+    \end{aligned}   
+\]</div>
+<p>对于不可逆过程中的熵,则</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    dS &amp;&gt; \frac{\delta Q}{T},                           \\
+    \int_{1}^{2}dS &amp;= S_2 - S_1 &gt; \int_{1}^{2} \frac{\delta Q}{T}        \\
+    \end{aligned}   
+\]</div>
+<blockquote>
+<p>不可逆过程熵的变化可以选择相同的初终态间的任意的可逆过程来计算</p>
+</blockquote>
+<h3 id="孤立体系isolated-system熵增原理">孤立体系(isolated system)熵增原理<a class="headerlink" href="#孤立体系isolated-system熵增原理" title="Permanent link"></a></h3>
+<hr />
+<p>由于在不可逆过程中<span class="arithmatex">\(dS &gt; \frac{\delta Q}{T}\)</span>,引入<span class="arithmatex">\(\delta S_g = dS - \frac{\delta Q}{T}\)</span>来表示两者的差值,则:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    dS = \delta S_g + \frac{\delta Q}{T},                           
+    \begin{equation}
+            \delta S_g =
+            \begin{cases}
+            = 0 (可逆过程)  \\
+            &gt; 0 (不可逆过程)   \\
+            \end{cases}
+    \end{equation}
+    \end{aligned}   
+\]</div>
+<p>定义<span class="arithmatex">\(\delta S_g\)</span>为熵产来度量<B>不可逆因素的存在而引起的熵的增加</B>,<span class="arithmatex">\(d S_f = \frac{\delta Q}{T}\)</span>为由于与外界发生热交换，由热流引起的熵流</p>
+<p>对于孤立系,<span class="arithmatex">\(\delta Q = 0, \delta m = 0, \Rightarrow dS_f = 0\)</span>,因此:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \begin{equation}
+            dS_{iso} = \delta S_g =
+            \begin{cases}
+            = 0 (可逆过程)  \\
+            &gt; 0 (不可逆过程)   \\
+            \end{cases}
+    \end{equation}
+    \end{aligned}
+\]</div>
+<blockquote>
+<p>上述推导说明,在孤立系内，一切实际过程(不可逆过程)都朝着使系统熵增加的方向进行，或在极限情况下(可逆过程)维持系统的熵不变，而任何使系统熵减少的过程是不可能发生的.</p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">孤立体系熵增原理</p>
+<p><font size =3></p>
+<ul>
+<li>如果某过程进行的全部结果是使孤立系的总熵增加，它就可以单独进行而不需要补充条件，也就是说可以<B>自发地进行</B>.</li>
+<li>如果某过程进行的结果将使孤立系总熵减少，它必不可能单独进行。要使这种过程成为可能，必须<B>伴随进行一种熵增加的过程，使得两过程相伴进行的结果，孤立系的总熵增大</B>，或至少维持不变.</li>
+<li>不可逆过程进行的结果使系统的熵增加，同时使其作功能力下降，而使能量转变为较为无用的形式。</li>
+<li>能量在数量上并未变化，而作功能力减少的现象称为能量贬值。孤立体系的熵增意味着能量的  贬值，所以孤立体系熵增原理又称为<B>能量贬值原理</B>
+</font></li>
+</ul>
+</div>
+<h3 id="熵方程">熵方程<a class="headerlink" href="#熵方程" title="Permanent link"></a></h3>
+<hr />
+<h4 id="闭口系统熵方程">闭口系统熵方程<a class="headerlink" href="#闭口系统熵方程" title="Permanent link"></a></h4>
+<hr />
+<p>在闭口系中,<span class="arithmatex">\(dS_f\)</span>为熵流, 是换热量与热源温度的比值,表明外界换热引起的系统熵变(吸热为"+",放热为"-",绝热为0).</p>
+<p><span class="arithmatex">\(\delta S_g\)</span>为熵产,是不可逆因素造成的系统熵增加,仅可能大于等于0</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    dS = \delta S_g + \frac{\delta Q}{T} = \delta S_g + dS_f ,                           
+    \end{aligned}   
+\]</div>
+<p>在闭口绝热系中,则有<span class="arithmatex">\(dS_f = 0\)</span>:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    dS = \delta S_g \geq 0                     
+    \end{aligned}   
+\]</div>
+<p>可知,在闭口不可逆绝热系中,由于过程中仍然存在不可逆因素而产生不可避免的耗散,使机械功转化为热能被工质吸收,对熵变做出贡献.</p>
+<h4 id="开口系统熵方程">开口系统熵方程<a class="headerlink" href="#开口系统熵方程" title="Permanent link"></a></h4>
+<hr />
+<p>在开口系中,系统与外界交换质量将引起系统熵的改变,因为物质迁移而引起熵变的熵流为<B>质熵流</B>,定义为<span class="arithmatex">\(\delta S_m = d(ms)\)</span></p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \begin{equation}
+    dS_{C.V.} = \delta S_{g.C.V} + \delta S_f + \delta S_m = \delta S_{g} + \frac{\delta Q}{T} + d(ms) = 
+        \begin{cases}
+            = \delta S_{g} + \frac{\delta Q}{T} + mds =0 (稳定流动过程)\\
+            = \frac{\delta Q}{T} + mds =0 (可逆稳定流动过程)\\
+            \Rightarrow S_1 = S_2 (可逆绝热稳定流动过程) \\
+        \end{cases}  
+    \end{equation}
+    \end{aligned}   
+\]</div>
+<p>1.克劳修斯积分式的运用？
+2.孤立体系熵增的运用？
+3.卡诺循环→有用功</p>
+<h2 id="第四章-热力学一般关系">第四章 热力学一般关系<a class="headerlink" href="#第四章-热力学一般关系" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:简单可压缩系统的五个基本状态参数(p,v,T,u,s), 三个可测参数的状态方程<span class="arithmatex">\(F(p, v, T)=0\)</span>, <B>热力学一般关系</B>,组合状态参数(h, f, g)</p>
+<p>🔧计算:</p>
+<p></font></p>
+</div>
+<blockquote>
+<p>简单可压缩系统的特点:存在两个独立的状态参数,其状态函数为二元函数</p>
+</blockquote>
+<p><img alt="" src="../img/pvt.png" /></p>
+<p>根据热力学第一定律与第二定律, <B>简单可压缩工质在可逆变化中的能量平衡(<span class="arithmatex">\(F(u, v, s)=0\)</span>的全微分形式)</B>有:</p>
+<div class="arithmatex">\[
+        \begin{aligned}
+        &amp;du = Tds - pdv                   \\
+        \small 即:&amp; \small热力学能 = 吸热量 - 做功量         \\                             
+        &amp;dh = Tds + vdp (焓h = u + pv) \\
+        &amp;df = -Tds - vdp (引入自由能f = u - Ts)                                    \\
+        &amp;dg = -sdT +vdp  (引入自由焓g = h - Ts)                                    \\
+        \end{aligned}
+\]</div>
+<p>即通过Legendre变换,可得<span class="arithmatex">\(F(h,s,p)=0\)</span>, <span class="arithmatex">\(F(f,T,v)=0\)</span>, <span class="arithmatex">\(F(g,T,p)=0\)</span>的全微分表达式.
+再对上述的等式做一阶偏微商,有:</p>
+<div class="arithmatex">\[
+        \begin{aligned}
+        &amp;( \frac{\partial u}{\partial s} )_v = (\frac{\partial h}{\partial s})_p = T                 \\
+        -&amp;(\frac{\partial u}{\partial v} )_s = -(\frac{\partial f}{\partial v})_T = p                                   \\
+        &amp;( \frac{\partial h}{\partial p} )_s = (\frac{\partial g}{\partial p})_T = v                 \\
+        -&amp;(\frac{\partial f}{\partial T} )_v = -(\frac{\partial g}{\partial T})_p = s                                   \\
+        \end{aligned}
+\]</div>
+<p>由此可知, 对于<span class="arithmatex">\(F(h,s,p)=0\)</span>, <span class="arithmatex">\(F(f,T,v)=0\)</span>, <span class="arithmatex">\(F(g,T,p)=0\)</span>,只需要知道任意一个关系式就能得到所有的状态函数</p>
+<blockquote>
+<p>例如:已知<span class="arithmatex">\(F(g,T,p) = 0\)</span>,以(T,p)为独立变量,将<span class="arithmatex">\(g(p,T)\)</span>对p求偏导得到<span class="arithmatex">\(v(T,p)\)</span>,对T求偏导得到<span class="arithmatex">\(s(T,p)\)</span>,而<span class="arithmatex">\(h(p,T) = g(p,T) + Ts(p,T), u(T,p) = h(p,T) - pv(p,T)\)</span>即可得出工质热力平衡性质的所有信息,这些热力状态函数称为<B>特性函数</B>.</p>
+</blockquote>
+<p>因为二元函数的二阶混合偏微商与求导顺序无关,即<span class="arithmatex">\( \frac{\partial}{\partial y} (\frac{\partial z}{\partial x})_{y} = \frac{\partial}{\partial x} (\frac{\partial z}{\partial y})_{x}  \)</span>,则可得上述特性函数的二阶混合偏微商关系式(maxwell关系式),如:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \frac{\partial}{\partial T} (\frac{\partial g}{\partial p})_T &amp;= \frac{\partial}{\partial p} (\frac{\partial g}{\partial T})_p \\
+    (\frac{\partial v}{\partial T})_{p} &amp;= - (\frac{\partial s}{\partial p})_{T}   \\
+    \frac{\partial}{\partial T} (\frac{\partial f}{\partial v})_T &amp;= \frac{\partial}{\partial v} (\frac{\partial f}{\partial T})_v \\
+    (\frac{\partial p}{\partial T})_{v} &amp;= (\frac{\partial s}{\partial v})_{T}   \\
+    \end{aligned}
+\]</div>
+<blockquote>
+<p>特性函数的二阶混合偏微商关系将不可测的熵与可测参数联系在一起</p>
+</blockquote>
+<p>如上述的某些偏微商,具有明确的物理意义,将这些特殊的偏微商定义为<B>热系数</B>:</p>
+<ul>
+<li>工质在定压条件下(因为p同样会影响体积,通过定压条件排除)的<B>热膨胀/体膨胀系数系数<span class="arithmatex">\([K^{-1}]\)</span></B>: </li>
+</ul>
+<div class="arithmatex">\[
+        \alpha_{v} = \frac{1}{v} (\frac{\partial v}{\partial T})_{p}
+\]</div>
+<ul>
+<li>工质在等温条件下的<B>等温压缩率</B><span class="arithmatex">\([Pa^{-1}]\)</span>:</li>
+</ul>
+<div class="arithmatex">\[
+        \kappa_T  = - \frac{1}{v} (\frac{\partial v}{\partial p})_T
+\]</div>
+<ul>
+<li>压力的温度系数<span class="arithmatex">\(\beta\)</span></li>
+</ul>
+<div class="arithmatex">\[
+    \beta = \frac{1}{p} (\frac{\partial p}{\partial T})_{v}     
+\]</div>
+<p>可得:</p>
+<div class="arithmatex">\[
+    (\frac{\partial p}{\partial T})_{v} (\frac{\partial T}{\partial v})_p (\frac{\partial v}{\partial p})_T = -1    
+\]</div>
+<p>即得三个热系数之间的关系式:</p>
+<div class="arithmatex">\[
+    \frac{\alpha_{v}}{\kappa_T \beta} = p
+\]</div>
+<ul>
+<li>工质在可逆绝热过程中的压缩性质---绝热压缩系数<span class="arithmatex">\(\kappa_s\)</span>[<span class="arithmatex">\(Pa^{-1}\)</span>]:</li>
+</ul>
+<div class="arithmatex">\[
+    \kappa_s = - \frac{1}{v} (\frac{\partial v}{\partial p})_{s}    
+\]</div>
+<h3 id="比热容">比热容<a class="headerlink" href="#比热容" title="Permanent link"></a></h3>
+<hr />
+<p>以<span class="arithmatex">\((T,v)\)</span>为独立变量的热力学能函数对温度的偏微商<span class="arithmatex">\((\frac{\partial u}{\partial T})_{v}\)</span>具有重要意义,定义为工质的比定容热容<span class="arithmatex">\(c_V\)</span>[<span class="arithmatex">\(J/(kg·K)\)</span>],即在体积不变的情况下,热力学能对温度的偏微商:</p>
+<div class="arithmatex">\[
+    c_V = (\frac{\partial u}{\partial T})_{v}
+\]</div>
+<p>对于准静态平衡定容过程中,有<span class="arithmatex">\(\delta q = d u\)</span>,因此<span class="arithmatex">\(c_V\)</span>表示<B>单位质量的工质温度升高1K所吸收的热量</B>则有:</p>
+<div class="arithmatex">\[
+    c_V = (\frac{\delta q}{d T})_{v}
+\]</div>
+<p>定义在定压条件下,焓对温度的偏微商微比定压热容<span class="arithmatex">\(c_p\)</span>:</p>
+<div class="arithmatex">\[
+    c_p = (\frac{\partial h}{\partial T})_{p}
+\]</div>
+<p>同样,在准静态平衡定压过程中,<span class="arithmatex">\(c_p\)</span>指<B>单位质量的工质温度升高1K所吸收的热量</B>,可表示为:</p>
+<div class="arithmatex">\[
+    c_p = (\frac{\delta q}{d T})_{p}
+\]</div>
+<p><B>绝热节流系数<span class="arithmatex">\(\mu_{J}\)</span></B>:在焓值不变的情况下工质温度随压力的变化率[<span class="arithmatex">\(K/Pa\)</span>]</p>
+<div class="arithmatex">\[
+    \mu_{J} = (\frac{\partial T}{\partial p})_{h}
+\]</div>
+<h3 id="热力学能焓熵的微分式">热力学能、焓熵的微分式<a class="headerlink" href="#热力学能焓熵的微分式" title="Permanent link"></a></h3>
+<hr />
+<ul>
+<li>热力学能<span class="arithmatex">\(u(T,v)\)</span>的全微分表达式:</li>
+</ul>
+<div class="arithmatex">\[
+    \begin{aligned}
+    du &amp;= (\frac{\partial u}{\partial T})_{v} dT + (\frac{\partial u}{\partial v})_{T} dv \\
+    &amp;= c_V dT + (T(\frac{\partial s}{\partial v})_{T} - p(\frac{\partial v}{\partial v})_{T})dv \\
+    &amp;= c_V dT + [T(\frac{\partial p}{\partial T})_{v} - p] dv \\
+    \end{aligned}
+\]</div>
+<ul>
+<li>焓<span class="arithmatex">\(h(T,p)\)</span>的全微分表达式:</li>
+</ul>
+<div class="arithmatex">\[
+    \begin{aligned}
+    dh &amp;= (\frac{\partial h}{\partial T})_{p} dT + (\frac{\partial h}{\partial p})_{T} dp \\
+    &amp;= c_p dT + (T(\frac{\partial s}{\partial p})_{T} + v(\frac{\partial p}{\partial p})_{T})dp \\
+    &amp;= c_p dT - [T(\frac{\partial v}{\partial T})_{p} - v] dp \\
+    \end{aligned}
+\]</div>
+<ul>
+<li>对于熵<span class="arithmatex">\(s(T,v)\)</span>和<span class="arithmatex">\(s(T,p)\)</span>的全微分形式:</li>
+</ul>
+<div class="arithmatex">\[
+    \begin{aligned}
+    ds &amp;= (\frac{\partial s}{\partial T})_{v} dT + (\frac{\partial s}{\partial v})_{T} dv  \\
+    &amp;= \frac{c_V}{T} dT + (\frac{\partial p}{\partial T})_{v} dv \\
+    ds &amp;= (\frac{\partial s}{\partial T})_{p} dT + (\frac{\partial s}{\partial p})_{T} dp  \\
+    &amp;= \frac{c_p}{T} dT - (\frac{\partial v}{\partial T})_{p} dp \\
+    \end{aligned}   
+\]</div>
+<h3 id="热系数之间的一般关系">热系数之间的一般关系<a class="headerlink" href="#热系数之间的一般关系" title="Permanent link"></a></h3>
+<hr />
+<ul>
+<li>(一) <span class="arithmatex">\((\frac{\partial c_V}{\partial v})_{T} 、(\frac{\partial c_p}{\partial p})_{T}\)</span>与状态方程间的关系</li>
+</ul>
+<p>由上述热力学能与焓的微分式可得:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    (\frac{\partial c_V}{\partial v})_{T} &amp;= T (\frac{\partial^2 p}{\partial T^2})_{v} \\
+    (\frac{\partial c_p}{\partial p})_{T} &amp;= - T (\frac{\partial^2 v}{\partial T^2})_{p} \\
+    \end{aligned}   
+\]</div>
+<p>当给出较准确的状态方程以及某一压力<span class="arithmatex">\(p_0\)</span>下测得的比定压热容数据<span class="arithmatex">\(c_{p0}(T)\)</span>,可以通过积分算得函数关系<span class="arithmatex">\(c_p(T,p)\)</span>:</p>
+<div class="arithmatex">\[
+    c_p(T,p) = c_{p0}(T) - T \int_{p_0}^{p} (\frac{\partial^2 v}{\partial T^2})_{p} dp          
+\]</div>
+<ul>
+<li>(二)比热容差(<span class="arithmatex">\(c_p - c_v\)</span>)与状态方程关系</li>
+</ul>
+<div class="arithmatex">\[
+    c_v = T(\frac{\partial s}{\partial T})_{v}           
+\]</div>
+<div class="arithmatex">\[
+    c_p - c_v = T (\frac{\partial v}{\partial T })_{p} (\frac{\partial p}{\partial T})_{v}  = T v \frac{\alpha_V ^2}{\kappa_T}  &gt; 0
+\]</div>
+<blockquote>
+<p>由上式可知,<span class="arithmatex">\(c_p &gt; c_v\)</span> 恒成立.</p>
+</blockquote>
+<ul>
+<li>绝热节流系数的一般关系式</li>
+</ul>
+<p><span class="arithmatex">\(\mu_j\)</span>是在焓值不变时(<span class="arithmatex">\(dh = 0\)</span>)温度对压力的偏微商:</p>
+<div class="arithmatex">\[
+    \mu_j = (\frac{\partial T}{\partial p})_{h}= \frac{1}{c_p} [T (\frac{\partial v}{\partial T })_{p} - v] =\frac{v}{c_p} (T \alpha_V - 1)
+\]</div>
+<p>1.maxwell关系式的记忆
+2.焦耳-汤姆孙系数的故事、真实气体</p>
+<h2 id="第五章-气体的热力性质">第五章 气体的热力性质<a class="headerlink" href="#第五章-气体的热力性质" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:理想气体,理想气体状态方程,</p>
+<p>🔧计算:理想气体状态方程 （不涉及实际气体的性质）</p>
+<p></font></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">理想气体</p>
+<p><font size = 3.5>
+理想气体性质指的是<B>忽略分子自身占有的体积和分子间相互作用力</B>对其他宏观热力性质的影响,在工程上(通常的工作参数范围中),将实际气体工质当作理想气体处理有足够的计算精度.</p>
+<p>理想气体状态方程(3个可测状态参数<span class="arithmatex">\(p,v,T\)</span>的函数关系<span class="arithmatex">\(F(p,v,T)=0\)</span>):<B>Clapeyron方程</B></p>
+<div class="arithmatex">\[
+    pV = nRT = m R_g T
+\]</div>
+<blockquote>
+<p><span class="arithmatex">\(R_g = \frac{R}{M}\)</span>:气体常数[<span class="arithmatex">\(J/(kg·K)\)</span>],<span class="arithmatex">\(R\)</span>为摩尔气体常数<span class="arithmatex">\(8.314 J/(mol·K)\)</span></p>
+</blockquote>
+<p>变式:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    pv = R_g T,&amp;(\text{单位质量(1kg)形式})                   \\
+    pV_m = RT,&amp;(\text{单位mol形式,} V_m=V/n)                    \\
+    p M = \rho R T,&amp;(\text{密度式 })
+    \end{aligned}
+\]</div>
+<p></font></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">比热容换算</p>
+<p><font size = 3.5>
+1kg物质的热容量为比热容<span class="arithmatex">\(c\)</span>,1mol的热容量为摩尔热容<span class="arithmatex">\(C_m\)</span>,1<span class="arithmatex">\(m^3\)</span>标准状态下气体的热容量为体积热容.</p>
+<div class="arithmatex">\[ 
+    \begin{aligned}
+    C_m = Mc &amp;= MvC`  \\
+    C_{p,m} - C_{v,m} &amp;= R \\
+    \end{aligned}   
+\]</div>
+<p></font></p>
+</div>
+<p>根据理想气体方程,可得对于理想气体:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \alpha_V = \beta = \frac{1}{T} \\
+    \kappa_T = \frac{1}{p}  \\  
+    (\frac{\partial c_v}{\partial v})_T = T (\frac{\partial^2 p}{\partial T^2})_v = 0 \\
+    (\frac{\partial c_p}{\partial v})_T = -T (\frac{\partial^2 v}{\partial T^2})_p = 0 \\
+    c_p - c_v = \frac{Tv \alpha_v^2}{\kappa_T} = \frac{pv}{T} = R_g \\
+    \mu_j = \frac{v}{c_p}(T \alpha_T - 1) = 0 \\
+    \end{aligned}
+\]</div>
+<blockquote>
+<p>理想气体比热容为温度的单值函数,其差值为恒定值</p>
+</blockquote>
+<p>对于热力学能u与焓h的特性,均为温度T的单值函数:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    (\frac{\partial u}{\partial v})_T = T (\frac{\partial p}{\partial T})_v - p = \frac{R_g T}{v} - p = 0 \Rightarrow du = c_v dT\\
+    (\frac{\partial h}{\partial p})_T = -T (\frac{\partial v} {\partial T})_p + v = 0  \Rightarrow  dh = c_p dT\\
+    \end{aligned}
+\]</div>
+<p>对于理想气体熵方程,以分别以(T,v),(T,p)为独立变量:</p>
+<div class="arithmatex">\[
+    ds =c_v \frac{dT}{T} + R_g \frac{dv}{v}=c_p \frac{dT}{T} - R_g \frac{dp}{p}
+\]</div>
+<p>放入过程中:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \Delta u_{1-2} =&amp; c_v \Delta T_{1-2}      \\
+    \Delta h_{1-2} =&amp; c_p \Delta T_{1-2}       \\
+    \Delta s_{1-2} = s_2 - s_1 = c_v \ln{\frac{T_2}{T_1}} +&amp; R_g \ln{\frac{v_2}{v_1}} = c_p \ln{\frac{T_2}{T_1}} - R_g \ln{\frac{p_2}{p_1}}
+    \end{aligned}
+\]</div>
+<h3 id="平均比热容">平均比热容<a class="headerlink" href="#平均比热容" title="Permanent link"></a></h3>
+<hr />
+<p>根据定义:'</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    c_v \lvert_{t_1}^{t_2} = \frac{\int_{t_2}^{t_1} c_v dt}{t_2 -t_1} = \frac{\Delta u_{1-2}}{t_2 -t_1} = \frac{c_v \lvert_0^{t_2} t_2 - c_v \lvert_0^{t_1} t_1 }{t_2 -t_1} \\
+    c_p \lvert_{t_1}^{t_2} = \frac{\int_{t_2}^{t_1} c_p dt}{t_2 -t_1} = \frac{\Delta h_{1-2}}{t_2 -t_1} = \frac{c_p \lvert_0^{t_2} t_2 - c_p \lvert_0^{t_1} t_1 }{t_2 -t_1} \\
+    \end{aligned}
+\]</div>
+<blockquote>
+<p>根据定义式,平均比热容与初态温度<span class="arithmatex">\(t_1\)</span>与终态温度<span class="arithmatex">\(t_2\)</span>有关</p>
+</blockquote>
+<h2 id="第六章-蒸汽的热力性质">第六章 蒸汽的热力性质<a class="headerlink" href="#第六章-蒸汽的热力性质" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:热力学的平衡判据、吉布斯相率、克劳修斯-克拉贝龙方程、解释水的反常饱和固-液线、蒸汽热力性质，蒸汽的常见热力过程（重点:蒸汽定压发生过程的T-s图）</p>
+<p>🔧计算:蒸汽干度x,常用的蒸汽热力过程（定压、绝热...）（一般来说不考察化学势的相关内容）</p>
+<p></font></p>
+</div>
+<h3 id="热力学判据">热力学判据<a class="headerlink" href="#热力学判据" title="Permanent link"></a></h3>
+<hr />
+<p>在一定的约束条件下，系统因为各种不平衡势差而朝着一定方向变化，当各种势差减小为零时系统状态不再变化（即达到平衡）：</p>
+<div class="admonition note">
+<p class="admonition-title">孤立体系熵增原理</p>
+<p><font size = 3.5></p>
+<p>即平衡的熵判据，表述为“孤立系处于平衡状态时，熵具有最大值”：</p>
+<div class="arithmatex">\[ 
+    dS_{iso} \geq 0
+\]</div>
+<p>当上述式子取到等号时，表明系统的熵增到达最大值，即可判断系统不再变化（处于平衡态）</p>
+<p></font></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">任意封闭体系的平衡判据</p>
+<p><font size = 3.5>
+对于处于<span class="arithmatex">\(T_0,p_0\)</span>的环境下的任意封闭体系，设功势函数为<span class="arithmatex">\(\Psi = U + p_0 V - T_0 S\)</span>，有:</p>
+<div class="arithmatex">\[ 
+    \begin{aligned}
+    -(du + p_0 v - T_0 ds) &amp;\geq \delta w_u \\
+    - \psi &amp;\geq \delta w_u \\
+    \end{aligned}
+\]</div>
+<p>即系统完成的有用功总小于等于其功势函数的减小值，假设外界不对系统完成有用功（<span class="arithmatex">\(\delta w_u \geq 0\)</span>）,则：</p>
+<div class="arithmatex">\[ 
+    \begin{aligned}
+    -(du + p_0 v - T_0 ds) &amp;\geq \delta 0 \\
+    \psi &amp;\leq \delta w_u \\
+    \end{aligned}
+\]</div>
+<p>当上述式子表明:系统状态总是朝着功势函数<span class="arithmatex">\(\Psi\)</span>减小的方向进行变化，当取到等号时，系统不平衡势消失，即为处于平衡态</p>
+<div class="admonition info">
+<p class="admonition-title">定温定容下的自由能判据（F）</p>
+<p><font size = 3.5>
+在<span class="arithmatex">\(dT = 0,dv = 0\)</span>条件下，有：</p>
+<div class="arithmatex">\[ 
+    \begin{aligned}
+    (du - d(Ts))_{T,v} &amp;\leq 0 \\
+    (df)_{T,v} &amp;\leq \\
+    \end{aligned}
+\]</div>
+<p>即：在定温定容条件下，封闭系统朝自由能<span class="arithmatex">\(F\)</span>减小的方向自发进行，平衡时自由能最小（自由能判据）
+</font></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">定温定压下的自由能焓判据（G）</p>
+<p><font size = 3.5>
+在<span class="arithmatex">\(dT = 0,dp = 0\)</span>条件下，有：</p>
+<div class="arithmatex">\[ 
+    \begin{aligned}
+    (du + d(pv)- d(Ts))_{T,p} &amp;\leq 0 \\
+    (dg)_{T,p} &amp;\leq \\
+    \end{aligned}
+\]</div>
+<p>即：在定温定压条件下，封闭系统朝自由焓<span class="arithmatex">\(G\)</span>减小的方向自发进行，平衡时自由焓最小（自由焓判据）
+</font></p>
+</div>
+<p></font></p>
+</div>
+<h3 id="吉布斯相率">吉布斯相率<a class="headerlink" href="#吉布斯相率" title="Permanent link"></a></h3>
+<hr />
+<p>对于无化学反应的系统，有吉布斯相率来得出系统中独立强度参数的数目（自由度）：</p>
+<div class="arithmatex">\[
+    I = C - P + 2
+\]</div>
+<p>其中，I为系统中独立强度参数的数目，C为系统包含的组元数，P为系统包含的相数。</p>
+<p><B>一般来说，本课程考察单一物质（单元，<span class="arithmatex">\(C = 1\)</span>）的三种常见情形<B>：</p>
+<ul>
+<li>
+<p>对于单元单相系（如过热蒸汽、未饱和水）：系统的各种强度参数确定于两个独立参数，如<span class="arithmatex">\(p\)</span>与<span class="arithmatex">\(T\)</span>，即<span class="arithmatex">\(I = 2\)</span>。</p>
+</li>
+<li>
+<p>对于单元两相系（湿蒸汽）：共存的两相处于饱和温度与饱和压力，由于<span class="arithmatex">\(p_s\)</span>与<span class="arithmatex">\(T_s\)</span>并不相互独立，因此该两相系统的各种强度参数确定于一个独立参数，即<span class="arithmatex">\(I = 1\)</span>。</p>
+</li>
+<li>
+<p>对于单元三相系：有与单一物质的三相点完全确定，因此三相平衡的单元系没有可变的独立强度参数，即<span class="arithmatex">\(I = 0\)</span>。</p>
+</li>
+<li>
+<p>特殊：对于湿饱和蒸汽，处于两相区，需要额外引入干度<span class="arithmatex">\(x = \frac{m_g}{m_g + m_f}\)</span>来描述湿蒸汽中液体与气的比例关系，因此需要两个独立变量，，即<span class="arithmatex">\(I = 2\)</span>。</p>
+</li>
+</ul>
+<p>（单元系不存在四种以上的不同相平衡的状态）</p>
+<h3 id="克劳修斯-克拉贝龙方程">克劳修斯-克拉贝龙方程<a class="headerlink" href="#克劳修斯-克拉贝龙方程" title="Permanent link"></a></h3>
+<hr />
+<p>假设<span class="arithmatex">\(p_s\)</span>为饱和压力，<span class="arithmatex">\(T_s\)</span>为饱和温度，<span class="arithmatex">\(v_{\alpha}, v_{\beta}\)</span>, <span class="arithmatex">\(s_{\alpha}, s_{\beta}\)</span>分别为两相的比体积与比熵，<span class="arithmatex">\(r\)</span>为相变潜热,有：</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \frac{dp_s}{dT_s} &amp;= \frac{s_{\beta} - s_{\alpha}}{v_{\beta} - v_{\alpha}}  \\
+    &amp;= \frac{r}{T_s (v_{\beta} - v_{\alpha})} \\
+    \end{aligned}
+\]</div>
+<p>该式表示的斜率即为p-T图上对应两相的饱和曲线斜率</p>
+<div class="admonition note">
+<p class="admonition-title">p-T图上水的反常斜率</p>
+<p><font size = 3.5></p>
+<p>对于一般的吸热相变过程是由比体积小的相转变为比体积大的相(<span class="arithmatex">\(v_{\alpha} &lt; v_{\beta}\)</span>),则上述斜率一般为正，但对于某些特殊物质（如 <B>水<B> ）,固态水（冰）在熔融过程中比体积变小，因此水的熔解线斜率为负值
+<img alt="" src="../img/waterline.png" />
+</font></p>
+</div>
+<h3 id="蒸汽定压发生过程">蒸汽定压发生过程<a class="headerlink" href="#蒸汽定压发生过程" title="Permanent link"></a></h3>
+<hr />
+<p>蒸汽在定压加热设备中，经历未饱和液体 ——→ 饱和液体 ——→ 湿饱和蒸汽 ——→ 干饱和蒸汽 ——→ 过热蒸汽的过程，该过程由如以下T-s图表示：</p>
+<p><img alt="" src="../img/T-sline.jpg" /></p>
+<p><B>考试中，重要的参数来源于卷面给出的表格<B>，因此当不清楚工质状态时，先查饱和表中对应的<span class="arithmatex">\(p_s,T_s\)</span>来判断工质的状态，在从过热表/饱和表中查询对应的状态。</p>
+<p>对于处于两相区的湿饱和蒸汽，需要先根据给出的参数来确定其干度(y为某一比参数)：</p>
+<div class="arithmatex">\[
+    x = \frac{m_g}{m_g + m_f} = \frac{y - y'}{y" - y'}
+\]</div>
+<p>通过所得的干度<span class="arithmatex">\(x\)</span>，可得湿蒸汽的其余参数:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    h &amp;= h' + x(h" - h') \\
+    v &amp;= v' + x(v" - v') \\
+    s &amp;= s' + x(s" - s') \\
+    \end{aligned}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">湿蒸汽的绝热过程</p>
+<p><font size = 3.5>
+若不考虑损耗，水蒸气在汽轮机、水泵中的膨胀、压缩过程可以看作可逆绝热过程（定熵过程），如下图，因为<span class="arithmatex">\(q = 0 = \Delta h + w_t\)</span>:</p>
+<div class="arithmatex">\[
+    w_t = - \Delta h = h_1 - h_2    
+\]</div>
+<p><img alt="" src="../img/juereline.jpg" /></p>
+<p>若该过程存在损耗，即不可逆过程存在熵增（如图1-2'过程线）则实际技术功为：</p>
+<div class="arithmatex">\[
+    w_t ' = - \Delta h = h_1 - h_{2'} &lt; w_t 
+\]</div>
+<p>为了反映绝热膨胀的不可逆程度(对外做功有损失，显然<span class="arithmatex">\(w_t'&lt; w_t\)</span>)，我们用汽轮机相对内效率<span class="arithmatex">\(\eta_T\)</span>来表示：</p>
+<div class="arithmatex">\[
+    \eta_T = \frac{w_t '}{w_t} = \frac{h_1 - h_{2'}}{h_1 - h_2}
+\]</div>
+<p>由此可反过来求过程最后的<span class="arithmatex">\(h_{2'}\)</span>，也可得过程的熵产<span class="arithmatex">\(\delta s_g\)</span>与有效能损失<span class="arithmatex">\(i\)</span>,设环境温度为<span class="arithmatex">\(T_0\)</span>:</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    h_{2'} =&amp; h_1 + \eta_T (h_1 - h_2) \\ 
+    \Delta s_g &amp;= s_{2'} - s_2 \\
+    i =&amp; T_0 \Delta s_g = T_0 (s_{2'} - s_2) \\
+    \end{aligned}
+\]</div>
+<p></font></p>
+</div>
+<h2 id="第七章-理想气体混合物与湿空气">第七章 理想气体混合物与湿空气<a class="headerlink" href="#第七章-理想气体混合物与湿空气" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:湿空气温度（干球，湿球，露点，绝热饱和），焓-湿图（h-s）</p>
+<p>🔧计算:含湿量d、相对湿度<span class="arithmatex">\(\phi\)</span>、比焓、常用的湿空气过程（加热/冷却、绝热加湿、冷却去湿...）</p>
+<p></font></p>
+</div>
+<p>湿空气是干空气与水蒸气的混合物，可以将其看作<B>理想气体混合物<B>,适用理想气体的状态方程等，区别是湿空气可能在热力过程中<B>出现凝结水<B></p>
+<h3 id="干球湿球温度绝热饱和温度t_w和露点温度t_d">干球，湿球温度、绝热饱和温度<span class="arithmatex">\(T_w\)</span>和露点温度<span class="arithmatex">\(T_d\)</span><a class="headerlink" href="#干球湿球温度绝热饱和温度t_w和露点温度t_d" title="Permanent link"></a></h3>
+<hr />
+<p>对于湿蒸汽中的水蒸气分压<span class="arithmatex">\(p_v\)</span>，存在一个临界值，即饱和压力<span class="arithmatex">\(p_s(p_v \leq p_s)\)</span>,对应的状态为饱和湿空气，当<span class="arithmatex">\(p_v\)</span>达到<span class="arithmatex">\(p_s\)</span>时，水蒸气便会出现凝结现象，使得湿空气中的水含量减少。</p>
+<ul>
+<li>
+<p>干球温度<span class="arithmatex">\(T\)</span>，指的是使用普通温度计测得的湿空气的温度<span class="arithmatex">\(T\)</span>;</p>
+</li>
+<li>
+<p><B>湿球温度<B>，指的是使用湿纱布包裹的湿球温度计测得的湿纱布中水的温度：若环境湿空气未饱和，则湿纱布上的水将不断蒸发，吸收汽化潜热，使得湿球温度下降与周围空气形成温差，导致环境向湿球传热，进而达到吸放热的一个稳定状态（不是平衡状态），<B>实验可知湿球温度=绝热饱和温度<span class="arithmatex">\(T_w\)</span><B></p>
+</li>
+<li>
+<p>露点温度<span class="arithmatex">\(T_d\)</span>是指当前湿空气中水蒸气分压<span class="arithmatex">\(p_v\)</span>所对应的饱和温度(<span class="arithmatex">\(p_v = p_s\)</span>),对于未饱和空气，需要在<span class="arithmatex">\(p_v\)</span>不变的情况下进行降温(<span class="arithmatex">\(T\)</span>⬇，<span class="arithmatex">\(p_s\)</span>⬇)才能达到，显然<span class="arithmatex">\(T_d &lt; T\)</span>。反之，当水蒸气分压<span class="arithmatex">\(p_v\)</span>增大时，对应的露点温度<span class="arithmatex">\(T_d\)</span>随之增大。</p>
+</li>
+<li>
+<p>绝热饱和温度<span class="arithmatex">\(T_w\)</span>,实在绝热条件下向湿空气中加入水分，并且使之蒸发而到达饱和状态时对应的温度。因为绝热条件下蒸发吸热，导致<span class="arithmatex">\(T_w &lt; T\)</span>。</p>
+</li>
+</ul>
+<p><img alt="" src="../img/twtdt.jpg" /></p>
+<p>综上可知，对于未饱和空气，有<span class="arithmatex">\(T_d &lt; T_w &lt; T\)</span>；对于饱和空气，则<span class="arithmatex">\(T_d = T_w = T\)</span>。</p>
+<h3 id="湿空气的重要参数以干空气为单位">湿空气的重要参数（以干空气为单位<a class="headerlink" href="#湿空气的重要参数以干空气为单位" title="Permanent link"></a></h3>
+<hr />
+<p>相对湿度<span class="arithmatex">\(\phi\)</span>是湿空气中水蒸气分压力<span class="arithmatex">\(p_v\)</span>与该温度对应的饱和压力<span class="arithmatex">\(p_s\)</span>之比,能够反映湿空气的干湿程度：</p>
+<div class="arithmatex">\[
+    \phi = \frac{p_v}{p_s}
+\]</div>
+<p>含湿量<span class="arithmatex">\(d(kg/kg(A))\)</span>是单位质量干空气中所含有的水蒸气质量：</p>
+<div class="arithmatex">\[
+    d = \frac{m_v}{m_a} = 0.622\frac{p_v}{p - p_v} = 0.622\frac{\phi p_s}{p - \phi p_s} 
+\]</div>
+<p>湿空气的比焓<span class="arithmatex">\(h=\)</span>干空气焓与湿空气焓之和,是相对于单位质量的干空气的比参数,因此要在式子中分别体现干空气的焓(<span class="arithmatex">\(h_a\)</span>)与湿空气焓(<span class="arithmatex">\(dh_v\)</span>):</p>
+<div class="arithmatex">\[
+    h = h_a + d h_v 
+\]</div>
+<blockquote>
+<p>考试常用<span class="arithmatex">\({h}_{kJ/kg} = 1.005{t}_{℃} + d (2501 + 1.86{t}_{℃}) kJ/kg(A)\)</span>,注意代入该式的温度<span class="arithmatex">\(t\)</span>单位为摄氏度</p>
+</blockquote>
+<h3 id="焓湿图h-s">焓湿图（h-s）<a class="headerlink" href="#焓湿图h-s" title="Permanent link"></a></h3>
+<hr />
+<blockquote>
+<p>注意:h-s图需要在确定总压力<span class="arithmatex">\(p\)</span>不变的情况下才能画出</p>
+</blockquote>
+<p>在分析解题思路时，借助焓湿图可以清楚地表示湿空气的状态变化，是绝对需要清楚掌握的内容（对湿热比<span class="arithmatex">\(\epsilon\)</span>的考察相对较少）</p>
+<p><img alt="" src="../img/hstu.png" /></p>
+<p>从上图可知：</p>
+<ul>
+<li>
+<p>定d线与一个<span class="arithmatex">\(p_v\)</span>值对应，而<span class="arithmatex">\(t_d\)</span>仅确定与<span class="arithmatex">\(p_v\)</span>,因此定含湿量线与定<span class="arithmatex">\(p_v\)</span>线、定露点温度<span class="arithmatex">\(t_d\)</span>线相互对应；</p>
+</li>
+<li>
+<p>定h线与<span class="arithmatex">\(\phi=100%\)</span>的交点能确定该焓值下的绝热饱和温度<span class="arithmatex">\(t_w\)</span>，因此定焓线与定绝热饱和温度<span class="arithmatex">\(t_w\)</span>线一一对应；</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">加热/冷却过程</p>
+<p><font size = 3.5>
+加热/冷却过程为定含湿量过程，沿定d线进行，加热时朝焓增方向进行（向上），反之向下：</p>
+<p><img alt="" src="../img/hstu1.png" /></p>
+<p>对这个过程加入/放出的热量有：</p>
+<div class="arithmatex">\[
+    q = \Delta h = h_2 - h_1
+\]</div>
+<p></font></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">绝热加湿过程</p>
+<p><font size = 3.5>
+在绝热条件下向空气加入水并且蒸发，吸收汽化潜热使得温度降低，该过程可以近似沿着定h线进行（向<span class="arithmatex">\(\phi=100%\)</span>线靠近）：</p>
+<p><img alt="" src="../img/hstu2.png" /></p>
+<p>对这个过程的能量守恒式有：</p>
+<div class="arithmatex">\[
+    h_1 + (d_2 - d_1) h_w = h_2
+\]</div>
+<p>其中<span class="arithmatex">\(h_w\)</span>为加入时温度的水焓
+</font></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">冷却去湿过程</p>
+<p><font size = 3.5>
+湿空气线冷却到露点<span class="arithmatex">\(T_d\)</span>后继续冷却析出水，该过程先沿着定d线再沿着<span class="arithmatex">\(\phi=100%\)</span>线向下：</p>
+<p><img alt="" src="../img/hstu3.png" /></p>
+<p>对这个过程的能量守恒式有：</p>
+<div class="arithmatex">\[
+    q = h_1 - (h_2 + (d_1 - d_2)h_w)
+\]</div>
+<p>其中<span class="arithmatex">\(h_w\)</span>为过程终点温度的水焓
+</font></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">干湿球温度计测相对湿度<span class="arithmatex">\(\phi\)</span>的工作原理</p>
+<p><font size = 3.5>
+假设一个绝热饱和过程，通过加湿由不饱和状态1→饱和状态2，有：</p>
+<div class="arithmatex">\[
+    h_{a,1} + d_1 h_{v,1} + (d_2 - d_1)h_w = h_{a,2} + d_1 h_{v,2}
+\]</div>
+<p>整理可得：</p>
+<div class="arithmatex">\[
+    d_1 = \frac{(h_{a,2} - h_{a,1}) + d_2 (h_{v,2} - h_w)}{h_{v,1} - h_w}
+\]</div>
+<p>若加入的水分温度为<span class="arithmatex">\(T_2\)</span>，h_{v,2}为饱和温度<span class="arithmatex">\(T_2\)</span>下饱和蒸汽的比焓，则由<span class="arithmatex">\(h_{v,2} - h_w = r\)</span>为$T_2温度下的汽化潜热，通过代换可得：</p>
+<div class="arithmatex">\[
+    d_1 = \frac{c_{p,a}(T_{2} - T_{1}) + d_2 r}{h_{v,1} - h_w}
+\]</div>
+<p>由于湿球温度计可测出绝热饱和温度<span class="arithmatex">\(T_2\)</span>，可得出对应的<span class="arithmatex">\(p_s{T_2}\)</span>与<span class="arithmatex">\(d_2\)</span>以及饱和水焓<span class="arithmatex">\(h_w\)</span>，由<span class="arithmatex">\(T_1\)</span>可确定<span class="arithmatex">\(h_{v,1}=2501+1.86t_1\)</span>,因此确定了上式右侧的各个量，有：</p>
+<div class="arithmatex">\[
+    0.622\frac{\phi p_s(T_1)}{p - \phi p_s(T_1)} = \frac{c_{p,a}(T_{2} - T_{1}) + d_2 r}{h_{v,1} - h_w} = f(T_1, T_2)
+\]</div>
+<p>有上式整理可知相对湿度<span class="arithmatex">\(\phi = f(T_1, T_2)\)</span>可以由干球温度<span class="arithmatex">\(T_1\)</span>与湿球温度<span class="arithmatex">\(T_2\)</span>确定，这便是干湿球温度计的工作原理。</p>
+<p></font></p>
+</div>
+<h2 id="第八章-理想气体的热力过程待补">第八章 理想气体的热力过程(待补)<a class="headerlink" href="#第八章-理想气体的热力过程待补" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:四个经典热力过程以及对应图线，理想气体多变过程</p>
+<p>🔧计算:热力过程的焓值、熵、热力学能的变化量</p>
+<p></font></p>
+</div>
+<h2 id="第九章-气体与蒸汽的流动待补">第九章 气体与蒸汽的流动（待补）<a class="headerlink" href="#第九章-气体与蒸汽的流动待补" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:</p>
+<p>🔧计算:</p>
+<p></font></p>
+</div>
+<h2 id="第十章-气体的压缩">第十章 气体的压缩<a class="headerlink" href="#第十章-气体的压缩" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:压气机的工作原理、增压比<span class="arithmatex">\(\pi\)</span>、绝热压缩、多变压缩、定温压缩的特点，余隙容积</p>
+<p>🔧计算:理想气体压缩过程的热力学参数分析（特点与优势？），最佳中间压力</p>
+<p></font></p>
+</div>
+<h3 id="多级压缩中间冷却">多级压缩，中间冷却<a class="headerlink" href="#多级压缩中间冷却" title="Permanent link"></a></h3>
+<hr />
+<p>多级压缩，中间冷却通过中间冷却器进行定压冷却，冷却到进气温度后再送入高压气缸，到终压后排出气缸。</p>
+<p><img alt="" src="../img/p2p1.jpg" /></p>
+<p>从上图可以看出，当初终态压力相同时（即增压比<span class="arithmatex">\(\pi = \frac{p_4}{p_1}\)</span>相同）,两级压气机耗功量更少，所节省的功量等于面积2-3-4-5-2，并且从T-s图中可以看出，因为多了中间冷却的步骤，多级压缩的终态排气温度将更小。进一步增加压缩级数，可以使耗功量更加小，即使得压缩过程更加接近于定温压缩。但若压缩级数过多，会使得设备过于复杂，并且增加过程中的不可逆损耗，因此通常使用2-4级压缩。</p>
+<p>如上图二级压缩机，有<span class="arithmatex">\(T_1=T_3, p_2=p_3\)</span>,即<span class="arithmatex">\(p_1 v_1 = p_3 v_3\)</span>，总耗功量为：</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    w_{t} =&amp; w_t^1 + w_t^2 = \frac{\gamma}{\gamma - 1}p_1 v_1 [1- (\frac{p_2}{p_1})^{\frac{\gamma-1}{\gamma}}] + \frac{\gamma}{\gamma - 1}p_3 v_3 [1- (\frac{p_4}{p_3})^{\frac{\gamma-1}{\gamma}}]   \\
+    =&amp; \frac{\gamma}{\gamma - 1}p_1 v_1 [2- (\frac{p_2}{p_1})^{\frac{\gamma-1}{\gamma}} - (\frac{p_4}{p_2})^{\frac{\gamma-1}{\gamma}}]  \\
+    \end{aligned}
+\]</div>
+<p>在初态<span class="arithmatex">\(p_1,v_1\)</span>一定，终态<span class="arithmatex">\(p_4\)</span>确定时，压缩过程的耗功量取决于中间压力<span class="arithmatex">\(p_2\)</span>，因此需要寻找一个最佳中间压力来使得耗功量达到最小，可得：</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \frac{p_2}{p_1} =&amp; \frac{p_4}{p_2} \\
+    \pi_1 =&amp; \pi_2 \\
+    p_2 =&amp; \sqrt{p_1 p_4} \\
+    \end{aligned}
+\]</div>
+<p>即当各级增压比<span class="arithmatex">\(\pi\)</span>相同时，总耗功量达到最小,<span class="arithmatex">\(w_t = 2 \frac{\gamma}{\gamma - 1}p_1 v_1 [1- (\frac{p_2}{p_1})^{\frac{\gamma-1}{\gamma}}]\)</span></p>
+<p>对于中间压缩过程为多变过程的，则有：</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    w_{t，n} =&amp; 2 \frac{n}{n - 1}p_1 v_1 [1- (\frac{p_2}{p_1})^{\frac{n-1}{n}}] \\
+    q_{n} =&amp; 2 \frac{n-\gamma}{n-1} c_v (T_2 - T_1) \\
+    \end{aligned}
+\]</div>
+<p>同理对于z级压缩过程，最佳增压比<span class="arithmatex">\(\pi_z = \sqrt[z]{\pi_{\text{总增压比}}}\)</span></p>
+<h2 id="压气机绝热效率eta"><B>压气机绝热效率<span class="arithmatex">\(\eta\)</span><B><a class="headerlink" href="#压气机绝热效率eta" title="Permanent link"></a></h2>
+<blockquote>
+<p>待补</p>
+</blockquote>
+<h2 id="余隙容积"><B>余隙容积<B><a class="headerlink" href="#余隙容积" title="Permanent link"></a></h2>
+<blockquote>
+<p>待补</p>
+</blockquote>
+<h2 id="第十一章-蒸汽动力循环">第十一章 蒸汽动力循环<a class="headerlink" href="#第十一章-蒸汽动力循环" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:蒸汽卡诺循环过程，朗肯循环（T-s图），再热循环、回热循环（两种不同的回热装置），混合式循环</p>
+<p>🔧计算:朗肯循环，再热循环、回热循环过程分析</p>
+<p></font></p>
+</div>
+<h3 id="蒸汽卡诺循环">蒸汽卡诺循环<a class="headerlink" href="#蒸汽卡诺循环" title="Permanent link"></a></h3>
+<hr />
+<p>蒸汽卡诺循环利用了湿饱和蒸汽定温过程也是定压过程的性质，来实现卡诺循环中的定温吸、放热过程：</p>
+<p><img alt="" src="../img/zhengqikanuo.png" /></p>
+<p>在这个过程中，3-4过程对低干度的湿蒸汽进行压缩的过程难以实现，对水分含量较高的混合物进行压缩耗功巨大，并且造成的液击会损耗压缩机，造成不利影响。并且由于水的临界温度较低，使得过程中的平均吸热温度较低，因此蒸汽卡诺循环的热效率有巨大的限制</p>
+<h3 id="朗肯循环">朗肯循环<a class="headerlink" href="#朗肯循环" title="Permanent link"></a></h3>
+<hr />
+<p>朗肯循环由锅炉（定压加热）、汽轮机（绝热膨胀）、冷凝器（定压吸热）、水泵（绝热压缩）四个部分组成</p>
+<p><img alt="" src="../img/langken1.jpg" /></p>
+<p>对朗肯循环进行分析：</p>
+<p>循环吸热（4 → 1）：<span class="arithmatex">\(q_1 = h_1 - h_4\)</span></p>
+<p>循环放热（2 → 3）：<span class="arithmatex">\(q_2 = h_2 - h_3\)</span></p>
+<p>对外做功（汽轮机，1 → 2）： <span class="arithmatex">\(w_T = h_1 - h_2\)</span></p>
+<p>耗功（泵功，4 → 3）： <span class="arithmatex">\(w_p = h_4 - h_3\)</span></p>
+<p>由上可得朗肯循环的效率：</p>
+<div class="arithmatex">\[
+    \eta_t = \frac{w_T - w_p}{q_1} = \frac{h_1 - h_2 + h_3 - h_4}{h_1 - h_4} \stackrel{\text{忽略泵功}}{=} \frac{h_1 - h_2}{h_1 - h_4}
+\]</div>
+<p>通过对朗肯循环的分析可知，提高初态压力<span class="arithmatex">\(p_1\)</span>,初温度<span class="arithmatex">\(T_1\)</span>，能够提高循环平均吸热温度；降低终态压力<span class="arithmatex">\(p_2\)</span>，则可以降低循环平均放热温度，进而使得循环热效率提升。</p>
+<blockquote>
+<p>初温<span class="arithmatex">\(T_1\)</span>的提高受限于设备材料的允许工作最高温度，而初态压力<span class="arithmatex">\(p_1\)</span>的提高会降低排汽干度，造成液击效应损伤汽轮机，甚至影响安全，因此可以采用'再热'与'回热'的方法来提高循环的效率。</p>
+</blockquote>
+<h3 id="再热循环">再热循环<a class="headerlink" href="#再热循环" title="Permanent link"></a></h3>
+<hr />
+<p>再热循环在朗肯循坏的基础上，将汽轮机膨胀过程进行到某一点时，将气体导入再热器进行再次加热（定压升温），而后再回到汽轮机中进行绝热压缩：</p>
+<p><img alt="" src="../img/zairexunhuan1.png" /></p>
+<p>对再热循环的分析与朗肯循环一致，仅分别多了一段加热与作功过程：</p>
+<p>循环吸热：<span class="arithmatex">\(q_1 = (h_1 - h_4) + (h_A - h_B)\)</span></p>
+<p>循环放热：<span class="arithmatex">\(q_2 = h_2 - h_3\)</span></p>
+<p>对外做功： <span class="arithmatex">\(w_T = (h_1 - h_B) + (h_A + h_2)\)</span></p>
+<p>可得再热循环的效率：</p>
+<div class="arithmatex">\[
+    \eta_t = \frac{w_T - w_p}{q_1} = \frac{(h_1 - h_B) + (h_A - h_2)}{(h_1 - h_4) + (h_A - h_B)}
+\]</div>
+<p>通过再热器，循环提高了乏汽干度（2状态点），并且提高了平均加热温度，使得循环热效应提升。</p>
+<blockquote>
+<p>但再热的次数不宜过多，虽然能够提升热效率，但同时大大增加了设备复杂度，运行管理难度增加，也增加了摩擦损耗，反而带来诸多不利。因此实际过程中一般不超过两次再热。</p>
+</blockquote>
+<h3 id="回热循环">回热循环<a class="headerlink" href="#回热循环" title="Permanent link"></a></h3>
+<hr />
+<p>回热循环是在朗肯循坏的基础上，通过抽汽回热的方法加热给水，增大平均加热温度来提升热效率。</p>
+<p><img alt="" src="../img/huire1.jpg" /></p>
+<p>回热加热装置分为混合式与表面式，上图为混合式回热循环装置示意图，根据能量守恒：</p>
+<div class="arithmatex">\[
+    \alpha h_{o1} + (1 - \alpha)h_4 = h_{o1'}
+\]</div>
+<p>可得抽汽系数：</p>
+<div class="arithmatex">\[
+    \alpha = \frac{h_{o1'} - h_4}{h_{o1} - h_4}
+\]</div>
+<p>进而可得循环作功以及热效率：</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    w_t = h_1 - \alpha h_{o1} - (1 - \alpha) h_4 \\
+    \eta_T = \frac{h_1 - \alpha h_{o1} - (1 - \alpha) h_4}{h_1 - h_5} \\
+    \end{aligned}
+\]</div>
+<p>另一种回热方式为表面式，即抽汽不与冷凝水直接接触，而仅通过换热器交换热量,若将上图装置中的回热器换成表面式，则：</p>
+<div class="arithmatex">\[
+    \alpha h_{o1} + (1 - \alpha)h_4 = \alpha h_{o1'} + (1 - \alpha)h_{o1'}
+\]</div>
+<p>看似与上式没有区别，但因为是表面式，实际上向后输出的只有<span class="arithmatex">\((1 - \alpha)h_{o1'}\)</span>这一部分，另一部分<span class="arithmatex">\(\alpha h_{o1'}\)</span>流回冷凝器。</p>
+<h2 id="第十二章-气体动力循环">第十二章 气体动力循环<a class="headerlink" href="#第十二章-气体动力循环" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:燃气轮机的布莱顿循环过程分析</p>
+<p>🔧计算:定压加热循环、定容加热循环、混合加热循环的热效率以及对比分析</p>
+<p></font></p>
+</div>
+<h3 id="定容加热循环otto循环">定容加热循环（otto循环）<a class="headerlink" href="#定容加热循环otto循环" title="Permanent link"></a></h3>
+<hr />
+<p><img alt="" src="../img/otto.jpg" /></p>
+<p>引入压缩比<span class="arithmatex">\(\epsilon\)</span>: 压缩前的气缸容积与压缩后的气缸容积之比,即<span class="arithmatex">\(\epsilon = \frac{v_1}{v_2}\)</span></p>
+<p>循环吸热量：<span class="arithmatex">\(q_1 = c_v(T_3 - T_2)\)</span></p>
+<p>循环放热量：<span class="arithmatex">\(q_2 = c_v(T_4 - T_1)\)</span></p>
+<p>净功: <span class="arithmatex">\(w_net = q_1 - q_2\)</span></p>
+<p>热效率<span class="arithmatex">\(\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_4 - T_1}{T_3 - T_2} = 1 - \frac{T_1}{T_2} = 1 - (\frac{v_2}{v_1})^{\gamma - 1} = 1 - \frac{1}{\epsilon^{\gamma - 1}}\)</span></p>
+<p>由此<span class="arithmatex">\(\eta_t = 1 - \frac{1}{\epsilon^{\gamma - 1}}\)</span>可知定容加热循环的效率取决于压缩比<span class="arithmatex">\(\epsilon\)</span>，随着压缩比的增大而升高。</p>
+<h3 id="定压加热循环布雷顿循环">定压加热循环（布雷顿循环）<a class="headerlink" href="#定压加热循环布雷顿循环" title="Permanent link"></a></h3>
+<hr />
+<p><img alt="" src="../img/bulaidun.jpg" /></p>
+<p>引入增压比<span class="arithmatex">\(\pi = \frac{p_2}{p_1}\)</span></p>
+<p>循环吸热量：<span class="arithmatex">\(q_1 = c_p(T_3 - T_2)\)</span></p>
+<p>循环放热量：<span class="arithmatex">\(q_2 = c_p(T_4 - T_1)\)</span></p>
+<p>净功: <span class="arithmatex">\(w_net = q_1 - q_2\)</span></p>
+<p>热效率<span class="arithmatex">\(\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_4 - T_1}{T_3 - T_2} = 1 - \frac{T_1}{T_2} = 1 - (\frac{p_1}{p_2})^{\frac{\gamma - 1}{\gamma}} = 1 - \frac{1}{\pi^{\frac{\gamma - 1}{\gamma}}}\)</span></p>
+<p>由此<span class="arithmatex">\(\eta_t = 1 - \frac{1}{\pi^{\frac{\gamma - 1}{\gamma}}}\)</span>可知定压加热循环的效率取决于增压比<span class="arithmatex">\(\pi\)</span>，随着增压比的增大而升高。</p>
+<h3 id="混合加热理想循环">混合加热理想循环<a class="headerlink" href="#混合加热理想循环" title="Permanent link"></a></h3>
+<hr />
+<p><img alt="" src="../img/hunhe1.jpg" /></p>
+<p>循环吸热量：<span class="arithmatex">\(q_1 = c_v(T_3 - T_2) + c_p(T_4 - T_3)\)</span></p>
+<p>循环放热量：<span class="arithmatex">\(q_2 = c_v(T_5 - T_1)\)</span></p>
+<p>混合循环热效率：<span class="arithmatex">\(\eta_t = 1 - \frac{q_2}{q_1} = 1 - \frac{T_5-T_1}{(T_3 - T_2) + \gamma (T_4 - T_3)}  = 1 - \frac{\lambda \rho^\gamma - 1}{\epsilon^{\gamma-1} [(\lambda-1) + \gamma \lambda (\rho - 1)] }\)</span></p>
+<p>可知，混合加热理想循环热效率随着压缩比<span class="arithmatex">\(\epsilon=\frac{v_1}{v_2}\)</span>、定容升压比<span class="arithmatex">\(\lambda=\frac{p_3}{p_2}\)</span>的增大而增大，随着预胀比<span class="arithmatex">\(\rho=\frac{v_4}{v_3}\)</span>的增大而减小。</p>
+<h2 id="第十三章-制冷循环">第十三章 制冷循环<a class="headerlink" href="#第十三章-制冷循环" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:制冷效率COP、热泵效率、制冷循环分析</p>
+<p>🔧计算:逆卡诺循环、空气压缩循环、蒸汽压缩循环的过程分析与效率比较</p>
+<p></font></p>
+</div>
+<p>制冷循环是一种逆向循环，其作用在于将低温热源的热量转移到高温热源上去，根据热力学第二定律，这个过程需要额外耗费能量作为代价才能进行。</p>
+<ul>
+<li>
+<p>若循环的目的在于从低温物体（冷库）取出热量，则为<B>制冷循环<B></p>
+</li>
+<li>
+<p>若循环的目的在于向高温物体提供热量（供暖），则为<B>热泵循环<B></p>
+</li>
+</ul>
+<p>为了衡量制冷循环/热泵循环的性能，我们使用COP（Coefficient Of Performance）来表示。（考试主要考察制冷循环）</p>
+<h3 id="逆卡诺循环">逆卡诺循环<a class="headerlink" href="#逆卡诺循环" title="Permanent link"></a></h3>
+<hr />
+<p><img alt="" src="../img/nixiangkanuo.jpg" /></p>
+<p>逆卡诺循环是同温限间（环境温度-冷库温度）的制冷系数最高的循环，通常情况下制冷循环是以环境作为高温热源(<span class="arithmatex">\(T_1 = T_{Ⅰ}\)</span>)，冷库温度为<span class="arithmatex">\(T_2=T_{Ⅱ}\)</span>，易得逆卡诺循环的制冷系数：</p>
+<div class="arithmatex">\[
+    \epsilon = \frac{T_2}{T_1 - T_2} = \frac{T_{Ⅱ}}{T_{Ⅰ} - T_{Ⅱ}}  
+\]</div>
+<p>即在一定环境温度下，冷库温度<span class="arithmatex">\(T_{Ⅱ}\)</span>越大，<span class="arithmatex">\(\epsilon\)</span>越大;冷库温度<span class="arithmatex">\(T_{Ⅱ}\)</span>越小，则<span class="arithmatex">\(\epsilon\)</span>就越小。</p>
+<h3 id="空气压缩制冷循环">空气压缩制冷循环<a class="headerlink" href="#空气压缩制冷循环" title="Permanent link"></a></h3>
+<hr />
+<p>空气压缩制冷循环可视作布雷顿循环（第12章定压加热循环）的逆循环</p>
+<p><img alt="" src="../img/kongqizhileng.jpg" /></p>
+<p>循环从冷库中的吸热量：<span class="arithmatex">\(q_1 = c_p(T_1 - T_4)\)</span></p>
+<p>循环向高温热源的放热量：<span class="arithmatex">\(q_2 = c_p(T_2 - T_3)\)</span></p>
+<p>循环所耗的净功： <span class="arithmatex">\(w_{net} = q_2 - q_1 = c_p(T_2 - T_3) - c_p(T_1 - T_4)\)</span></p>
+<p>则空气压缩循环的制冷系数：</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \epsilon =&amp; \frac{q_1}{w_{net}} = \frac{T_1 - T_4}{(T_2 - T_3) - (T_1 - T_4)} \\
+    =&amp; \frac{1}{\frac{T_2 - T_3}{T_1 - T_4} - 1} = \frac{1}{\frac{T_2}{T_1} - 1} = \frac{T_1}{T_2-T_1} = \frac{1}{\pi^{\frac{\gamma-1}{\gamma}} - 1}\\
+    \end{aligned}
+\]</div>
+<p>上式可知，增压比<span class="arithmatex">\(\pi\)</span>越小，空气压缩循环制冷系数越大，但同时单位质量的工质制冷量也减小，因此<span class="arithmatex">\(\pi\)</span>不能一味减小。</p>
+<p>与逆卡诺循环对比，空气压缩制冷循环的<span class="arithmatex">\(\epsilon = \frac{T_1}{T_2-T_1}\)</span>,而设备冷库能达到的低温<span class="arithmatex">\(T_{Ⅱ} = T_1\)</span>,环境温度为<span class="arithmatex">\(T_{Ⅰ}=T_3\)</span>,有<span class="arithmatex">\(\epsilon_c = \frac{T_{Ⅱ}}{T_{Ⅰ}-T_{Ⅱ}}\)</span>，</p>
+<p>同条件的逆卡诺循环效率更高，<span class="arithmatex">\(\epsilon_c &gt; \epsilon\)</span>（显然）</p>
+<h3 id="蒸汽压缩制冷循环">蒸汽压缩制冷循环<a class="headerlink" href="#蒸汽压缩制冷循环" title="Permanent link"></a></h3>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">空气制冷循环的缺陷</p>
+<p><font size = 3.4></p>
+<ul>
+<li>
+<p>定压吸放热过程与逆卡诺循环的定温过程相差较大，因而降低了经济性</p>
+</li>
+<li>
+<p>空气作为工质的比定压热容较小，循环的制冷量也较小</p>
+</li>
+</ul>
+<p>因此为了实现定温吸放热过程，我们利用湿蒸汽的性质来完成循环</p>
+<p></font></p>
+</div>
+<p><img alt="" src="../img/shizhengqizhileng.png" /></p>
+<p>蒸汽压缩制冷装置由蒸发器、压缩机、冷凝器与节流阀（代替膨胀机）组成，由冷凝器出来的饱和液体（状态1）通过节流阀节流减压，由于在两相共存区的绝热节流系数<span class="arithmatex">\(\mu_J &gt; 0\)</span>，使得节流后的温度下降并且熵增，出来的低干度湿蒸汽进入蒸发器定压吸热，干度增加成为高干度湿蒸汽，进入压缩机中进行绝热压缩，最后在冷凝器中放热凝结为饱和液体，完成闭环。</p>
+<p>蒸汽压缩制冷过程比较简单，压缩机耗功量：<span class="arithmatex">\(w = h_4 - h_3\)</span></p>
+<p>从冷藏库吸热：<span class="arithmatex">\(q_2 = h_3 - h_2\)</span></p>
+<p>可得蒸汽压缩循环的制冷系数:</p>
+<div class="arithmatex">\[
+    \epsilon = \frac{q_2}{w} = \frac{h_3 - h_2}{h_4 - h_3}
+\]</div>
+<p>计算可知，蒸汽压缩循环的制冷系数比空气压缩循环高得多，更加接近逆卡诺循环的制冷系数</p>
+<div class="admonition note">
+<p class="admonition-title">为什么使用节流阀？</p>
+<p><font size = 3.4>
+虽然使用节流阀会损失一部分的制冷量，但节省了一台膨胀机的使用，更加经济，并且节流阀设备简单可靠，通过控制其开度就能方便地调节节流后的温度与压力，以实现冷藏库温度的连续调节
+</font></p>
+</div>
+<h2 id="第十四章-化学反应系统的热力学原理待补">第十四章 化学反应系统的热力学原理（待补）<a class="headerlink" href="#第十四章-化学反应系统的热力学原理待补" title="Permanent link"></a></h2>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">知识梳理</p>
+<p><font size = 3.4></p>
+<p>🌟概念:化学翻译过程的反应热、热效应、热值、生成热的定义。赫斯定律和基尔霍夫定律的表述</p>
+<p>🔧计算:标准热效应、标准燃烧焓、标准生成焓、赫斯定律的运用、基尔霍夫定律的运用，理论燃烧温度</p>
+<p></font></p>
+</div>
+<p>待续未完.......😞</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/czy1101kksk" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://space.bilibili.com/35052889" target="_blank" rel="noopener" title="space.bilibili.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<532651226@qq.com>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>

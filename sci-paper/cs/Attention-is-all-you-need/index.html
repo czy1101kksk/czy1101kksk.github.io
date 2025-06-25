@@ -1,0 +1,2633 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="BRIGHT_CZY">
+      
+      
+        <link rel="canonical" href="https://czy1101kksk.github.io/sci-paper/cs/Attention-is-all-you-need/">
+      
+      
+        <link rel="prev" href="../EfficientNet/">
+      
+      
+        <link rel="next" href="../Bert/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Attention is all you need - BRIGHT_CZY's site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#attention-is-all-you-need" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="BRIGHT_CZY&#39;s site" class="md-header__button md-logo" aria-label="BRIGHT_CZY's site" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/122161543?s=400&u=203bce014a72777aa55f7a4d63a2c98df3bac6e2&v=4" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BRIGHT_CZY's site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Attention is all you need
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0 9.821 9.821 0 0 0-17.64 0"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/czy1101kksk/czy1101kksk.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BRIGHT_CZY/notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="BRIGHT_CZY&#39;s site" class="md-nav__button md-logo" aria-label="BRIGHT_CZY's site" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/122161543?s=400&u=203bce014a72777aa55f7a4d63a2c98df3bac6e2&v=4" alt="logo">
+
+    </a>
+    BRIGHT_CZY's site
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/czy1101kksk/czy1101kksk.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BRIGHT_CZY/notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🎆 主页
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            🎆 主页
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🎆 主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📜 论文阅读
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            📜 论文阅读
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🍥 论文阅读主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DL论文
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            DL论文
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EfficientNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EfficientNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Attention is all you need
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Attention is all you need
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modulepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module.py
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sublayerspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      SubLayers.py
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Models.py
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layerspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layers.py
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optim.py
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MAE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MAE：Masked Autoencoders Are Scalable Vision Learners
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ViT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ViT：An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Distilling-the-knowledge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Distilling the Knowledge in a Neural Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Noisy-students/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Self-training with Noisy Student improves ImageNet classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MoE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GAN：Generative Adversarial Nets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ComputationalPhysics/Transovler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transolver: A Fast Transformer Solver for PDEs on General Geometries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ComputationalPhysics/AeroGTO/aerogto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AeroGTO:An Efficient Graph-Transformer Operator for Learning Large-Scale Aerodynamics of 3D Vehicle Geometries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ComputationalPhysics/DeepONet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DeepONet: Learning nonlinear operators via DeepONet based on the universal approximation theorem of operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ComputationalPhysics/FNO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FNO: Fourier Neural Operator for Parametric Partial Differential Equations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ComputationalPhysics/Transovler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transolver: A Fast Transformer Solver for PDEs on General Geometries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ComputationalPhysics/Transolver%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transolver++: An Accurate Neural Solver for PDEs on Million-Scale Geometries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📰综合能源系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            📰综合能源系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load-Forecasting/%5BApplied%20Energy%5DA%20novel%20short-term%20multi-energy%20load%20forecasting%20method%20for%20integrated%20energy%20system%20based%20on%20feature%20separation-fusion%20technology%20and%20improved%20CNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    [Applied Energy]A novel short-term multi-energy load forecasting method for integrated energy system based on feature separation-fusion technology and improved CNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    👨‍🎓 学习笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            👨‍🎓 学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../study-cs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🛠 课程学习主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📑专业课程笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            📑专业课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../energy/Engineering_Thermodynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    工程热力学(甲)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/Python-is-important/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔗Python校内课程笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../energy/heat_transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    传热学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/cs224n-notebook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🛣[Deep Learning]Stanford CS224n:Natural Language Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/cs231n/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔭Stanford CS231n:Deep Learning for Computer Vision
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/cs224w/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔭Stanford CS224w:Machine Learning with Graphs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/d2l/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔭Dive into Deeplearing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/python-something/fluent-python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🛣 《流畅的Python》
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📊 杂项
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            📊 杂项
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/FFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    快速傅里叶变换（FFT）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/RBF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    径向基函数(Radial basis function)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/GumbelSoftmax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gumbel-Softmax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/TensorCalculus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    张量分析：Tensor Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/HigherAlgebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    高等代数：Higher Algebra 个人笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ✍ 施工中
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ✍ 施工中
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wait-for-me/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    施工中.....
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modulepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module.py
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sublayerspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      SubLayers.py
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Models.py
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layerspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layers.py
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optim.py
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="attention-is-all-you-need">Attention is all you need<a class="headerlink" href="#attention-is-all-you-need" title="Permanent link"></a></h1>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<div class="admonition info">
+<p class="admonition-title">相关信息</p>
+<p><font size = 3.5></p>
+<p>论文地址：<a href="https://arxiv.org/abs/1706.03762">Attention is all you need</a></p>
+<p>代码（Pytorch版）:<a href="https://github.com/jadore801120/attention-is-all-you-need-pytorch/tree/master?tab=readme-ov-file">https://github.com/jadore801120/attention-is-all-you-need-pytorch/tree/master?tab=readme-ov-file</a></p>
+<p>资源：<a href="https://www.bilibili.com/video/BV1Nx421S7qY">【3Blue1Brown】Visualizing Attention, a Transformer's Heart</a></p>
+<p>本页内容是对<code>Transformers</code>的文章总结/代码阅读(侧重代码学习)</p>
+<p>必读论文，懂的都懂，不懂的快去看。</p>
+<p></font></p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">文章摘要</p>
+<p><font size = 3.5></p>
+<p>在序列建模和转换问题中，由于RNN、LSTM和门控循环神经存在各种问题，如<B>RNN难以建立长距离依赖关系，LSTM无法并行化学习</B>等，故论文提出了一种基于attention机制并完全避免循环和卷积的简单的网络架构Transformer。</p>
+<p></font></p>
+</div>
+<p><img alt="" src="../img/atten.png" /></p>
+<h3 id="modulepy"><code>Module.py</code><a class="headerlink" href="#modulepy" title="Permanent link"></a></h3>
+<hr />
+<ul>
+<li>
+<p>缩放点积注意力<code>ScaledDotProductAttention</code></p>
+<div class="arithmatex">\[
+Attention(Q, K, V) = Softmax(\frac{QK^T}{\sqrt{d_k}})V
+\]</div>
+<p><img alt="" src="../img/atten1.png" /></p>
+<p>假设<span class="arithmatex">\(Q,K\)</span>的维度为<span class="arithmatex">\((N,d_k)\)</span>，<span class="arithmatex">\(V\)</span>的维度为<span class="arithmatex">\((N,d_v)\)</span>，其中<span class="arithmatex">\(Q,K,V\)</span>代表Query， Key， Value， <span class="arithmatex">\(d_k\)</span>代表Key的维度，除以<span class="arithmatex">\(\sqrt{d_k}\)</span>是为了防止点积过大，导致梯度消失。其中<span class="arithmatex">\(Softmax(QK^T)\)</span>得到的维度为<span class="arithmatex">\((N,N)\)</span>。</p>
+<p><span class="arithmatex">\(Q\)</span>代表query，是当前要处理的词对应的向量，<span class="arithmatex">\(K\)</span>代表key，通过计算<span class="arithmatex">\(Q\)</span>与<span class="arithmatex">\(K\)</span>的关系可以得到当前需要对其他词的关注度。</p>
+<p><img alt="" src="../img/atten2.png" /></p>
+<p>点积注意力即是通过<span class="arithmatex">\(Q\)</span>与<span class="arithmatex">\(K\)</span>的点积相乘计算了相似度，其<code>Softmax</code>分数决定了在该位置的注意力权重，即对其他词的注意力程度，后与<span class="arithmatex">\(V\)</span>相乘得到结果。</p>
+<blockquote>
+<p>在普通的<code>Attention</code>中，<span class="arithmatex">\(K,V\)</span>对应编码器输出，<span class="arithmatex">\(Q\)</span>对应解码器当前的输入。<code>Self-Attention</code>中，<span class="arithmatex">\(Q,K,V\)</span>都对应于当前的输入<span class="arithmatex">\(X\)</span>。</p>
+</blockquote>
+<p><img alt="" src="../img/atten3.png" /></p>
+<p><details> 
+<summary>Code</summary></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ScaledDotProductAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="sd">&#39;&#39;&#39; Scaled Dot-Product Attention &#39;&#39;&#39;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">attn_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">temperature</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">attn_dropout</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>        <span class="n">attn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">q</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span> <span class="n">k</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>        <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>            <span class="n">attn</span> <span class="o">=</span> <span class="n">attn</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1e9</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">            </span><span class="sd">&#39;&#39;&#39;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="sd">            使用.masked_fill方法是将这些位置的分数设置为一个非常大的负数</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="sd">            因为softmax的很大负数输入会近似于0，从而确保这些位置对应的权重接近于0。</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="sd">            如果mask中的某个位置为0，则该位置的score值将被替换为-1e9</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="sd">            &#39;&#39;&#39;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a>        <span class="n">attn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">attn</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>        <span class="c1"># dim=-1 表示应用Softmax到输入数据的最后一个维度</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>        <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">attn</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>        <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">attn</span>
+</code></pre></div></td></tr></table></div>
+<p></details> </p>
+</li>
+</ul>
+<h3 id="sublayerspy"><code>SubLayers.py</code><a class="headerlink" href="#sublayerspy" title="Permanent link"></a></h3>
+<hr />
+<ul>
+<li>
+<p>多头注意力机制<code>MultiHeadAttention</code></p>
+<p><code>Multi-Head Attention</code>是一种将<code>Scaled Dot-Product Attention</code>扩展到多头的方法，它将Query, Key, Value 分别经过多个线性变换（称为“头”）后再输入到 <code>Scaled Dot-Product Attention</code> 中计算，最后将多个<code>Attention</code>输出按照通道维度拼接起来。</p>
+<div class="arithmatex">\[
+MultiHeadAttention(Q,K,V) = Concat(head_1, head_2,...,head_n)W^O
+\]</div>
+<p>其中<span class="arithmatex">\(head_i\)</span>表示第<span class="arithmatex">\(i\)</span>个<code>Attention</code>头，<span class="arithmatex">\(W^O\)</span>表示最终输出的线性变换矩阵，<span class="arithmatex">\(n\)</span>表示头的数量。</p>
+<p><img alt="" src="../img/atten4.png" /></p>
+<blockquote>
+<p><code>MultiHead</code>为<code>Attention</code>层提供了多个“表示子空间”，对于<code>Transformer</code>使用8头。这些集合中每一个都是<B>随机初始化</B>的，在训练之后，每组用于将输入embedding投影到不同的表示子空间中。</p>
+</blockquote>
+<p><details> 
+<summary>Code</summary></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span>
+<span class="normal"><a href="#__codelineno-1-41">41</a></span>
+<span class="normal"><a href="#__codelineno-1-42">42</a></span>
+<span class="normal"><a href="#__codelineno-1-43">43</a></span>
+<span class="normal"><a href="#__codelineno-1-44">44</a></span>
+<span class="normal"><a href="#__codelineno-1-45">45</a></span>
+<span class="normal"><a href="#__codelineno-1-46">46</a></span>
+<span class="normal"><a href="#__codelineno-1-47">47</a></span>
+<span class="normal"><a href="#__codelineno-1-48">48</a></span>
+<span class="normal"><a href="#__codelineno-1-49">49</a></span>
+<span class="normal"><a href="#__codelineno-1-50">50</a></span>
+<span class="normal"><a href="#__codelineno-1-51">51</a></span>
+<span class="normal"><a href="#__codelineno-1-52">52</a></span>
+<span class="normal"><a href="#__codelineno-1-53">53</a></span>
+<span class="normal"><a href="#__codelineno-1-54">54</a></span>
+<span class="normal"><a href="#__codelineno-1-55">55</a></span>
+<span class="normal"><a href="#__codelineno-1-56">56</a></span>
+<span class="normal"><a href="#__codelineno-1-57">57</a></span>
+<span class="normal"><a href="#__codelineno-1-58">58</a></span>
+<span class="normal"><a href="#__codelineno-1-59">59</a></span>
+<span class="normal"><a href="#__codelineno-1-60">60</a></span>
+<span class="normal"><a href="#__codelineno-1-61">61</a></span>
+<span class="normal"><a href="#__codelineno-1-62">62</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MultiHeadAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="sd">&#39;&#39;&#39; Multi-Head Attention module &#39;&#39;&#39;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span> <span class="o">=</span> <span class="n">n_head</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span> <span class="o">=</span> <span class="n">d_k</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">d_v</span> <span class="o">=</span> <span class="n">d_v</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w_qs</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">n_head</span> <span class="o">*</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w_ks</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">n_head</span> <span class="o">*</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w_vs</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">n_head</span> <span class="o">*</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_head</span> <span class="o">*</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">attention</span> <span class="o">=</span> <span class="n">ScaledDotProductAttention</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="n">d_k</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">layer_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="sd">        d_k-&gt;int: key, query&#39;s dimension</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="sd">        d_v-&gt;int: value&#39;s dimension</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="sd">        n_head-&gt;int: number of atten head</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="sd">        sz_b-&gt;int: number of batch </span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="sd">        len_q: length of query</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="sd">        len_k: length of key</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="sd">        len_v: length of value</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="sd">        &#39;&#39;&#39;</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a>        <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">n_head</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a>        <span class="n">sz_b</span><span class="p">,</span> <span class="n">len_q</span><span class="p">,</span> <span class="n">len_k</span><span class="p">,</span> <span class="n">len_v</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">q</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">k</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">v</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a>        <span class="n">residual</span> <span class="o">=</span> <span class="n">q</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a>        <span class="c1"># Pass through the pre-attention projection: b x lq x (n*dv)</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a>        <span class="c1"># Separate different heads: b x lq x n x dv</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a>        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_qs</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">sz_b</span><span class="p">,</span> <span class="n">len_q</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="p">)</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a>        <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_ks</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">sz_b</span><span class="p">,</span> <span class="n">len_k</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="p">)</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41"></a>        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_vs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">sz_b</span><span class="p">,</span> <span class="n">len_v</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_v</span><span class="p">)</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42"></a>
+<a id="__codelineno-1-43" name="__codelineno-1-43"></a>        <span class="c1"># Transpose for attention dot product: b x n x lq x dv</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44"></a>        <span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">k</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">v</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46"></a>        <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47"></a>            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># For head axis broadcasting.</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48"></a>        <span class="c1"># 将 `mask` 的形状从 `(batch_size, seq_len)` 扩展为 `(batch_size, 1, seq_len)`。对掩码进行广播以匹配注意力权重张量的维度，确保在注意力计算中正确地应用掩码</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50"></a>
+<a id="__codelineno-1-51" name="__codelineno-1-51"></a>        <span class="n">q</span><span class="p">,</span> <span class="n">attn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52"></a>
+<a id="__codelineno-1-53" name="__codelineno-1-53"></a>        <span class="c1"># Transpose to move the head dimension back: b x lq x n x dv</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54"></a>        <span class="c1"># Combine the last two dimensions to concatenate all the heads together: b x lq x (n*dv)</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55"></a>        <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">sz_b</span><span class="p">,</span> <span class="n">len_q</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56"></a>        <span class="c1"># 使用.transpose()，尽管张量的形状发生了变化，但其内存布局并没有相应地重新排列，导致这些张量在内存中是非连续的。.contiguous()确保张量在内存中是连续存储的</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57"></a>        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58"></a>        <span class="n">q</span> <span class="o">+=</span> <span class="n">residual</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59"></a>
+<a id="__codelineno-1-60" name="__codelineno-1-60"></a>        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_norm</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61"></a>
+<a id="__codelineno-1-62" name="__codelineno-1-62"></a>        <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">attn</span>
+</code></pre></div></td></tr></table></div>
+<p></details> </p>
+</li>
+<li>
+<p><code>Position-wise</code>前馈网络</p>
+<div class="arithmatex">\[
+FFN(x) = max(0, xW_1 + b_1)W_2 + b_2
+\]</div>
+<p>即使用<B>两个线性变换，并在其中插入一次ReLU激活函数</B>作为前馈网络</p>
+<p><details> 
+<summary>Code</summary></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PositionwiseFeedForward</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39; A two-feed-forward-layer module &#39;&#39;&#39;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_hid</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span> <span class="n">d_hid</span><span class="p">)</span> <span class="c1"># position-wise</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_hid</span><span class="p">,</span> <span class="n">d_in</span><span class="p">)</span> <span class="c1"># position-wise</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">layer_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>        <span class="n">residual</span> <span class="o">=</span> <span class="n">x</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_2</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>        <span class="n">x</span> <span class="o">+=</span> <span class="n">residual</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>        <span class="k">return</span> <span class="n">x</span>
+</code></pre></div></td></tr></table></div>
+<p></details> </p>
+</li>
+</ul>
+<h3 id="modelspy"><code>Models.py</code><a class="headerlink" href="#modelspy" title="Permanent link"></a></h3>
+<hr />
+<ul>
+<li>
+<p>位置编码<code>PositionalEncoding</code></p>
+<p>对一种位置编码方法的要求：</p>
+<ul>
+<li>
+<p>需要体现同一单词在不同位置的区别。</p>
+</li>
+<li>
+<p>需要体现一定的先后次序，并且在一定范围内的编码差异不应该依赖于文本的长度，具有一定的不变性。</p>
+</li>
+<li>
+<p>需要有值域的范围限制。</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+PE_{(pos, 2i)} = sin(\frac{pos} {10000^{2i/d_{\text{model}}}})
+\]</div>
+<div class="arithmatex">\[
+PE_{(pos, 2i+1)} = cos(\frac{pos} {10000^{2i/d_{\text{model}}}})
+\]</div>
+<p><img alt="" src="../img/atten5.png" /></p>
+<p><img alt="" src="../img/atten6.png" /></p>
+<p><img alt="" src="../img/atten9.png" /></p>
+<p>即偶数位用正弦函数，奇数位用余弦函数来处理编码，其中<span class="arithmatex">\(pos\)</span>代表一句话中token的位置，每个token的位置编码是一个向量，<span class="arithmatex">\(i\)</span>表示这个向量中每个元素的index，<span class="arithmatex">\(d_{model}\)</span>代表位置编码向量的维度。</p>
+<p><img alt="" src="../img/atten7.png" /></p>
+<p><img alt="" src="../img/atten8.png" /></p>
+<p>某个pos位置的位置编码可表示为：</p>
+<div class="arithmatex">\[
+PE_{pos}=\begin{bmatrix}sin(\omega_1\cdot pos) \\ cos(\omega_1\cdot pos) \\ sin(\omega_2\cdot pos) \\ cos(\omega_2\cdot pos) \\ \vdots \\ sin(\omega_{d/2}\cdot pos) \\ cos(\omega_{d/2}\cdot pos) \end{bmatrix}
+\]</div>
+<p>其中编码因子<span class="arithmatex">\(\omega_i = \frac{1}{10000^{\frac{2i}{d_{model}}}}\)</span></p>
+<p>假设某一个<code>token</code>的位置为<code>pos</code>，另一个<code>token</code>表示为<code>pos+k</code> ，那就表明这个位置距上一个<code>token</code>为<code>k</code>，根据<code>Transformer</code>中给出的位置编码公式，则:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+PE_{(pos+k,2i)}&amp;=sin(\omega _i\cdot (pos+k)) \\
+&amp;=sin(\omega _i\cdot pos)cos(\omega _i\cdot k)+cos(\omega _i\cdot pos)sin(\omega _i\cdot k)
+\end{aligned}
+\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+PE_{(pos+k,2i+1)}&amp;=cos(\omega _i\cdot (pos+k)) \\
+&amp;=cos(\omega _i\cdot pos)cos(\omega _i\cdot k)-sin(\omega _i\cdot pos)sin(\omega _i\cdot k)
+\end{aligned}
+\]</div>
+<p>使用<span class="arithmatex">\(w_i\)</span>代替<span class="arithmatex">\(\frac{1}{10000^{\frac{2i}{d_{model}}}}\)</span>；</p>
+<div class="arithmatex">\[
+PE_{(pos+k,2i)}=cos(\omega _i\cdot k)PE_{(pos,2i)}+sin(\omega _i\cdot k)PE_{(pos,2i+1)}
+\]</div>
+<div class="arithmatex">\[
+PE_{(pos+k,2i+1)}=cos(\omega _i\cdot k)PE_{(pos,2i+1)}-sin(\omega _i\cdot k)PE_{(pos,2i)}
+\]</div>
+<p>因为<span class="arithmatex">\(k\)</span>为常数，则设<span class="arithmatex">\(u=cos(\omega _i\cdot k), v=sin(\omega _i\cdot k)\)</span>：</p>
+<p>$$
+\begin{bmatrix}
+PE_{(pos+k,2i)} \ PE_{(pos+k,2i+1)}) 
+\end{bmatrix} </p>
+<p>= </p>
+<div class="arithmatex">\[\begin{bmatrix} 
+u &amp; v\\ -v &amp; u 
+\end{bmatrix}\]</div>
+<p>\times </p>
+<div class="arithmatex">\[\begin{bmatrix} 
+PE_{(pos,2i)}\\ PE_{(pos,2i+1)} 
+\end{bmatrix}\]</div>
+<p>$$</p>
+<p>由此可知，位置<code>pos</code>的编码与位置<code>pos+k</code>的位置编码是线性关系。</p>
+<div class="arithmatex">\[
+\begin{aligned}
+PE_{pos}\cdot PE_{pos+k}&amp;=\sum_{i=0}^{\frac{d}{2}-1}sin(\omega _i\cdot pos)\cdot sin(\omega _i(pos+k)) \\
+&amp;= \sum_{i=0}^{\frac{d}{2}-1}cos(\omega _i(pos-(pos+k)))  \\
+&amp;= \sum_{i=0}^{\frac{d}{2}-1}cos(\omega _i\cdot k) \\
+\end{aligned}
+\]</div>
+<p>对于<span class="arithmatex">\(PE_{pos}\)</span>与<span class="arithmatex">\(PE_{pos+k}\)</span>的点积，可得一个余弦的和值，并且这个和值随着<span class="arithmatex">\(k\)</span>的增大而减小，即两个<code>token</code>的距离越大，也就是<code>K</code>越大，两个位置的<code>PE</code>相乘结果越小（位置编码可以表示相对位置关系）</p>
+<p>但显然这样的位置关系并不是显式的，需要大量的训练数据来让模型充分学习到位置信息，特别是在处理长序列和复杂依赖关系时。</p>
+<blockquote>
+<p>为什么位置编码不直接拼接到编码矩阵中呢？</p>
+<p>直接拼接会扩大参数空间，占用内存增加，而且不易拟合，而且其实没有证据表明拼接就比加来的好</p>
+</blockquote>
+<p><details> 
+<summary>Code</summary></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">transformer.Layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">EncoderLayer</span><span class="p">,</span> <span class="n">DecoderLayer</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_pad_mask</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">pad_idx</span><span class="p">):</span>  <span class="c1"># 掩码矩阵，用于将填充位置（即pad_idx）在注意力计算过程中置为0。</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="k">return</span> <span class="p">(</span><span class="n">seq</span> <span class="o">!=</span> <span class="n">pad_idx</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_subsequent_mask</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>    <span class="c1"># 掩码矩阵，用于将序列中每个位置的注意力权重限制在当前位置及其之前的所有位置。</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39; For masking out the subsequent info. &#39;&#39;&#39;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>    <span class="n">sz_b</span><span class="p">,</span> <span class="n">len_s</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>    <span class="n">subsequent_mask</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">len_s</span><span class="p">,</span> <span class="n">len_s</span><span class="p">),</span> 
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>                                        <span class="n">device</span><span class="o">=</span><span class="n">seq</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> 
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>                                        <span class="n">diagonal</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">bool</span><span class="p">()</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="k">return</span> <span class="n">subsequent_mask</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="k">class</span><span class="w"> </span><span class="nc">PositionalEncoding</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_hid</span><span class="p">,</span> <span class="n">n_position</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>        <span class="nb">super</span><span class="p">(</span><span class="n">PositionalEncoding</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>        <span class="c1"># Not a parameter</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;pos_table&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sinusoid_encoding_table</span><span class="p">(</span><span class="n">n_position</span><span class="p">,</span> <span class="n">d_hid</span><span class="p">))</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;self.register_buffer(‘name’,Tensor)方法用于定义一组参数</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="sd">        该组参数在模型训练时不会更新（即optimizer.step()后该组参数不会变化，只可人为地改变它们的值）</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="sd">        &#39;&#39;&#39;</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_get_sinusoid_encoding_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_position</span><span class="p">,</span> <span class="n">d_hid</span><span class="p">):</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39; Sinusoid position encoding table &#39;&#39;&#39;</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a>        <span class="c1"># TODO: make it with torch instead of numpy</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">get_position_angle_vec</span><span class="p">(</span><span class="n">position</span><span class="p">):</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a>            <span class="k">return</span> <span class="p">[</span><span class="n">position</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">hid_j</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_hid</span><span class="p">)</span> <span class="k">for</span> <span class="n">hid_j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d_hid</span><span class="p">)]</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a>        <span class="n">sinusoid_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">get_position_angle_vec</span><span class="p">(</span><span class="n">pos_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">pos_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_position</span><span class="p">)])</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a>        <span class="n">sinusoid_table</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">sinusoid_table</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># dim 2i</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a>        <span class="n">sinusoid_table</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sinusoid_table</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># dim 2i+1</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36"></a>
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a>        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">sinusoid_table</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a>        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_table</span><span class="p">[:,</span> <span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> 
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a>        <span class="c1"># .detach() 方法将其从计算图中分离，确保在后续的计算中不会影响梯度传播</span>
+</code></pre></div></td></tr></table></div>
+<p></details> </p>
+</li>
+<li>
+<p>编码器<code>Encoder</code></p>
+<p><details> 
+<summary>Code</summary></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span>
+<span class="normal"><a href="#__codelineno-4-35">35</a></span>
+<span class="normal"><a href="#__codelineno-4-36">36</a></span>
+<span class="normal"><a href="#__codelineno-4-37">37</a></span>
+<span class="normal"><a href="#__codelineno-4-38">38</a></span>
+<span class="normal"><a href="#__codelineno-4-39">39</a></span>
+<span class="normal"><a href="#__codelineno-4-40">40</a></span>
+<span class="normal"><a href="#__codelineno-4-41">41</a></span>
+<span class="normal"><a href="#__codelineno-4-42">42</a></span>
+<span class="normal"><a href="#__codelineno-4-43">43</a></span>
+<span class="normal"><a href="#__codelineno-4-44">44</a></span>
+<span class="normal"><a href="#__codelineno-4-45">45</a></span>
+<span class="normal"><a href="#__codelineno-4-46">46</a></span>
+<span class="normal"><a href="#__codelineno-4-47">47</a></span>
+<span class="normal"><a href="#__codelineno-4-48">48</a></span>
+<span class="normal"><a href="#__codelineno-4-49">49</a></span>
+<span class="normal"><a href="#__codelineno-4-50">50</a></span>
+<span class="normal"><a href="#__codelineno-4-51">51</a></span>
+<span class="normal"><a href="#__codelineno-4-52">52</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Encoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="sd">&#39;&#39;&#39; A encoder model with self attention mechanism. &#39;&#39;&#39;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>            <span class="bp">self</span><span class="p">,</span> <span class="n">n_src_vocab</span><span class="p">,</span> <span class="n">d_word_vec</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>            <span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="p">,</span> <span class="n">pad_idx</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_position</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">scale_emb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="sd">        n_src_vocab: 词汇表大小</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="sd">        d_word_vec：词向量维度</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="sd">        n_layers：编码器层数</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="sd">        n_head：注意力头数</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="sd">        d_k：key维度</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="sd">        d_v：value维度</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="sd">        d_model：模型维度</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="sd">        d_inner：内部维度</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="sd">        pad_idx：填充索引(&#39;&lt;pad&gt;&#39;)</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="sd">        dropout：dropout概率</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="sd">        n_position：位置编码的最大位置</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="sd">        scale_emb：一个布尔值，表示是否对词嵌入进行缩放</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="sd">        &#39;&#39;&#39;</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">src_word_emb</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">n_src_vocab</span><span class="p">,</span> <span class="n">d_word_vec</span><span class="p">,</span> <span class="n">padding_idx</span><span class="o">=</span><span class="n">pad_idx</span><span class="p">)</span>                      
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a>        <span class="c1"># 词向量转化, padding_idx就是把Embeddings转化矩阵某一行置为0</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">position_enc</span> <span class="o">=</span> <span class="n">PositionalEncoding</span><span class="p">(</span><span class="n">d_word_vec</span><span class="p">,</span> <span class="n">n_position</span><span class="o">=</span><span class="n">n_position</span><span class="p">)</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a>            <span class="n">EncoderLayer</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28"></a>            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">)])</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">layer_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">scale_emb</span> <span class="o">=</span> <span class="n">scale_emb</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31"></a>        <span class="c1"># 缩放的目的是为了使得位置编码的数值大小与词嵌入的数值大小应该处于同一数量级</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">=</span> <span class="n">d_model</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a>
+<a id="__codelineno-4-34" name="__codelineno-4-34"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src_seq</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">,</span> <span class="n">return_attns</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35"></a>
+<a id="__codelineno-4-36" name="__codelineno-4-36"></a>        <span class="n">enc_slf_attn_list</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37"></a>
+<a id="__codelineno-4-38" name="__codelineno-4-38"></a>        <span class="c1"># -- Forward</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39"></a>        <span class="n">enc_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">src_word_emb</span><span class="p">(</span><span class="n">src_seq</span><span class="p">)</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_emb</span><span class="p">:</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41"></a>            <span class="n">enc_output</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">**</span> <span class="mf">0.5</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42"></a>            <span class="c1"># 缩放的目的是为了确保词向量具有适当的尺度</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43"></a>        <span class="n">enc_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">position_enc</span><span class="p">(</span><span class="n">enc_output</span><span class="p">))</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44"></a>        <span class="n">enc_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_norm</span><span class="p">(</span><span class="n">enc_output</span><span class="p">)</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45"></a>
+<a id="__codelineno-4-46" name="__codelineno-4-46"></a>        <span class="k">for</span> <span class="n">enc_layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span><span class="p">:</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47"></a>            <span class="n">enc_output</span><span class="p">,</span> <span class="n">enc_slf_attn</span> <span class="o">=</span> <span class="n">enc_layer</span><span class="p">(</span><span class="n">enc_output</span><span class="p">,</span> <span class="n">slf_attn_mask</span><span class="o">=</span><span class="n">src_mask</span><span class="p">)</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48"></a>            <span class="n">enc_slf_attn_list</span> <span class="o">+=</span> <span class="p">[</span><span class="n">enc_slf_attn</span><span class="p">]</span> <span class="k">if</span> <span class="n">return_attns</span> <span class="k">else</span> <span class="p">[]</span>
+<a id="__codelineno-4-49" name="__codelineno-4-49"></a>
+<a id="__codelineno-4-50" name="__codelineno-4-50"></a>        <span class="k">if</span> <span class="n">return_attns</span><span class="p">:</span>
+<a id="__codelineno-4-51" name="__codelineno-4-51"></a>            <span class="k">return</span> <span class="n">enc_output</span><span class="p">,</span> <span class="n">enc_slf_attn_list</span>
+<a id="__codelineno-4-52" name="__codelineno-4-52"></a>        <span class="k">return</span> <span class="n">enc_output</span><span class="p">,</span>
+</code></pre></div></td></tr></table></div>
+<p></details> </p>
+</li>
+<li>
+<p>解码器<code>Decoder</code></p>
+<p><details> 
+<summary>Code</summary></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span>
+<span class="normal"><a href="#__codelineno-5-26">26</a></span>
+<span class="normal"><a href="#__codelineno-5-27">27</a></span>
+<span class="normal"><a href="#__codelineno-5-28">28</a></span>
+<span class="normal"><a href="#__codelineno-5-29">29</a></span>
+<span class="normal"><a href="#__codelineno-5-30">30</a></span>
+<span class="normal"><a href="#__codelineno-5-31">31</a></span>
+<span class="normal"><a href="#__codelineno-5-32">32</a></span>
+<span class="normal"><a href="#__codelineno-5-33">33</a></span>
+<span class="normal"><a href="#__codelineno-5-34">34</a></span>
+<span class="normal"><a href="#__codelineno-5-35">35</a></span>
+<span class="normal"><a href="#__codelineno-5-36">36</a></span>
+<span class="normal"><a href="#__codelineno-5-37">37</a></span>
+<span class="normal"><a href="#__codelineno-5-38">38</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Decoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="sd">&#39;&#39;&#39; A decoder model with self attention mechanism. &#39;&#39;&#39;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>            <span class="bp">self</span><span class="p">,</span> <span class="n">n_trg_vocab</span><span class="p">,</span> <span class="n">d_word_vec</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>            <span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="p">,</span> <span class="n">pad_idx</span><span class="p">,</span> <span class="n">n_position</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">scale_emb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">trg_word_emb</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">n_trg_vocab</span><span class="p">,</span> <span class="n">d_word_vec</span><span class="p">,</span> <span class="n">padding_idx</span><span class="o">=</span><span class="n">pad_idx</span><span class="p">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">position_enc</span> <span class="o">=</span> <span class="n">PositionalEncoding</span><span class="p">(</span><span class="n">d_word_vec</span><span class="p">,</span> <span class="n">n_position</span><span class="o">=</span><span class="n">n_position</span><span class="p">)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>            <span class="n">DecoderLayer</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">)])</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">layer_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">scale_emb</span> <span class="o">=</span> <span class="n">scale_emb</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">=</span> <span class="n">d_model</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trg_seq</span><span class="p">,</span> <span class="n">trg_mask</span><span class="p">,</span> <span class="n">enc_output</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">,</span> <span class="n">return_attns</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a>        <span class="n">dec_slf_attn_list</span><span class="p">,</span> <span class="n">dec_enc_attn_list</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a>        <span class="c1"># -- Forward</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a>        <span class="n">dec_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trg_word_emb</span><span class="p">(</span><span class="n">trg_seq</span><span class="p">)</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_emb</span><span class="p">:</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a>            <span class="n">dec_output</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">**</span> <span class="mf">0.5</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27"></a>        <span class="n">dec_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">position_enc</span><span class="p">(</span><span class="n">dec_output</span><span class="p">))</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28"></a>        <span class="n">dec_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_norm</span><span class="p">(</span><span class="n">dec_output</span><span class="p">)</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29"></a>
+<a id="__codelineno-5-30" name="__codelineno-5-30"></a>        <span class="k">for</span> <span class="n">dec_layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span><span class="p">:</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31"></a>            <span class="n">dec_output</span><span class="p">,</span> <span class="n">dec_slf_attn</span><span class="p">,</span> <span class="n">dec_enc_attn</span> <span class="o">=</span> <span class="n">dec_layer</span><span class="p">(</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32"></a>                <span class="n">dec_output</span><span class="p">,</span> <span class="n">enc_output</span><span class="p">,</span> <span class="n">slf_attn_mask</span><span class="o">=</span><span class="n">trg_mask</span><span class="p">,</span> <span class="n">dec_enc_attn_mask</span><span class="o">=</span><span class="n">src_mask</span><span class="p">)</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33"></a>            <span class="n">dec_slf_attn_list</span> <span class="o">+=</span> <span class="p">[</span><span class="n">dec_slf_attn</span><span class="p">]</span> <span class="k">if</span> <span class="n">return_attns</span> <span class="k">else</span> <span class="p">[]</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34"></a>            <span class="n">dec_enc_attn_list</span> <span class="o">+=</span> <span class="p">[</span><span class="n">dec_enc_attn</span><span class="p">]</span> <span class="k">if</span> <span class="n">return_attns</span> <span class="k">else</span> <span class="p">[]</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35"></a>
+<a id="__codelineno-5-36" name="__codelineno-5-36"></a>        <span class="k">if</span> <span class="n">return_attns</span><span class="p">:</span>
+<a id="__codelineno-5-37" name="__codelineno-5-37"></a>            <span class="k">return</span> <span class="n">dec_output</span><span class="p">,</span> <span class="n">dec_slf_attn_list</span><span class="p">,</span> <span class="n">dec_enc_attn_list</span>
+<a id="__codelineno-5-38" name="__codelineno-5-38"></a>        <span class="k">return</span> <span class="n">dec_output</span><span class="p">,</span>
+</code></pre></div></td></tr></table></div>
+<p></details> </p>
+</li>
+<li>
+<p><code>Transformer</code></p>
+<p><img alt="" src="../img/atten12.png" /></p>
+<p><img alt="" src="../img/att.gif" /></p>
+<p><details> 
+<summary>Code</summary></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span>
+<span class="normal"><a href="#__codelineno-6-26">26</a></span>
+<span class="normal"><a href="#__codelineno-6-27">27</a></span>
+<span class="normal"><a href="#__codelineno-6-28">28</a></span>
+<span class="normal"><a href="#__codelineno-6-29">29</a></span>
+<span class="normal"><a href="#__codelineno-6-30">30</a></span>
+<span class="normal"><a href="#__codelineno-6-31">31</a></span>
+<span class="normal"><a href="#__codelineno-6-32">32</a></span>
+<span class="normal"><a href="#__codelineno-6-33">33</a></span>
+<span class="normal"><a href="#__codelineno-6-34">34</a></span>
+<span class="normal"><a href="#__codelineno-6-35">35</a></span>
+<span class="normal"><a href="#__codelineno-6-36">36</a></span>
+<span class="normal"><a href="#__codelineno-6-37">37</a></span>
+<span class="normal"><a href="#__codelineno-6-38">38</a></span>
+<span class="normal"><a href="#__codelineno-6-39">39</a></span>
+<span class="normal"><a href="#__codelineno-6-40">40</a></span>
+<span class="normal"><a href="#__codelineno-6-41">41</a></span>
+<span class="normal"><a href="#__codelineno-6-42">42</a></span>
+<span class="normal"><a href="#__codelineno-6-43">43</a></span>
+<span class="normal"><a href="#__codelineno-6-44">44</a></span>
+<span class="normal"><a href="#__codelineno-6-45">45</a></span>
+<span class="normal"><a href="#__codelineno-6-46">46</a></span>
+<span class="normal"><a href="#__codelineno-6-47">47</a></span>
+<span class="normal"><a href="#__codelineno-6-48">48</a></span>
+<span class="normal"><a href="#__codelineno-6-49">49</a></span>
+<span class="normal"><a href="#__codelineno-6-50">50</a></span>
+<span class="normal"><a href="#__codelineno-6-51">51</a></span>
+<span class="normal"><a href="#__codelineno-6-52">52</a></span>
+<span class="normal"><a href="#__codelineno-6-53">53</a></span>
+<span class="normal"><a href="#__codelineno-6-54">54</a></span>
+<span class="normal"><a href="#__codelineno-6-55">55</a></span>
+<span class="normal"><a href="#__codelineno-6-56">56</a></span>
+<span class="normal"><a href="#__codelineno-6-57">57</a></span>
+<span class="normal"><a href="#__codelineno-6-58">58</a></span>
+<span class="normal"><a href="#__codelineno-6-59">59</a></span>
+<span class="normal"><a href="#__codelineno-6-60">60</a></span>
+<span class="normal"><a href="#__codelineno-6-61">61</a></span>
+<span class="normal"><a href="#__codelineno-6-62">62</a></span>
+<span class="normal"><a href="#__codelineno-6-63">63</a></span>
+<span class="normal"><a href="#__codelineno-6-64">64</a></span>
+<span class="normal"><a href="#__codelineno-6-65">65</a></span>
+<span class="normal"><a href="#__codelineno-6-66">66</a></span>
+<span class="normal"><a href="#__codelineno-6-67">67</a></span>
+<span class="normal"><a href="#__codelineno-6-68">68</a></span>
+<span class="normal"><a href="#__codelineno-6-69">69</a></span>
+<span class="normal"><a href="#__codelineno-6-70">70</a></span>
+<span class="normal"><a href="#__codelineno-6-71">71</a></span>
+<span class="normal"><a href="#__codelineno-6-72">72</a></span>
+<span class="normal"><a href="#__codelineno-6-73">73</a></span>
+<span class="normal"><a href="#__codelineno-6-74">74</a></span>
+<span class="normal"><a href="#__codelineno-6-75">75</a></span>
+<span class="normal"><a href="#__codelineno-6-76">76</a></span>
+<span class="normal"><a href="#__codelineno-6-77">77</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Transformer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="sd">&#39;&#39;&#39; A sequence to sequence model with attention mechanism. &#39;&#39;&#39;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>            <span class="bp">self</span><span class="p">,</span> <span class="n">n_src_vocab</span><span class="p">,</span> <span class="n">n_trg_vocab</span><span class="p">,</span> <span class="n">src_pad_idx</span><span class="p">,</span> <span class="n">trg_pad_idx</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>            <span class="n">d_word_vec</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">d_model</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">d_inner</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>            <span class="n">n_layers</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">n_head</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">d_k</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">d_v</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_position</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>            <span class="n">trg_emb_prj_weight_sharing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">emb_src_trg_weight_sharing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>            <span class="n">scale_emb_or_prj</span><span class="o">=</span><span class="s1">&#39;prj&#39;</span><span class="p">):</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">src_pad_idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trg_pad_idx</span> <span class="o">=</span> <span class="n">src_pad_idx</span><span class="p">,</span> <span class="n">trg_pad_idx</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a>        <span class="c1"># In section 3.4 of paper &quot;Attention Is All You Need&quot;, there is such detail:</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a>        <span class="c1"># &quot;In our model, we share the same weight matrix between the two</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a>        <span class="c1"># embedding layers and the pre-softmax linear transformation...</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a>        <span class="c1"># In the embedding layers, we multiply those weights by \sqrt{d_model}&quot;.</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a>        <span class="c1">#</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a>        <span class="c1"># Options here:</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a>        <span class="c1">#   &#39;emb&#39;: multiply \sqrt{d_model} to embedding output</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a>        <span class="c1">#   &#39;prj&#39;: multiply (\sqrt{d_model} ^ -1) to linear projection output</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a>        <span class="c1">#   &#39;none&#39;: no multiplication</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23"></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24"></a>        <span class="k">assert</span> <span class="n">scale_emb_or_prj</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;emb&#39;</span><span class="p">,</span> <span class="s1">&#39;prj&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">]</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25"></a>        <span class="n">scale_emb</span> <span class="o">=</span> <span class="p">(</span><span class="n">scale_emb_or_prj</span> <span class="o">==</span> <span class="s1">&#39;emb&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">trg_emb_prj_weight_sharing</span> <span class="k">else</span> <span class="kc">False</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">scale_prj</span> <span class="o">=</span> <span class="p">(</span><span class="n">scale_emb_or_prj</span> <span class="o">==</span> <span class="s1">&#39;prj&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">trg_emb_prj_weight_sharing</span> <span class="k">else</span> <span class="kc">False</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27"></a>
+<a id="__codelineno-6-28" name="__codelineno-6-28"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29"></a><span class="sd">        显示判断是否缩放嵌入层、投影层，或者都不缩放如果启用了目标词嵌入与投影层权重的共享，并且 scale_emb_or_prj 的值为 ‘emb’，则 scale_emb 被设置为 True，表示在嵌入层输出后进行权重缩放。</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30"></a><span class="sd">        否则，scale_emb 被设置为 False，对于prj同理。</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31"></a><span class="sd">        在模型中同时使用两种缩放方式可能导致不一致或混乱，因此一般来说，选择其中一种缩放方式更为常见和合理。</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32"></a><span class="sd">        &#39;&#39;&#39;</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">=</span> <span class="n">d_model</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34"></a>
+<a id="__codelineno-6-35" name="__codelineno-6-35"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span> <span class="o">=</span> <span class="n">Encoder</span><span class="p">(</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36"></a>            <span class="n">n_src_vocab</span><span class="o">=</span><span class="n">n_src_vocab</span><span class="p">,</span> <span class="n">n_position</span><span class="o">=</span><span class="n">n_position</span><span class="p">,</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37"></a>            <span class="n">d_word_vec</span><span class="o">=</span><span class="n">d_word_vec</span><span class="p">,</span> <span class="n">d_model</span><span class="o">=</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="o">=</span><span class="n">d_inner</span><span class="p">,</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38"></a>            <span class="n">n_layers</span><span class="o">=</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">n_head</span><span class="o">=</span><span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="o">=</span><span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="o">=</span><span class="n">d_v</span><span class="p">,</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39"></a>            <span class="n">pad_idx</span><span class="o">=</span><span class="n">src_pad_idx</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">,</span> <span class="n">scale_emb</span><span class="o">=</span><span class="n">scale_emb</span><span class="p">)</span>
+<a id="__codelineno-6-40" name="__codelineno-6-40"></a>
+<a id="__codelineno-6-41" name="__codelineno-6-41"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span> <span class="o">=</span> <span class="n">Decoder</span><span class="p">(</span>
+<a id="__codelineno-6-42" name="__codelineno-6-42"></a>            <span class="n">n_trg_vocab</span><span class="o">=</span><span class="n">n_trg_vocab</span><span class="p">,</span> <span class="n">n_position</span><span class="o">=</span><span class="n">n_position</span><span class="p">,</span>
+<a id="__codelineno-6-43" name="__codelineno-6-43"></a>            <span class="n">d_word_vec</span><span class="o">=</span><span class="n">d_word_vec</span><span class="p">,</span> <span class="n">d_model</span><span class="o">=</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="o">=</span><span class="n">d_inner</span><span class="p">,</span>
+<a id="__codelineno-6-44" name="__codelineno-6-44"></a>            <span class="n">n_layers</span><span class="o">=</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">n_head</span><span class="o">=</span><span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="o">=</span><span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="o">=</span><span class="n">d_v</span><span class="p">,</span>
+<a id="__codelineno-6-45" name="__codelineno-6-45"></a>            <span class="n">pad_idx</span><span class="o">=</span><span class="n">trg_pad_idx</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">,</span> <span class="n">scale_emb</span><span class="o">=</span><span class="n">scale_emb</span><span class="p">)</span>
+<a id="__codelineno-6-46" name="__codelineno-6-46"></a>
+<a id="__codelineno-6-47" name="__codelineno-6-47"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">trg_word_prj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">n_trg_vocab</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-6-48" name="__codelineno-6-48"></a>        <span class="c1"># 将解码器最后一层的输出映射为目标语言词汇表的概率分布，从而用于生成目标语言的下一个词。</span>
+<a id="__codelineno-6-49" name="__codelineno-6-49"></a>
+<a id="__codelineno-6-50" name="__codelineno-6-50"></a>        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span> <span class="c1"># 各层参数的迭代</span>
+<a id="__codelineno-6-51" name="__codelineno-6-51"></a>            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-6-52" name="__codelineno-6-52"></a>                <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">xavier_uniform_</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="c1"># 参数初始化</span>
+<a id="__codelineno-6-53" name="__codelineno-6-53"></a>
+<a id="__codelineno-6-54" name="__codelineno-6-54"></a>        <span class="k">assert</span> <span class="n">d_model</span> <span class="o">==</span> <span class="n">d_word_vec</span><span class="p">,</span> \
+<a id="__codelineno-6-55" name="__codelineno-6-55"></a>        <span class="s1">&#39;To facilitate the residual connections, </span><span class="se">\</span>
+<a id="__codelineno-6-56" name="__codelineno-6-56"></a><span class="s1">        the dimensions of all module outputs shall be the same.&#39;</span>
+<a id="__codelineno-6-57" name="__codelineno-6-57"></a>
+<a id="__codelineno-6-58" name="__codelineno-6-58"></a>        <span class="k">if</span> <span class="n">trg_emb_prj_weight_sharing</span><span class="p">:</span>
+<a id="__codelineno-6-59" name="__codelineno-6-59"></a>            <span class="c1"># Share the weight between target word embedding &amp; last dense layer</span>
+<a id="__codelineno-6-60" name="__codelineno-6-60"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">trg_word_prj</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="o">.</span><span class="n">trg_word_emb</span><span class="o">.</span><span class="n">weight</span>
+<a id="__codelineno-6-61" name="__codelineno-6-61"></a>        <span class="c1"># 共享这两个层的权重，模型在训练中会学习一组参数，这些参数同时用于嵌入目标词和将解码器的输出映射到目标词汇表。</span>
+<a id="__codelineno-6-62" name="__codelineno-6-62"></a>
+<a id="__codelineno-6-63" name="__codelineno-6-63"></a>        <span class="k">if</span> <span class="n">emb_src_trg_weight_sharing</span><span class="p">:</span>
+<a id="__codelineno-6-64" name="__codelineno-6-64"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="o">.</span><span class="n">src_word_emb</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="o">.</span><span class="n">trg_word_emb</span><span class="o">.</span><span class="n">weight</span>
+<a id="__codelineno-6-65" name="__codelineno-6-65"></a>
+<a id="__codelineno-6-66" name="__codelineno-6-66"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src_seq</span><span class="p">,</span> <span class="n">trg_seq</span><span class="p">):</span>
+<a id="__codelineno-6-67" name="__codelineno-6-67"></a>
+<a id="__codelineno-6-68" name="__codelineno-6-68"></a>        <span class="n">src_mask</span> <span class="o">=</span> <span class="n">get_pad_mask</span><span class="p">(</span><span class="n">src_seq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">src_pad_idx</span><span class="p">)</span>
+<a id="__codelineno-6-69" name="__codelineno-6-69"></a>        <span class="n">trg_mask</span> <span class="o">=</span> <span class="n">get_pad_mask</span><span class="p">(</span><span class="n">trg_seq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trg_pad_idx</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">get_subsequent_mask</span><span class="p">(</span><span class="n">trg_seq</span><span class="p">)</span>
+<a id="__codelineno-6-70" name="__codelineno-6-70"></a>
+<a id="__codelineno-6-71" name="__codelineno-6-71"></a>        <span class="n">enc_output</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">src_seq</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">)</span>
+<a id="__codelineno-6-72" name="__codelineno-6-72"></a>        <span class="n">dec_output</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span><span class="n">trg_seq</span><span class="p">,</span> <span class="n">trg_mask</span><span class="p">,</span> <span class="n">enc_output</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">)</span>
+<a id="__codelineno-6-73" name="__codelineno-6-73"></a>        <span class="n">seq_logit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trg_word_prj</span><span class="p">(</span><span class="n">dec_output</span><span class="p">)</span>
+<a id="__codelineno-6-74" name="__codelineno-6-74"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_prj</span><span class="p">:</span>
+<a id="__codelineno-6-75" name="__codelineno-6-75"></a>            <span class="n">seq_logit</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">**</span> <span class="o">-</span><span class="mf">0.5</span>
+<a id="__codelineno-6-76" name="__codelineno-6-76"></a>
+<a id="__codelineno-6-77" name="__codelineno-6-77"></a>        <span class="k">return</span> <span class="n">seq_logit</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">seq_logit</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<p></details> </p>
+</li>
+</ul>
+<h3 id="layerspy"><code>Layers.py</code><a class="headerlink" href="#layerspy" title="Permanent link"></a></h3>
+<hr />
+<ul>
+<li>
+<p><code>Encoder</code>与<code>Decoder</code>组成部分</p>
+<p><img alt="" src="../img/atten10.png" /></p>
+<p><img alt="" src="../img/atten11.png" /></p>
+<p><details> 
+<summary>Code</summary></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span>
+<span class="normal"><a href="#__codelineno-7-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">EncoderLayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39; Compose with two layers &#39;&#39;&#39;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>        <span class="nb">super</span><span class="p">(</span><span class="n">EncoderLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">slf_attn</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">n_head</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">pos_ffn</span> <span class="o">=</span> <span class="n">PositionwiseFeedForward</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enc_input</span><span class="p">,</span> <span class="n">slf_attn_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>        <span class="n">enc_output</span><span class="p">,</span> <span class="n">enc_slf_attn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slf_attn</span><span class="p">(</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>            <span class="n">enc_input</span><span class="p">,</span> <span class="n">enc_input</span><span class="p">,</span> <span class="n">enc_input</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">slf_attn_mask</span><span class="p">)</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>        <span class="n">enc_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_ffn</span><span class="p">(</span><span class="n">enc_output</span><span class="p">)</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>        <span class="k">return</span> <span class="n">enc_output</span><span class="p">,</span> <span class="n">enc_slf_attn</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="k">class</span><span class="w"> </span><span class="nc">DecoderLayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39; Compose with three layers &#39;&#39;&#39;</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="p">,</span> <span class="n">n_head</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a>        <span class="nb">super</span><span class="p">(</span><span class="n">DecoderLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">slf_attn</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">n_head</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">enc_attn</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">n_head</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">d_v</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">pos_ffn</span> <span class="o">=</span> <span class="n">PositionwiseFeedForward</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_inner</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a>            <span class="bp">self</span><span class="p">,</span> <span class="n">dec_input</span><span class="p">,</span> <span class="n">enc_output</span><span class="p">,</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a>            <span class="n">slf_attn_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_enc_attn_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a>        <span class="n">dec_output</span><span class="p">,</span> <span class="n">dec_slf_attn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slf_attn</span><span class="p">(</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26"></a>            <span class="n">dec_input</span><span class="p">,</span> <span class="n">dec_input</span><span class="p">,</span> <span class="n">dec_input</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">slf_attn_mask</span><span class="p">)</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27"></a>        <span class="n">dec_output</span><span class="p">,</span> <span class="n">dec_enc_attn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enc_attn</span><span class="p">(</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28"></a>            <span class="n">dec_output</span><span class="p">,</span> <span class="n">enc_output</span><span class="p">,</span> <span class="n">enc_output</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">dec_enc_attn_mask</span><span class="p">)</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29"></a>        <span class="n">dec_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_ffn</span><span class="p">(</span><span class="n">dec_output</span><span class="p">)</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30"></a>        <span class="k">return</span> <span class="n">dec_output</span><span class="p">,</span> <span class="n">dec_slf_attn</span><span class="p">,</span> <span class="n">dec_enc_attn</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</li>
+</ul>
+<h3 id="optimpy"><code>Optim.py</code><a class="headerlink" href="#optimpy" title="Permanent link"></a></h3>
+<hr />
+<ul>
+<li>
+<p>优化函数</p>
+<p>根据以下公式在训练过程中改变学习率：</p>
+<div class="arithmatex">\[
+lrate = d_{model}^{-0.5} \cdot min(step\_num^{-0.5}, step\_num \cdot warmup\_steps^{-1.5})
+\]</div>
+<p><details> 
+<summary>Code</summary></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span>
+<span class="normal"><a href="#__codelineno-8-30">30</a></span>
+<span class="normal"><a href="#__codelineno-8-31">31</a></span>
+<span class="normal"><a href="#__codelineno-8-32">32</a></span>
+<span class="normal"><a href="#__codelineno-8-33">33</a></span>
+<span class="normal"><a href="#__codelineno-8-34">34</a></span>
+<span class="normal"><a href="#__codelineno-8-35">35</a></span>
+<span class="normal"><a href="#__codelineno-8-36">36</a></span>
+<span class="normal"><a href="#__codelineno-8-37">37</a></span>
+<span class="normal"><a href="#__codelineno-8-38">38</a></span>
+<span class="normal"><a href="#__codelineno-8-39">39</a></span>
+<span class="normal"><a href="#__codelineno-8-40">40</a></span>
+<span class="normal"><a href="#__codelineno-8-41">41</a></span>
+<span class="normal"><a href="#__codelineno-8-42">42</a></span>
+<span class="normal"><a href="#__codelineno-8-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ScheduledOptim</span><span class="p">():</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;A simple wrapper class for learning rate scheduling&#39;&#39;&#39;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">lr_mul</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">n_warmup_steps</span><span class="p">):</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="sd">        optimizer：优化器，如 Adam 或 SGD。</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="sd">        lr_mul：调整学习率的乘数因子。</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="sd">        d_model: 隐藏层的大小。</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="sd">        n_warmup_steps：预热阶段的步数。在预热阶段，学习率会逐渐增加。</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="sd">        n_steps：当前训练步数，初始化为0。</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="sd">        &#39;&#39;&#39;</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">lr_mul</span> <span class="o">=</span> <span class="n">lr_mul</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">=</span> <span class="n">d_model</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_warmup_steps</span> <span class="o">=</span> <span class="n">n_warmup_steps</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">step_and_update_lr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a>        <span class="s2">&quot;Step with the inner optimizer&quot;</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_update_learning_rate</span><span class="p">()</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">zero_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a>        <span class="s2">&quot;Zero out the gradients with the inner optimizer&quot;</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a>
+<a id="__codelineno-8-29" name="__codelineno-8-29"></a>
+<a id="__codelineno-8-30" name="__codelineno-8-30"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_get_lr_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31"></a>        <span class="n">d_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32"></a>        <span class="n">n_steps</span><span class="p">,</span> <span class="n">n_warmup_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_warmup_steps</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33"></a>        <span class="k">return</span> <span class="p">(</span><span class="n">d_model</span> <span class="o">**</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_steps</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">n_steps</span> <span class="o">*</span> <span class="n">n_warmup_steps</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">))</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34"></a>
+<a id="__codelineno-8-35" name="__codelineno-8-35"></a>
+<a id="__codelineno-8-36" name="__codelineno-8-36"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_update_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39; Learning rate scheduling per step &#39;&#39;&#39;</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38"></a>
+<a id="__codelineno-8-39" name="__codelineno-8-39"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40"></a>        <span class="n">lr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_mul</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lr_scale</span><span class="p">()</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41"></a>
+<a id="__codelineno-8-42" name="__codelineno-8-42"></a>        <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+<a id="__codelineno-8-43" name="__codelineno-8-43"></a>            <span class="n">param_group</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span> <span class="c1">#更新学习率</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/czy1101kksk" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://space.bilibili.com/35052889" target="_blank" rel="noopener" title="space.bilibili.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<532651226@qq.com>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+    
+  </body>
+</html>
